@@ -1,0 +1,95 @@
+/* styles.scss */
+@import "./../../../../theme/variables.scss";
+
+/* styles.scss */
+.layout-container {
+    display: flex;
+    height: 100vh;
+    font-family: $font-family;
+  }
+  
+  .branding-section {
+    flex: 1;
+    background: linear-gradient(to right, $gradient-start, $gradient-end);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .branding-content {
+    text-align: center;
+  }
+  
+  .branding-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .branding-description {
+    font-size: 1.25rem;
+    margin-top: 10px;
+  }
+  
+  .branding-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .auth-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: $background-color;
+  }
+  
+  .toolbar {
+    background-color: $toolbar-background;
+    color: $toolbar-text-color;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .app-title {
+    font-weight: bold;
+  }
+  
+  .logout-button {
+    color: $button-color;
+    background-color: $button-background;
+    &:hover {
+      background-color: $button-hover-background;
+    }
+  }
+  
+  .auth-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .router-outlet {
+    max-width: 400px;
+    width: 100%;
+    background-color: $content-background;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  @media (max-width: 768px) {
+    .branding-title {
+      font-size: 2rem;
+    }
+  
+    .branding-description {
+      font-size: 1rem;
+    }
+  }
+  

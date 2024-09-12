@@ -1,0 +1,53 @@
+<div class="login-form">
+    <h2 class="form-title">Login</h2>
+
+    <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" class="form">
+
+        <!-- Email Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter your email" type="email" required [formControlName]="'email'">
+            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                Please enter a valid email.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Password Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" required
+                [formControlName]="'password'">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+            </button>
+            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                Password is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Sign In with Google Button -->
+
+        <!-- Submit Button -->
+        <button mat-raised-button color="primary" type="submit" *ngIf="!loading">
+            Login
+        </button>
+
+        <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+    </form>
+
+    <div class="footer">
+
+
+        <!-- Register Link -->
+        <button mat-raised-button color="primary" class="google-button" (click)="signInWithGoogle()">
+            <!-- <mat-icon>google</mat-icon> -->
+            <i class="fab fa-google google-icon"></i>
+            Sign in with Google
+        </button>
+        <!-- <asl-google-signin-button></asl-google-signin-button> -->
+
+        <div class="register-link">
+            <p>Don't have an account? <a routerLink="/auth/register">Register here</a></p>
+        </div>
+    </div>
+</div>

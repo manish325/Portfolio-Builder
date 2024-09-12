@@ -1,0 +1,20 @@
+/* _variables.scss */
+$primary-color: #2d8cf0;
+$google-color: #db4437;
+$gradient-start: #4e54c8;
+$gradient-end: #8f94fb;
+$background-color: #f4f4f4;
+$toolbar-background: $primary-color;
+$toolbar-text-color: #ffffff;
+$content-background: #ffffff;
+$button-color: #ffffff;
+$button-background: $primary-color;
+$button-hover-background: darken($primary-color, 10%);
+$card-background: #ffffff;
+$text-color: #333333;
+$button-background: $primary-color;
+$button-hover-background: darken($primary-color, 10%);
+$google-button-background: $google-color;
+$google-button-hover-background: darken($google-color, 10%);
+
+$font-family: 'Roboto', sans-serif;

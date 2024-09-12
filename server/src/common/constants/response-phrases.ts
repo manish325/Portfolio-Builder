@@ -1,0 +1,22 @@
+export enum RESPONSE_PHRASES {
+    REGISTRATION_SUCCESS = 'Registration successful, Please login!',
+    LOGIN_SUCCESS = 'Login successful',
+    LOGOUT_SUCCESS = 'Logout successful',
+    USER_NOT_FOUND = 'User not found',
+    INCORRECT_PASSWORD = 'Incorrect password',
+    USER_ALREADY_EXISTS = 'User already exists',
+    TOKEN_NOT_FOUND = 'Token not found',
+    TOKEN_EXPIRED = 'Token expired',
+    TOKEN_INVALID = 'Token invalid',
+    INTERNAL_SERVER_ERROR = 'Internal server error',
+    NOT_FOUND = 'Not found',
+    INVALID_REQUEST = 'Invalid request',
+    INVALID_TOKEN = 'Invalid token',
+    INVALID_CREDENTIALS = 'Invalid credentials',
+    EMAIL_ALREADY_EXISTS = 'Email already exists',
+    EMAIL_NOT_FOUND = 'Email not found',
+    VALIDATION_SUCCESS = 'Validation successful',
+    VALIDATION_FAILED = 'Validation failed',
+    PASSWORD_NOT_MATCHED = 'Password not matched',
+    // Add more response phrases as needed
+}

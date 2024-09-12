@@ -1,0 +1,78 @@
+@import "./../../../../theme/variables.scss";
+
+.register-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: $card-background;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        justify-items: stretch;
+
+        input[type=number] {
+            -moz-appearance: textfield;
+          }
+    }
+
+    .form-container :nth-last-child(1):nth-child(odd) {
+        grid-column: 1 / -1;
+      }
+
+    .mat-mdc-form-field {
+        width: 100% !important;
+    }
+}
+
+.form-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.google-button {
+    display: flex;
+    align-items: center;
+    background-color: $google-button-background;
+    color: #ffffff;
+    margin-bottom: 20px;
+
+    &:hover {
+        background-color: $google-button-hover-background;
+    }
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+button {
+    margin-top: 10px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 10px;
+
+    a {
+        color: $primary-color;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+@media (max-width: 768px) {
+    .branding-title {
+        font-size: 2rem;
+    }
+
+    .branding-description {
+        font-size: 1rem;
+    }
+}

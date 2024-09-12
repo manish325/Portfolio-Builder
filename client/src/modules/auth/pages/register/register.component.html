@@ -1,0 +1,70 @@
+<form class="register-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
+    <h2 class="form-title">Register</h2>
+
+    <div class="form-container">
+
+
+        <!-- Email Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Enter your email" type="email" required [formControlName]="'email'">
+            <mat-error *ngIf="registrationForm.get('email')?.invalid || registrationForm.get('email')?.touched">
+                Please enter a valid email.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Full Name Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Full Name</mat-label>
+            <input matInput placeholder="Enter your full name" type="email" required [formControlName]="'fullName'">
+            <mat-error
+                *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched && registrationForm.get('fullName')?.errors?.['required']">
+                Please enter a valid full name.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Phone Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Enter your Phone Number" type="number" required [formControlName]="'phone'">
+            <mat-error
+                *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched && registrationForm.get('phone')?.errors?.['required']">
+                Please enter a valid Phone Number.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Password Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" required
+                [formControlName]="'password'">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+            </button>
+            <mat-error *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+                Password is required.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Confirm Password Input -->
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput placeholder="Confirm your password" [type]="hidePassword ? 'password' : 'text'" required
+                [formControlName]="'confirmPassword'">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
+            </button>
+            <mat-error *ngIf="registrationForm.hasError('passwordMismatch')">
+                Password doesn't match.
+            </mat-error>
+        </mat-form-field>
+
+        <!-- Submit Button -->
+    </div>
+    <button mat-raised-button color="primary" type="submit">Register</button>
+
+    <!-- Register Link -->
+    <div class="register-link">
+        <p>Already have an account? <a routerLink="/login">login here</a></p>
+    </div>
+</form>
