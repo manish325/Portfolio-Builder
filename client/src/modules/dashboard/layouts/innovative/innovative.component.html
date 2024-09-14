@@ -1,0 +1,123 @@
+<div class="portfolio-container">
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" opened="true">
+      <div class="profile-header">
+        <img [src]="userData.profilePicture" class="profile-picture" />
+        <h2>{{ userData.name }}</h2>
+        <p>{{ userData.location }}</p>
+        <p><a [href]="'mailto:' + userData.contactEmail">Contact Me</a></p>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+          <mat-list-item (click)="sidenav.close()">Overview</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Education</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Experience</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Skills</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Projects</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Certifications</mat-list-item>
+          <mat-list-item (click)="sidenav.close()">Languages</mat-list-item>
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <header class="header">
+        <mat-toolbar>
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Portfolio</span>
+        </mat-toolbar>
+      </header>
+
+      <main class="content">
+        <section class="profile-summary">
+          <h2>Profile Summary</h2>
+          <p>{{ userData.profileSummary }}</p>
+        </section>
+
+        <section class="skills">
+          <h2>Skills</h2>
+          <div class="skills-grid">
+            <div class="skill" *ngFor="let skill of userData.skills">
+              <h3>{{ skill.title }}</h3>
+              <mat-progress-bar mode="determinate" [value]="skill.proficiency"></mat-progress-bar>
+              <p>Experience: {{ skill.experience }} years</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="projects">
+          <h2>Projects</h2>
+          <div class="project-card" *ngFor="let project of userData.projects">
+            <img [src]="project.media[0]" class="project-media" />
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <p><strong>Technologies:</strong> 
+              <span *ngFor="let tech of project.technologies">{{ tech.name }} </span>
+            </p>
+            <p><strong>Skills:</strong> 
+              <span *ngFor="let skill of project.skills">{{ skill.title }} </span>
+            </p>
+          </div>
+        </section>
+
+        <section class="education">
+          <h2>Education</h2>
+          <div *ngFor="let edu of userData.education">
+            <h3>{{ edu.degree }} in {{ edu.fieldOfStudy }}</h3>
+            <p>{{ edu.school }} - {{ edu.location }}</p>
+            <p>{{ edu.startDate }} to {{ edu.endDate }}</p>
+            <p>{{ edu.description }}</p>
+          </div>
+        </section>
+
+        <section class="experience">
+          <h2>Experience</h2>
+          <div *ngFor="let exp of userData.experience">
+            <h3>{{ exp.title }} at {{ exp.company }}</h3>
+            <p>{{ exp.location }}</p>
+            <p>{{ exp.startDate }} to {{ exp.endDate }}</p>
+            <p>{{ exp.description }}</p>
+          </div>
+        </section>
+
+        <section class="certifications">
+          <h2>Certifications</h2>
+          <div *ngFor="let cert of userData.certifications">
+            <h3>{{ cert.title }}</h3>
+            <p>Issued by: {{ cert.issuer }}</p>
+            <p>Date: {{ cert.date }}</p>
+            <a [href]="cert.url" target="_blank">View Certificate</a>
+            <p>{{ cert.description }}</p>
+          </div>
+        </section>
+
+        <section class="languages">
+          <h2>Languages</h2>
+          <div *ngFor="let lang of userData.languages">
+            <h3>{{ lang.language }}</h3>
+            <mat-progress-bar mode="determinate" [value]="lang.proficiency"></mat-progress-bar>
+          </div>
+        </section>
+
+        <section class="contact-form">
+          <h2>Contact Me</h2>
+          <form>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input matInput />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Message</mat-label>
+              <textarea matInput></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Send</button>
+          </form>
+        </section>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

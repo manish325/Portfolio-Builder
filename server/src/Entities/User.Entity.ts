@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany} from "typeorm";
 import {
     isNotEmpty,
     isEmail,
@@ -50,6 +50,12 @@ export class User {
         nullable : true,
         default : null
     })
+    profileSummary : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
     github : string;
 
     @Column({
@@ -77,13 +83,6 @@ export class User {
         nullable : true,
         default : null
     })
-    certifications : ICertification[];
-
-    @Column({
-        type : 'json',
-        nullable : true,
-        default : null
-    })
     languages : ILanguage[];
 
     @OneToMany(
@@ -92,9 +91,9 @@ export class User {
     )
     projects: Project[];
 
-    @OneToMany(
+    @ManyToMany(
         () => Skill,
-        skill => skill.user
+        skill => skill.users
     )
     skills: Skill[];
 

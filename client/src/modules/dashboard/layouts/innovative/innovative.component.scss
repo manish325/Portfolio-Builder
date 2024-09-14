@@ -1,0 +1,119 @@
+.portfolio-container {
+    height: 100vh;
+    display: flex;
+
+    mat-sidenav {
+        width: 250px;
+        background: #2c3e50;
+        color: white;
+
+        .profile-header {
+            text-align: center;
+            padding: 20px;
+
+            .profile-picture {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+
+            h2 {
+                margin: 10px 0;
+                font-size: 1.5em;
+            }
+
+            p {
+                margin: 5px 0;
+                font-size: 0.9em;
+            }
+        }
+
+        mat-nav-list {
+            margin-top: 20px;
+
+            mat-list-item {
+                cursor: pointer;
+
+                .mdc-list-item__content {
+                    .mdc-list-item__primary-text {
+                        color: white !important;
+                    }
+                }
+
+                span {}
+
+                &:hover {
+                    background: #34495e;
+                }
+            }
+        }
+    }
+
+    mat-sidenav-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .header {
+            background: #2980b9;
+            color: white;
+            padding: 10px;
+        }
+
+        .content {
+            padding: 20px;
+            background: #ecf0f1;
+
+            section {
+                margin-bottom: 20px;
+
+                h2 {
+                    color: #2980b9;
+                    border-bottom: 2px solid #2980b9;
+                    padding-bottom: 10px;
+                    margin-bottom: 10px;
+                }
+
+                .skills-grid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 15px;
+                }
+
+                .skill,
+                .project-card,
+                .education,
+                .experience,
+                .certifications,
+                .languages {
+                    background: white;
+                    padding: 15px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+                    h3 {
+                        margin-top: 0;
+                    }
+
+                    .project-media {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 8px;
+                    }
+                }
+
+                .contact-form {
+                    form {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+
+                        mat-form-field {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

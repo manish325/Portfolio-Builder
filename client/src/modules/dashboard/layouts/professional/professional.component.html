@@ -1,0 +1,130 @@
+<div class="portfolio-container">
+    <header class="navbar">
+      <div class="logo">My Portfolio</div>
+      <nav>
+        <a href="/#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#languages">Languages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+  
+    <main>
+      <section id="home" class="home">
+        <div class="intro">
+          <img [src]="userData.profilePicture" alt="Profile Picture" class="profile-picture" />
+          <h1 class="typing-effect">{{ userData.name }}</h1>
+          <p class="typing-effect">{{ userData.profileSummary }}</p>
+          <p>Contact me at: <a [href]="'mailto:' + userData.contactEmail">{{ userData.contactEmail }}</a></p>
+        </div>
+      </section>
+  
+      <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+          <div class="skill-card" *ngFor="let skill of userData.skills">
+            <h3>{{ skill.title }}</h3>
+            <mat-progress-bar mode="determinate" [value]="skill.proficiency"></mat-progress-bar>
+            <p>Experience: {{ skill.experience }} years</p>
+            <div class="certificates">
+              <div class="certificate" *ngFor="let cert of skill.certificates">
+                <p>{{ cert.name }} - {{ cert.issuingOrganization }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card" *ngFor="let project of userData.projects">
+            <img [src]="project.media[0]" class="project-image" />
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <p><strong>Technologies:</strong> 
+              <span *ngFor="let tech of project.technologies">{{ tech.name }}</span>
+            </p>
+            <p><strong>Skills:</strong> 
+              <span *ngFor="let skill of project.skills">{{ skill.title }}</span>
+            </p>
+          </div>
+        </div>
+      </section>
+  
+      <section id="education" class="education">
+        <h2>Education</h2>
+        <div class="education-list">
+          <div class="education-item" *ngFor="let edu of userData.education">
+            <h3>{{ edu.degree }} in {{ edu.fieldOfStudy }}</h3>
+            <p>{{ edu.school }} - {{ edu.location }}</p>
+            <p>{{ edu.startDate }} to {{ edu.endDate }}</p>
+            <p>{{ edu.description }}</p>
+          </div>
+        </div>
+      </section>
+  
+      <section id="experience" class="experience">
+        <h2>Experience</h2>
+        <div class="experience-list">
+          <div class="experience-item" *ngFor="let exp of userData.experience">
+            <h3>{{ exp.title }} at {{ exp.company }}</h3>
+            <p>{{ exp.location }}</p>
+            <p>{{ exp.startDate }} to {{ exp.endDate }}</p>
+            <p>{{ exp.description }}</p>
+          </div>
+        </div>
+      </section>
+  
+      <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <div class="certifications-list">
+          <div class="certification-item" *ngFor="let cert of userData.certifications">
+            <h3>{{ cert.title }}</h3>
+            <p>Issued by: {{ cert.issuer }}</p>
+            <p>Date: {{ cert.date }}</p>
+            <a [href]="cert.url" target="_blank">View Certificate</a>
+            <p>{{ cert.description }}</p>
+          </div>
+        </div>
+      </section>
+  
+      <section id="languages" class="languages">
+        <h2>Languages</h2>
+        <div class="languages-list">
+          <div class="language-item" *ngFor="let lang of userData.languages">
+            <h3>{{ lang.language }}</h3>
+            <mat-progress-bar mode="determinate" [value]="lang.proficiency"></mat-progress-bar>
+          </div>
+        </div>
+      </section>
+  
+      <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Message</mat-label>
+            <textarea matInput></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Send</button>
+        </form>
+      </section>
+    </main>
+  
+    <footer>
+      <p>© {{ "currentYear" }} My Portfolio. All rights reserved.</p>
+    </footer>
+  </div>
+  

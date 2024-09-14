@@ -2,7 +2,7 @@
 @import "./../../../../theme/animations.scss";
 
 .login-form {
-    width: 100%;
+    min-width: 100%;
     max-width: 400px;
     background-color: $card-background;
     border-radius: 8px;

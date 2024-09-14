@@ -1,1 +1,38 @@
-<p>landing-page works!</p>
+<main class="landing-page">
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <h1>Portfolio Builder</h1>
+        <div class="profile-icon" (click)="openProfileForm()">
+            <img src="https://via.placeholder.com/40" alt="Profile Icon" />
+            <span>John Doe</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Default Portfolio Preview -->
+        <div class="get-started-section">
+            <button mat-raised-button color="primary" (click)="getStarted()" [routerLink]="'/dashboard/profile'">
+                Get Started to Build Your Portfolio
+            </button>
+        </div>
+        
+        <div class="layout-options">
+            <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
+                <h3>{{layout.title}} Layout</h3>
+                <img [src]="layout.image" alt="Modern Layout Preview" />
+                <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
+                    &#10003;
+                </div>
+            </div>
+        </div>
+
+        <div class="portfolio-preview">
+            <router-outlet></router-outlet>
+        </div>
+
+        <!-- Portfolio Layout Options -->
+
+        <!-- Get Started Section -->
+    </div>
+</main>

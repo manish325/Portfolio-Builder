@@ -17,14 +17,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatSnackBar,
-  MatSnackBarAction,
-  MatSnackBarActions,
-  MatSnackBarLabel,
-  MatSnackBarRef,
-} from '@angular/material/snack-bar';
 import { SnackBarService } from 'src/services/snackbar/snackbar.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -48,6 +44,9 @@ import { SnackBarService } from 'src/services/snackbar/snackbar.service';
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   providers : [
     SnackBarService
@@ -72,7 +71,10 @@ import { SnackBarService } from 'src/services/snackbar/snackbar.service';
     MatSortModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatProgressBarModule
   ]
 })
 export class MaterialModule { }

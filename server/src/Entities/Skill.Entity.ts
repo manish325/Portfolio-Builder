@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne } from "typeorm";
-import { User } from "./User.entity";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, JoinTable, OneToMany } from "typeorm";
+import { User } from "./User.Entity";
+import { Certificate } from "./Certificate.Entity";
 
 @Entity()
 export class Skill {
@@ -10,9 +11,6 @@ export class Skill {
   title: string;
 
   @Column()
-  level: number;
-
-  @Column()
   experience: number;
 
   @Column()
@@ -21,9 +19,17 @@ export class Skill {
   @Column()
   is_active: boolean;
 
-  @ManyToOne(
+  @ManyToMany(
     () => User,
     user => user.skills
   )
-  user : User;
+  @JoinTable()
+  users : User[];
+
+  @ManyToMany(
+    () => Certificate,
+    certificate => certificate.skills
+  )
+  @JoinTable()
+  certificates : Certificate[];
 }

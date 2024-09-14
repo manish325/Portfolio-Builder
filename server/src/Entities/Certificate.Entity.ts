@@ -1,5 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { User } from './User.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany } from 'typeorm';
+import { User } from './User.Entity';
+import { Skill } from './Skill.Entity';
+import { Technology } from './Technology.Entity';
 
 @Entity()
 export class Certificate {
@@ -24,8 +26,8 @@ export class Certificate {
   @Column({ type: 'varchar', length: 255, nullable: true })
   credentialId: string;
 
-  @Column({ type: 'varchar', length: 500, nullable: true })
-  credentialUrl: string;
+  @Column({ type: 'json', nullable: true })
+  credentialUrl: string [];
 
   @Column({ type: 'text', nullable: true })
   description: string;
@@ -43,4 +45,16 @@ export class Certificate {
     default: 'Active',
   })
   status: string;
+
+  @ManyToMany(
+    () => Skill,
+    skill => skill.certificates
+  )
+  skills: Skill[];
+
+  @ManyToMany(
+    () => Technology,
+    technology => technology.certificates
+  )
+  technologies: Technology[];
 }

@@ -1,0 +1,330 @@
+/* General Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevent scrolling */
+  }
+  
+  .portfolio-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Header, Content, Footer */
+    grid-template-columns: 1fr;
+    height: 100%; /* Full viewport height */
+    width: 100%; /* Full viewport width */
+    overflow-x: hidden;
+  }
+  
+  header.navbar {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    grid-row: 1;
+    grid-column: 1;
+    width: 100%;
+  }
+  
+  header.navbar .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  header.navbar nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  header.navbar nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+  }
+  
+  header.navbar nav a:hover {
+    color: #ff4081;
+  }
+  
+  main {
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    overflow: auto; /* Allow scrolling if content overflows */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  section {
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  section h2 {
+    color: #ff4081;
+    margin-bottom: 20px;
+    font-size: 2em;
+    position: relative;
+  }
+  
+  section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background: #ff4081;
+  }
+  
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .home .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #ff4081;
+  }
+  
+  .home .typing-effect {
+    font-size: 1.5em;
+    color: #333;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #ff4081;
+    animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+    text-wrap: wrap;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #ff4081; }
+  }
+  
+  .skills-container, .projects-grid, .education-list, .experience-list, .certifications-list, .languages-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .skill-card, .project-card, .education-item, .experience-item, .certification-item, .language-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skill-card:hover, .project-card:hover, .education-item:hover, .experience-item:hover, .certification-item:hover, .language-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .contact mat-form-field {
+    width: 100%;
+  }
+  
+  .contact input, .contact textarea {
+    padding: 10px;
+  }
+  
+  .contact textarea {
+    min-height: 100px;
+  }
+  
+  .contact button {
+    align-self: center;
+  }
+  
+  footer {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    grid-row: 3;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    header.navbar nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .skills-container, .projects-grid, .education-list, .experience-list, .certifications-list, .languages-list {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    header.navbar nav a {
+      padding: 8px;
+      font-size: 0.9em;
+    }
+  
+    .home .profile-picture {
+      width: 120px;
+      height: 120px;
+    }
+  
+    .home .typing-effect {
+      font-size: 1.2em;
+      text-wrap: wrap;
+      max-width: 70vw;
+    }
+  
+    .skills-container, .projects-grid, .education-list, .experience-list, .certifications-list, .languages-list {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header.navbar {
+      .logo {
+        font-size: 1.2em;
+      }
+  
+      nav a {
+        padding: 6px;
+        font-size: 0.8em;
+      }
+    }
+  
+    .home .profile-picture {
+      width: 100px;
+      height: 100px;
+    }
+  
+    .home .typing-effect {
+      font-size: 1em;
+    }
+  
+    .contact form mat-form-field {
+      input, textarea {
+        padding: 8px;
+      }
+    }
+  
+    .contact button {
+      padding: 10px 20px;
+      font-size: 0.9em;
+    }
+  }
+  
+
+  /* Ensure container handles overflow and adjusts text */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .home .intro {
+    max-width: 90vw; /* Limit the width to prevent overflow */
+    overflow: hidden; /* Prevent content from overflowing */
+  }
+  
+
+  /* Base styles for header */
+header.navbar {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  /* Logo styling */
+  header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Navigation styling */
+  header nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Navigation links styling */
+  header nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+  
+  /* On hover effect for nav links */
+  header nav a:hover {
+    color: #ff4081;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    header nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    header nav a {
+      padding: 10px;
+      font-size: 1em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header .logo {
+      font-size: 1.2em;
+    }
+  
+    header nav a {
+      padding: 8px;
+      font-size: 0.9em;
+    }
+  }
+  

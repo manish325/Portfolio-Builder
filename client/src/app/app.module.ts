@@ -11,6 +11,7 @@ import { DisplayContentsDirective } from "../common/directives/DisplayContentDir
 import { UrlInterceptor } from "src/common/interceptors/url.interceptor";
 import { LocalStorageService } from "src/services/localstorage/localstorage.service";
 import { SharedModule } from "src/shared/SharedModule/shared.module";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SharedModule } from "src/shared/SharedModule/shared.module";
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UrlInterceptor, multi: true },
-    {provide : LocalStorageService, useClass: LocalStorageService, multi: false }
+    { provide: LocalStorageService, useClass: LocalStorageService, multi: false },
+    // { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent]
 })
