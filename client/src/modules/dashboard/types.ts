@@ -4,9 +4,11 @@ export interface IUserData {
   id: string;
   name: string;
   email: string;
-  profilePicture : string | SafeResourceUrl,
+  profilePicture : string | null,
   phone : string,
-  profileSummary : string
+  profileSummary : string,
+  address : string,
+  country : string
 
   github : string,
   linkedin : string,
@@ -96,4 +98,9 @@ export interface ILayout {
   path : string,
   image : string,
   title : string
+}
+
+export interface INavigationOptions {
+  title : string,
+  path : string
 }

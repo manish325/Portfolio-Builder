@@ -1,27 +1,20 @@
 @import "./../../../../theme/variables.scss";
 
-/* Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fa;
-    color: #333;
-    padding: 20px;
-}
 
 .landing-page {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: stretch;
 
-    /* Title Bar */
     .title-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to right, $gradient-start, $gradient-end);
+        color: white;
+        // padding: 15px 30px;
+        position: sticky;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -29,6 +22,14 @@ body {
         color: white;
         padding: 15px 30px;
         position: sticky;
+        gap: 1rem;
+
+        .logout-button {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            gap: .61rem;
+        }
     }
 
     .title-bar h1 {
@@ -39,6 +40,7 @@ body {
         cursor: pointer;
         display: flex;
         align-items: center;
+        gap: .8rem;
     }
 
     .profile-icon img {
@@ -60,6 +62,21 @@ body {
         overflow-y: auto;
         max-height: 80vh;
 
+        mat-drawer-container {
+            display: flex;
+            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .mat-drawer {
+                max-width: 30%;
+                width: 30%;
+            }
+        }
+
+
+
+
         /* Default Portfolio Preview */
         .portfolio-preview {
             background-color: white;
@@ -68,7 +85,7 @@ body {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: stretch;
 
             .info {
                 width: 100%;
@@ -96,11 +113,12 @@ body {
         /* Portfolio Layout Options */
         .layout-options {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            padding: 1rem;
 
             @media (max-width: 992px) {
-                grid-template-columns: repeat(2, 1fr);
+                // grid-template-columns: repeat(2, 1fr);
             }
 
             @media (max-width: 768px) {
@@ -190,6 +208,6 @@ body {
     }
 
     .layout-options {
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
     }
 }

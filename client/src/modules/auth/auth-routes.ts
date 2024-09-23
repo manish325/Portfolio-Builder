@@ -6,12 +6,6 @@ import { ResetPasswordComponent } from "./pages/reset-password/reset-password.co
 import { LayoutComponent } from "./pages/layout/layout.component";
 import { PageNotFoundComponent } from "src/shared/page-not-found/page-not-found.component";
 
-// const layoutComponent = () => import('./pages/layout/layout.component').then(m => m.LayoutComponent);
-// const loginComponent = () => import('./pages/login/login.component').then(m => m.LoginComponent);
-// const registerComponent = () => import('./pages/register/register.component').then(m => m.RegisterComponent);
-// const forgotPasswordComponent = () => import('./pages/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent);
-// const resetPasswordComponent = () => import('./pages/reset-password/reset-password.component').then(m => m.ResetPasswordComponent);
-
 export const authRoutes : Routes = [
     {
         path: '',

@@ -20,6 +20,18 @@ export class Project {
   @Column()
   endDate: Date;
 
+  @Column({
+    nullable : true,
+    default : null
+  })
+  githubLink: string;
+
+  @Column({
+    nullable : true,
+    default : null
+  })
+  liveLink : string;
+
   @ManyToOne(() => User, (user) => user.projects)
   user: User;
 

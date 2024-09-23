@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
 import { Project } from "./Project.Entity";
 import { Certificate } from "./Certificate.Entity";
 
@@ -14,6 +14,7 @@ export class Technology {
         () => Project,
         (project) => project.technologies
     )
+    @JoinTable()
     projects: Project[];
 
     @ManyToMany(

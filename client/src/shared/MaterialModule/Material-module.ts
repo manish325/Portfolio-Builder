@@ -21,6 +21,18 @@ import { SnackBarService } from 'src/services/snackbar/snackbar.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatStepperModule} from '@angular/material/stepper';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NgxFileDropModule } from 'ngx-file-drop';
+import { FilePickerModule } from 'ngx-awesome-uploader';
+import { FileUploadModule } from 'ng2-file-upload';
+import {MatSliderModule} from "@angular/material/slider";
+import {MatSelectModule} from "@angular/material/select";
+import {MatChipEditedEvent, MatChipInputEvent, MatChipsModule} from '@angular/material/chips';
+// import { AvatarModule } from 'ngx-avatar';
+// import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+// import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
   imports: [
@@ -46,7 +58,19 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSnackBarModule,
     MatTabsModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    FileUploadModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatChipsModule
+    // NzAvatarModule,
+    // NzButtonModule
+    // AvatarModule
+    // NgxFileDropModule
+    // FilePickerModule
   ],
   providers : [
     SnackBarService
@@ -74,7 +98,19 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSnackBarModule,
     MatTabsModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    FileUploadModule,
+    MatSliderModule,
+    MatSelectModule,
+    MatChipsModule
+    // NzAvatarModule,
+    // NzButtonModule
+    // AvatarModule
+    // NgxFileDropModule,
+    // FilePickerModule
   ]
 })
 export class MaterialModule { }

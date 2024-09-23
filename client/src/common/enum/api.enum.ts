@@ -10,4 +10,5 @@ export enum API_ENDPOINTS {
   REFRESH_TOKEN = '/auth/refresh-token',
   LOGOUT = '/auth/logout',
   VALIDATE_TOKEN = '/auth/validate-token',
+  GET_USERDATA = '/user/data'
 }

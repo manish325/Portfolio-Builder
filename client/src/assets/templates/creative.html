@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        .creative-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* background-color: #121212; */
+            color: #ffffff !important;
+            transition: background-color 0.5s, color 0.5s;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header, .section {
+            background: #1e1e1e;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .header:hover, .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            animation: fadeIn 1s;
+        }
+        .header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            transition: transform 0.3s;
+        }
+        .header img:hover {
+            transform: scale(1.1);
+        }
+        .card {
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background-color: #2c2c2c;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 0.5s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+        }
+        .project-media {
+            background-size: cover;
+            border-radius: 5px;
+            height: 200px;
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        .project-media:hover {
+            transform: scale(1.02);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="creative-body">
+    <div class="container">
+        <div class="header">
+            <img src="" id="profilePicture" alt="Profile Picture" width="150">
+            <div>
+                <h1 id="name"></h1>
+                <p id="profileSummary"></p>
+                <p>Email: <span id="email"></span></p>
+                <p>Phone: <span id="phone"></span></p>
+                <p>Location: <span id="location"></span></p>
+                <a id="github" href="#" target="_blank" style="color: #5b8df0;">GitHub</a> |
+                <a id="linkedin" href="#" target="_blank" style="color: #5b8df0;">LinkedIn</a>
+            </div>
+        </div>
+
+        <div class="section" id="skills-container">
+            <h2>Skills</h2>
+        </div>
+
+        <div class="section" id="projects-container">
+            <h2>Projects</h2>
+        </div>
+
+        <div class="section" id="experience-container">
+            <h2>Experience</h2>
+        </div>
+
+        <div class="section" id="education-container">
+            <h2>Education</h2>
+        </div>
+
+        <div class="section" id="certifications-container">
+            <h2>Certifications</h2>
+        </div>
+
+        <div class="section" id="languages-container">
+            <h2>Languages</h2>
+        </div>
+    </div>
+</body>
+</html>

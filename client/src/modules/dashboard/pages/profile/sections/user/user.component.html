@@ -1,1 +1,273 @@
-<p>user works!</p>
+<main class="user-page">
+    <h2 class="head">Complete your profile by filling up the following details</h2>
+    <form [formGroup]="userDetailsFormGroup" class="details-container">
+        <mat-vertical-stepper [formGroup]="userDetailsFormGroup" style="min-width: 100%;">
+
+            <!-- Step 1: Basic Details -->
+            <mat-step [stepControl]="basicDetailsFormGroup" label="Basic Details">
+                <div class="step overflowing-section">
+                    <mat-card>
+                        <mat-card-content>
+                            <form [formGroup]="basicDetailsFormGroup" class="details">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput formControlName="name" placeholder="Enter your name">
+                                    <mat-error *ngIf="basicDetailsFormGroup.get('name')?.hasError('required')">
+                                        Name is required
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput formControlName="email" placeholder="Enter your email" type="email">
+                                    <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('required')">
+                                        Email is required
+                                    </mat-error>
+                                    <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('email')">
+                                        Please enter a valid email address
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Phone</mat-label>
+                                    <input matInput formControlName="phone" placeholder="Enter your phone number"
+                                        type="tel">
+                                    <mat-error *ngIf="basicDetailsFormGroup.get('phone')?.hasError('required')">
+                                        Phone number is required
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Address</mat-label>
+                                    <textarea matInput formControlName="address"
+                                        placeholder="Enter your address"></textarea>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Country</mat-label>
+                                    <input matInput formControlName="country" placeholder="Enter your country">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Profile Summary</mat-label>
+                                    <input matInput formControlName="profileSummary"
+                                        placeholder="Enter your profile summary">
+                                </mat-form-field>
+
+                                <div class="media-container">
+                                    <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" />
+                                    <button mat-raised-button type="button" color="primary"
+                                        (click)="fileInput.click()">Profile Picture</button>
+
+                                    <div class="selected-media"
+                                        *ngIf="basicDetailsFormGroup.get('profilePicture')?.value">
+                                        <mat-chip>
+                                            <div class="chip-content">
+                                                <span>
+                                                    {{basicDetailsFormGroup.get('profilePicture')?.value?.name ||
+                                                    'Profile Picture'}}
+                                                </span>
+                                                <mat-icon (click)="removeProfilePic()">cancel</mat-icon>
+                                            </div>
+                                        </mat-chip>
+                                        <img [src]="fileUrl" alt="" *ngIf="fileUrl">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="footer">
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+
+            <!-- Step 2: Social Links -->
+            <mat-step [stepControl]="socialLinksFormGroup" label="Social Links">
+                <div class="step">
+                    <mat-card>
+                        <mat-card-content>
+                            <form [formGroup]="socialLinksFormGroup">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Github</mat-label>
+                                    <input matInput formControlName="github" placeholder="Enter your Github link">
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>LinkedIn</mat-label>
+                                    <input matInput formControlName="linkedin" placeholder="Enter your LinkedIn link">
+                                </mat-form-field>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="footer">
+                    <button mat-raised-button matStepperPrevious color="accent">Previous</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+
+            <!-- Educational Details -->
+            <mat-step [stepControl]="educationDetailsFormGroup" label="Education Details" class="overflowing-section">
+                <div class="step overflowing-section">
+                    <div class="add-control">
+                        <button color="primary" mat-fab (click)="addEducation()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <mat-card *ngFor="let control of educationDetailsFormGroup.controls; let i = index">
+                        <mat-card-title class="title">
+                            <h3>{{i+1}}</h3>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <form [formGroup]="control" class="details">
+                                <mat-form-field>
+                                    <mat-label>School</mat-label>
+                                    <input type="text" matInput formControlName="school">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Degree</mat-label>
+                                    <input type="text" matInput formControlName="degree">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Field of Study</mat-label>
+                                    <input type="text" matInput formControlName="fieldOfStudy">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Start Date</mat-label>
+                                    <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+                                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #startPicker></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>End Date</mat-label>
+                                    <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+                                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #endPicker></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Location</mat-label>
+                                    <input type="text" matInput formControlName="location">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput formControlName="description"
+                                        placeholder="Enter description"></textarea>
+                                </mat-form-field>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="footer">
+                    <button mat-raised-button matStepperPrevious color="accent">Previous</button>
+                    <button mat-raised-button matStepperNext color="primary">Next</button>
+                </div>
+            </mat-step>
+
+            <!-- Experience Details -->
+            <mat-step [stepControl]="experienceDetailsFormGroup" label="Experience Details">
+                <div class="step overflowing-section">
+                    <div class="add-control">
+                        <button color="primary" mat-fab (click)="addExperience()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <mat-card *ngFor="let control of experienceDetailsFormGroup.controls; let i = index">
+                        <mat-card-title class="title">
+                            <h3>{{i+1}}</h3>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <form [formGroup]="control" class="details">
+                                <mat-form-field>
+                                    <mat-label>Title</mat-label>
+                                    <input type="text" matInput formControlName="title" placeholder="Enter job title">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Company</mat-label>
+                                    <input type="text" matInput formControlName="company"
+                                        placeholder="Enter company name">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Location</mat-label>
+                                    <input type="text" matInput formControlName="location" placeholder="Enter location">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Start Date</mat-label>
+                                    <input matInput [matDatepicker]="startPicker" formControlName="startDate"
+                                        placeholder="Select start date">
+                                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #startPicker></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>End Date</mat-label>
+                                    <input matInput [matDatepicker]="endPicker" formControlName="endDate"
+                                        placeholder="Select end date">
+                                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #endPicker></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Description</mat-label>
+                                    <textarea matInput formControlName="description"
+                                        placeholder="Enter description"></textarea>
+                                </mat-form-field>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="footer">
+                    <button mat-raised-button matStepperPrevious color="accent">Previous</button>
+                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                </div>
+            </mat-step>
+
+            <!-- Language Details -->
+            <mat-step [stepControl]="languageDetailsFormArray" label="Language Details">
+                <div class="step overflowing-section">
+                    <div class="add-control">
+                        <button color="primary" mat-fab (click)="addLanguage()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <mat-card *ngFor="let control of languageDetailsFormArray.controls; let i = index">
+                        <mat-card-title class="title">
+                            <h3>{{i+1}}</h3>
+                        </mat-card-title>
+                        <mat-card-content>
+                            <form [formGroup]="control" class="details language-form">
+                                <mat-form-field>
+                                    <mat-label>Language</mat-label>
+                                    <input type="text" matInput formControlName="language"
+                                        placeholder="Enter Language Name">
+                                </mat-form-field>
+
+                                <div class="proficiency">
+                                    <p class="mat-label">Proficiency</p>
+                                    <mat-slider min="0" max="5" step="1" showTickMarks discrete
+                                        [displayWith]="formatLabel">
+                                        <input matSliderThumb matInput [value]="control.value.proficiency" [min]="0"(change)="changeProficiency($event, i)">
+                                    </mat-slider>
+                                </div>
+                            </form>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div class="footer">
+                    <button mat-raised-button matStepperPrevious color="accent">Previous</button>
+                    <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+    </form>
+</main>

@@ -1,85 +1,98 @@
 @import "./../../../../theme/variables.scss";
 @import "./../../../../theme/animations.scss";
+@import "./../../../../theme/mixins.scss";
 
 .login-form {
-    min-width: 100%;
-    max-width: 400px;
+    width: 100%; /* Full width to prevent overflow */
+    max-width: 400px; /* Maximum width for larger screens */
     background-color: $card-background;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    box-sizing: border-box; /* Include padding in width calculation */
+
+    @include mobile {
+        max-width: 100%; /* Full width on mobile */
+        padding: 15px; /* Adjust padding for mobile */
+        margin-top: 25px;
+    }
 
     .form {
-      display: flex;
-      flex-direction: column;
-      gap: .5rem;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        @include mobile {
+            gap: .3rem; /* Reduce gap on mobile */
+        }
     }
 
     .loading-spinner {
-        width: 32px !important; /* Adjust width to fit button */
-        height: 32px !important; /* Adjust height to fit button */
-        margin: 4px; /* Remove default margins */
-        // padding: 4px;
-        display: inline-block; /* Align with text */
-      }
+        width: 32px !important;
+        height: 32px !important;
+        margin: 4px;
+        display: inline-block;
+    }
 
     .mat-mdc-form-field {
         width: 100% !important;
+        min-width: 0; /* Prevents overflow */
     }
 
     .footer {
-        // background: green;
         display: flex;
         flex-direction: column;
         gap: 0;
         margin-top: 1rem;
+
+        @include mobile {
+            margin-top: 0.5rem; /* Adjust margin for mobile */
+        }
     }
-    // background: red;
-  }
-  
-  .form-title {
+}
+
+.form-title {
     font-size: 1.5rem;
     margin-bottom: 20px;
-  }
-  
-  .google-button {
+
+    @include mobile {
+        font-size: 1.25rem; /* Adjust font size for mobile */
+        margin-bottom: 15px; /* Adjust margin for mobile */
+    }
+}
+
+.google-button {
     display: flex;
     align-items: center;
     background-color: $google-button-background;
     color: #ffffff;
-    
+
     &:hover {
-      background-color: $google-button-hover-background;
+        background-color: $google-button-hover-background;
     }
-    
+
     mat-icon {
-      margin-right: 8px;
+        margin-right: 8px;
     }
-  }
-  
-  button {
+}
+
+button {
     margin-top: 10px;
-  }
-  
-  .register-link {
+
+    @include mobile {
+        margin-top: 5px; /* Adjust button margin for mobile */
+    }
+}
+
+.register-link {
     text-align: center;
-    
+
     a {
-      color: $primary-color;
-      text-decoration: none;
+        color: $primary-color;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
-    
-    a:hover {
-      text-decoration: underline;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .branding-title {
-      font-size: 2rem;
-    }
-  
-    .branding-description {
-      font-size: 1rem;
-    }
-  }
+}

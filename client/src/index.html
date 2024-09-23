@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Client</title>
@@ -9,8 +10,199 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script defer>
+    const main = () => {
+
+      // const userData = {
+      //   profilePicture: 'https://lh3.googleusercontent.com/a/ACg8ocLeBOhZu2qZ1EYABDOviEE67TKDDaQ-ItC4GSONA9EDzr--jjgF=s96-c',
+      //   name: 'John Doe',
+      //   email: 'john.doe@example.com',
+      //   phone: '+123456789',
+      //   location: 'San Francisco, CA',
+      //   profileSummary: 'I am a full-stack software engineer with over 5 years of experience in building scalable web applications.',
+      //   github: 'https://github.com/johndoe',
+      //   linkedin: 'https://www.linkedin.com/in/johndoe',
+      //   skills: [
+      //     { id: '1', title: 'JavaScript', experience: 5, proficiency: 90, certificates: [{ name: 'JavaScript Certification' }] },
+      //     { id: '2', title: 'React', experience: 4, proficiency: 85, certificates: [] },
+      //     { id: '3', title: 'Vue.js', experience: 3, proficiency: 80, certificates: [] },
+      //   ],
+      //   projects: [
+      //     {
+      //       id: '1',
+      //       name: 'Project Alpha',
+      //       description: 'A complex web application for managing tasks and projects with real-time collaboration features.',
+      //       media: ['https://via.placeholder.com/400'],
+      //       technologies: [{ id: '1', name: 'React' }, { id: '2', name: 'Node.js' }],
+      //       skills: [
+      //         { id: '1', title: 'JavaScript', experience: 5, proficiency: 90 },
+      //         { id: '2', title: 'React', experience: 4, proficiency: 85 },
+      //       ],
+      //     },
+      //     {
+      //       id: '2',
+      //       name: 'Project Beta',
+      //       description: 'A mobile-first application built with Vue.js, focusing on user experience and performance.',
+      //       media: ['https://via.placeholder.com/400'],
+      //       technologies: [{ id: '3', name: 'Vue.js' }, { id: '4', name: 'Firebase' }],
+      //       skills: [
+      //         { id: '3', title: 'Vue.js', experience: 3, proficiency: 80 },
+      //         { id: '1', title: 'JavaScript', experience: 5, proficiency: 90 },
+      //       ],
+      //     },
+      //   ],
+      //   experience: [
+      //     {
+      //       title: 'Software Engineer',
+      //       company: 'Tech Corp',
+      //       location: 'San Francisco, CA',
+      //       startDate: 'Jan 2020',
+      //       endDate: 'Present',
+      //       description: 'Developed scalable web applications using modern frameworks and best practices.',
+      //     },
+      //     {
+      //       title: 'Junior Developer',
+      //       company: 'StartUp Inc',
+      //       location: 'New York, NY',
+      //       startDate: 'Feb 2018',
+      //       endDate: 'Dec 2019',
+      //       description: 'Worked on front-end projects, collaborating closely with design teams to create user-friendly interfaces.',
+      //     },
+      //   ],
+      //   education: [
+      //     {
+      //       school: 'MIT',
+      //       degree: 'Bachelor of Science',
+      //       fieldOfStudy: 'Computer Science',
+      //       startDate: '2014',
+      //       endDate: '2018',
+      //       location: 'Cambridge, MA',
+      //       description: 'Focus on AI and Machine Learning, participated in various hackathons and projects.',
+      //     },
+      //   ],
+      //   certifications: [
+      //     {
+      //       id: '1',
+      //       title: 'Certified JavaScript Developer',
+      //       issuer: 'XYZ Certification',
+      //       date: '2021',
+      //       url: 'https://example.com/cert-js',
+      //     },
+      //     {
+      //       id: '2',
+      //       title: 'AWS Certified Solutions Architect',
+      //       issuer: 'Amazon',
+      //       date: '2022',
+      //       url: 'https://example.com/cert-aws',
+      //     },
+      //   ],
+      //   languages: [
+      //     { language: 'English', proficiency: 100 },
+      //     { language: 'Spanish', proficiency: 70 },
+      //   ],
+      // };
+
+      const userData = window.userData;
+
+      // Populate header
+      document.getElementById('profilePicture').src = userData.profilePicture;
+      document.getElementById('name').innerText = userData.name;
+      document.getElementById('profileSummary').innerText = userData.profileSummary;
+      document.getElementById('email').innerText = userData.email;
+      document.getElementById('phone').innerText = userData.phone;
+      document.getElementById('location').innerText = userData.location;
+      document.getElementById('github').href = userData.github;
+      document.getElementById('linkedin').href = userData.linkedin;
+
+      // Populate skills
+      const skillsContainer = document.getElementById('skills-container');
+      userData.skills.forEach(skill => {
+        const skillCard = document.createElement('div');
+        skillCard.className = 'card';
+        skillCard.innerHTML = `
+            <h3>${skill.title}</h3>
+            <p>Experience: ${skill.experience} years</p>
+            <p>Proficiency: ${skill.proficiency}%</p>
+            <p>Certificates: ${skill.certificates.length > 0 ? skill.certificates.map(cert => cert.name).join(', ') : 'None'}</p>
+            `;
+        skillsContainer.appendChild(skillCard);
+      });
+
+      // Populate projects
+      const projectsContainer = document.getElementById('projects-container');
+      userData.projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'card';
+        projectCard.innerHTML = `
+            <div class="project-media" style="background-image: url('${project.media[0]}');"></div>
+            <h3>${project.name}</h3>
+            <p>${project.description}</p>
+            <p>Technologies: ${project.technologies.map(tech => tech.name).join(', ')}</p>
+        `;
+        projectsContainer.appendChild(projectCard);
+      });
+
+      // Populate experience
+      const experienceContainer = document.getElementById('experience-container');
+      userData.experience.forEach(exp => {
+        const expCard = document.createElement('div');
+        expCard.className = 'card';
+        expCard.innerHTML = `
+        <h3>${exp.title}, ${exp.company}</h3>
+        <p>${exp.location} | ${exp.startDate} - ${exp.endDate}</p>
+            <p>${exp.description}</p>
+        `;
+        experienceContainer.appendChild(expCard);
+      });
+
+      // Populate education
+      const educationContainer = document.getElementById('education-container');
+      userData.education.forEach(edu => {
+        const eduCard = document.createElement('div');
+        eduCard.className = 'card';
+        eduCard.innerHTML = `
+        <h3>${edu.degree}, ${edu.fieldOfStudy}</h3>
+            <p>${edu.school} | ${edu.startDate} - ${edu.endDate}</p>
+            <p>${edu.description}</p>
+            `;
+        educationContainer.appendChild(eduCard);
+      });
+
+      // Populate certifications
+      const certificationsContainer = document.getElementById('certifications-container');
+      userData.certifications.forEach(cert => {
+        const certCard = document.createElement('div');
+        certCard.className = 'card';
+        certCard.innerHTML = `
+        <h3>${cert.title}</h3>
+        <p>Issuer: ${cert.issuer}</p>
+        <p>Date: ${cert.date} | <a href="${cert.url}" target="_blank">View Certificate</a></p>
+        `;
+        certificationsContainer.appendChild(certCard);
+      });
+
+      // Populate languages
+      const languagesContainer = document.getElementById('languages-container');
+      userData.languages.forEach(lang => {
+        const langCard = document.createElement('div');
+        langCard.className = 'card';
+        langCard.innerHTML = `
+        <h3>${lang.language}</h3>
+            <p>Proficiency: ${lang.proficiency}%</p>
+            `;
+        languagesContainer.appendChild(langCard);
+      });
+    }
+
+    setTimeout(() => {
+      main();
+    }, 1500);
+    window.main = main;
+  </script>
 </head>
+
 <body>
   <app-root></app-root>
 </body>
+
 </html>

@@ -36,7 +36,7 @@ export class AuthController {
                     StatusCodes.BAD_REQUEST,
                     false
             )
-            const authToken = await this.authService.generateToken(body);
+            const authToken = await this.authService.createToken(user);
             return new AppResponse(
                 {
                     authToken

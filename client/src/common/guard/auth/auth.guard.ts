@@ -47,8 +47,13 @@ export class AuthGuard implements CanActivate {
   }
 
   private async validateToken(token: string): Promise<boolean> {
-    return firstValueFrom(
-      this.http.post<IResponse<boolean>>(API_ENDPOINTS.VALIDATE_TOKEN, { token })
-    ).then(response => response.data);
+    try {
+      return firstValueFrom(
+        this.http.post<IResponse<boolean>>(API_ENDPOINTS.VALIDATE_TOKEN, { token })
+      ).then(response => response.data);
+    } catch(e) {
+      console.log(e)
+      return false;
+    }
   }
 }

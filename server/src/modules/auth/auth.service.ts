@@ -30,15 +30,6 @@ export class AuthService {
         return bcrypt.compare(password, hash);
     }
 
-    async generateToken(payload : LoginDto) : Promise<String> {
-        try{
-            console.log("Logging the payload : ", payload);
-            return await this.jwtService.signAsync({...payload});
-        } catch(e) {
-            console.log("Logging the error : ", e);
-        }
-    }
-
     async createUser(user: User) {
         return await this.userRepo.save(user);
     }

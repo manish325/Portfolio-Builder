@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany, JoinColumn} from "typeorm";
 import {
     isNotEmpty,
     isEmail,
@@ -85,10 +85,17 @@ export class User {
     })
     languages : ILanguage[];
 
+    @Column({
+        nullable : true,
+        default : null
+    })
+    country : string;
+
     @OneToMany(
         () => Project,
         project => project.user
     )
+    @JoinColumn()
     projects: Project[];
 
     @ManyToMany(
@@ -101,5 +108,6 @@ export class User {
         () => Certificate,
         certificate => certificate.user
     )
+    @JoinColumn()
     certificates: Certificate[];
 }

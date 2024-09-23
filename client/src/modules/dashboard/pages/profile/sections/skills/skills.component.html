@@ -1,0 +1,67 @@
+<main class="skills">
+    <div class="add-project">
+        <button mat-raised-button (click)="addSkill()">
+            Add
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="skills-container">
+        <mat-card *ngFor="let skill of skillsFormArray.controls; let i=index">
+            <mat-card-title>
+                <h3>Skill {{i+1}}</h3>
+            </mat-card-title>
+            <mat-card-content>
+                <form action="" [formGroup]="skill">
+                    <mat-form-field>
+                        <mat-label>Skill Name</mat-label>
+                        <input type="text" matInput formControlName="title">
+                        <mat-error *ngIf="skill.get('title')?.hasError('required')">Skill Name is mandatory</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Experience (In Years)</mat-label>
+                        <input type="number" name="" id="" matInput formControlName="experience">
+                    </mat-form-field>
+
+                    <!-- <mat-form-field>
+                        <mat-label>Proficiency</mat-label>
+                        <input type="number" name="" id="" matInput formControlName="proficiency" hidden>
+                        
+                    </mat-form-field> -->
+                    
+                    <div class="proficiency">
+                        <p class="mat-label">Proficiency</p>
+                        <mat-slider min="0" max="10" step="1" showTickMarks discrete [displayWith]="formatLabel"
+                        >
+                        <input matSliderThumb
+                        matInput
+                        (change)="changeProficiency($event, i)"
+                        >
+                          </mat-slider>
+                    </div>
+
+                    <mat-form-field>
+                        <mat-label>Certificates</mat-label>
+                        <mat-select formControlName="certificates" multiple [disableOptionCentering]="true" matInput>
+                            <mat-option *ngFor="let certificate of certificates" [value]="certificate">
+                                {{certificate.name}}
+                            </mat-option>
+                        </mat-select>
+
+                    </mat-form-field>
+                    <mat-chip-grid #chipList aria-label="Selected certificates">
+                        <ng-container *ngIf="getSelectedCertificates(i).length">
+                            <mat-chip-row
+                            *ngFor="let selected of getSelectedCertificates(i)"
+                            (removed)="removeCertificate(selected, i)">
+                            {{ selected.name }}
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip-row>
+                    </ng-container>
+                      </mat-chip-grid>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</main>

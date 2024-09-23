@@ -1,38 +1,52 @@
 <main class="landing-page">
     <!-- Title Bar -->
-    <div class="title-bar">
-        <h1>Portfolio Builder</h1>
+    <mat-toolbar class="title-bar">
+        <button mat-button routerLink="/dashboard"> 
+            <h1>Portfolio Builder</h1>
+        </button>
         <div class="profile-icon" (click)="openProfileForm()">
-            <img src="https://via.placeholder.com/40" alt="Profile Icon" />
-            <span>John Doe</span>
+            <!-- <ngx-avatar [value]="user?.profilePicture || user?.name"></ngx-avatar> -->
+             <!-- <img [src]="getProfilePicture()" alt=""> -->
+             <app-avatar [imageUrl]="getProfilePicture()"></app-avatar>
+            <button mat-raised-button (click)="logout()" class="logout-button">
+                Logout
+                <mat-icon>logout</mat-icon>
+            </button>
         </div>
-    </div>
+    </mat-toolbar>
 
     <!-- Main Content -->
     <div class="main-container">
         <!-- Default Portfolio Preview -->
-        <div class="get-started-section">
-            <button mat-raised-button color="primary" (click)="getStarted()" [routerLink]="'/dashboard/profile'">
-                Get Started to Build Your Portfolio
-            </button>
-        </div>
+         <mat-drawer-container>
+            <mat-drawer #drawer mode="side">
+                <div class="layout-options">
+                    <button mat-stroked-button (click)="drawer.toggle()">close</button>
+                    <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
+                        <h3>{{layout.title}} Layout</h3>
+                        <img [src]="layout.image" alt="Modern Layout Preview" />
+                        <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
+                            &#10003;
+                        </div>
+                    </div>
+                </div>
+            </mat-drawer>
+
+            <div class="main-content">
+                <div class="get-started-section">
+                    <button mat-raised-button color="primary" (click)="getStarted()" [routerLink]="'/dashboard/profile'">
+                        Get Started to Build Your Portfolio
+                    </button>
+                </div>
+                
+                <button mat-raised-button (click)="drawer.toggle()">
+                    Choose Your Layout!
+                </button>
         
-        <div class="layout-options">
-            <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
-                <h3>{{layout.title}} Layout</h3>
-                <img [src]="layout.image" alt="Modern Layout Preview" />
-                <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
-                    &#10003;
+                <div class="portfolio-preview">
+                    <router-outlet></router-outlet>
                 </div>
             </div>
-        </div>
-
-        <div class="portfolio-preview">
-            <router-outlet></router-outlet>
-        </div>
-
-        <!-- Portfolio Layout Options -->
-
-        <!-- Get Started Section -->
+         </mat-drawer-container>
     </div>
 </main>

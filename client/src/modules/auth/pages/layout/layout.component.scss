@@ -1,14 +1,18 @@
-/* styles.scss */
 @import "./../../../../theme/variables.scss";
+@import "./../../../../theme/mixins.scss";
 
-/* styles.scss */
 .layout-container {
     display: flex;
+    flex-direction: row;
     height: 100vh;
     font-family: $font-family;
-  }
-  
-  .branding-section {
+
+    @include mobile {
+        flex-direction: column;
+    }
+}
+
+.branding-section {
     flex: 1;
     background: linear-gradient(to right, $gradient-start, $gradient-end);
     color: #ffffff;
@@ -16,80 +20,82 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
-  }
-  
-  .branding-content {
+
+    @include mobile {
+        flex: none;
+        padding: 10px;
+    }
+}
+
+.branding-content {
     text-align: center;
-  }
-  
-  .branding-title {
+}
+
+.branding-title {
     font-size: 3rem;
     font-weight: bold;
     margin: 0;
-  }
-  
-  .branding-description {
+
+    @include mobile {
+        font-size: 2rem;
+    }
+}
+
+.branding-description {
     font-size: 1.25rem;
     margin-top: 10px;
-  }
-  
-  .branding-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
-  
-  .auth-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: $background-color;
-  }
-  
-  .toolbar {
-    background-color: $toolbar-background;
-    color: $toolbar-text-color;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .app-title {
-    font-weight: bold;
-  }
-  
-  .logout-button {
-    color: $button-color;
-    background-color: $button-background;
-    &:hover {
-      background-color: $button-hover-background;
+
+    @include mobile {
+        font-size: 1rem;
     }
+}
+
+.auth-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto; /* Allow scrolling when content exceeds height */
+  
+  @include mobile {
+      max-height: 80vh; /* Set a max height for mobile */
+      padding: 10px; /* Adjust padding */
   }
-  
-  .auth-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    padding: 20px;
+}
+
+.auth-content {
+  width: 100%; /* Ensure it takes full width */
+  max-width: 400px; /* Max width to match the form */
+  margin: 0 auto; /* Center horizontally */
+  background-color: $background-color; /* Ensure it matches the background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in width calculations */
+
+  @include mobile {
+      padding: 15px; /* Adjust padding for mobile */
+      max-width: 90%; /* Make it wider on small screens */
   }
-  
-  .router-outlet {
-    max-width: 400px;
-    width: 100%;
-    background-color: $content-background;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  @media (max-width: 768px) {
-    .branding-title {
-      font-size: 2rem;
-    }
-  
-    .branding-description {
-      font-size: 1rem;
-    }
-  }
-  
+}
+
+.router-outlet {
+  width: 100%; /* Full width for router outlet */
+  overflow: hidden; /* Prevent overflow */
+}
+
+
+// .router-outlet {
+//     max-width: 400px;
+//     width: 100%;
+//     background-color: $content-background;
+//     border-radius: 8px;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+//     padding: 20px;
+
+//     @include mobile {
+//         width: 90%;
+//         margin: 0 auto;
+//     }
+// }

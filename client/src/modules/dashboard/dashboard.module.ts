@@ -13,12 +13,24 @@ import { CommonModule } from "@angular/common";
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserComponent } from './pages/profile/sections/user/user.component';
 import { ProjectsComponent } from './pages/profile/sections/projects/projects.component';
+import { SkillsComponent } from './pages/profile/sections/skills/skills.component';
+import { CertificatesComponent } from './pages/profile/sections/certificates/certificates.component';
+import { LocalStorageService } from "src/services/localstorage/localstorage.service";
+import { DashboardService } from "./dashboard.service";
+import { TechnologiesComponent } from './pages/profile/sections/technologies/technologies.component';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import { AvatarComponent } from "src/shared/avatar/avatar.component";
 
 @NgModule({
     imports : [
         MaterialModule,
         DashboardRoutingModule,
-        CommonModule
+        CommonModule,
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: true, // Restrict extension to log-only mode
+        }),
+        AvatarComponent
     ],
     declarations : [
         LandingPageComponent,
@@ -30,13 +42,18 @@ import { ProjectsComponent } from './pages/profile/sections/projects/projects.co
         ProfileComponent,
         UserComponent,
         ProjectsComponent,
+        SkillsComponent,
+        CertificatesComponent,
+        TechnologiesComponent,
     ],
     providers : [
         {
             provide : HTTP_INTERCEPTORS,
             useClass : TokenInterceptor,
             multi : true
-        }
+        },
+        LocalStorageService,
+        DashboardService
     ]
 })
 export class DashboardModule {

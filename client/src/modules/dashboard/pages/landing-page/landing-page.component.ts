@@ -1,31 +1,54 @@
-import { Component } from '@angular/core';
-import { ILayout } from '../../types';
+import { Component, OnInit } from '@angular/core';
+import { ILayout, IUserData } from '../../types';
 import { layouts } from '../../data';
 import { Router } from '@angular/router';
+import { DashboardService } from '../../dashboard.service';
 
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
   styleUrls: ['./landing-page.component.scss']
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
 
-  selectedLayout : ILayout = layouts[0];
+  selectedLayout: ILayout = layouts[0];
+  user !: IUserData;
+  showDrawer : boolean = false;
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router,
+    private dashboardService: DashboardService
+  ) {
+    this.dashboardService.getUser().subscribe({
+      next : (user : IUserData) => {
+        this.user = user;
+        console.log("Logging the getted user : ", user);
+      }
+    })
+  }
 
-  openProfileForm() {}
-  changeLayout() {}
-  selectLayout(layout : ILayout) {
+  ngOnInit(): void {
+    this.dashboardService.getUserData();
+  }
+
+  openProfileForm() { }
+  changeLayout() { }
+
+  selectLayout(layout: ILayout) {
     this.selectedLayout = layout;
     const navigationUrl = `/dashboard/${layout.path}`;
     this.router.navigate([navigationUrl]);
-
-
   }
-  getStarted() {}
 
-  layoutData : ILayout[] = layouts;
+  getProfilePicture() {
+    return this.user?.profilePicture;
+  }
+
+  getStarted() { }
+
+  logout() {
+    this.dashboardService.logout();
+  }
+
+  layoutData: ILayout[] = layouts;
 }

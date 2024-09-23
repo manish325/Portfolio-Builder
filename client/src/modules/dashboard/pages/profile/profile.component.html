@@ -1,2 +1,22 @@
-<p>profile works!</p>
-<router-outlet></router-outlet>
+<div class="profile-page">
+    <mat-toolbar class="title-bar">
+        <button mat-button routerLink="/dashboard"> 
+            <h1>Portfolio Builder</h1>
+        </button>
+        <nav class="navigation">
+            <ng-container *ngFor="let nav of navigationItems">
+                <button [ngClass]="{'mat-raised-button': nav.title === currentNav.title}" mat-flat-button [color]="nav.title === currentNav.title ? 'primary' : ''" [routerLink]="nav.path">{{ nav.title }}</button>
+            </ng-container>
+        </nav>
+        <div class="profile-icon" (click)="openProfileForm()">
+            <img src="https://via.placeholder.com/40" alt="Profile Icon" />
+            <button mat-raised-button (click)="logout()" class="logout-button">
+                <span>
+                    Logout
+                </span>
+                <mat-icon>logout</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+</div>

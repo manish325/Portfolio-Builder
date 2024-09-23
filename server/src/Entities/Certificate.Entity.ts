@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { User } from './User.Entity';
 import { Skill } from './Skill.Entity';
 import { Technology } from './Technology.Entity';
@@ -22,9 +22,6 @@ export class Certificate {
 
   @Column({ type: 'date', nullable: true })
   expirationDate: Date;
-
-  @Column({ type: 'varchar', length: 255, nullable: true })
-  credentialId: string;
 
   @Column({ type: 'json', nullable: true })
   credentialUrl: string [];
@@ -50,11 +47,12 @@ export class Certificate {
     () => Skill,
     skill => skill.certificates
   )
-  skills: Skill[];
+  skills: Skill[]
 
   @ManyToMany(
     () => Technology,
     technology => technology.certificates
   )
+  @JoinTable()
   technologies: Technology[];
 }

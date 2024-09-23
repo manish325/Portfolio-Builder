@@ -19,5 +19,6 @@ export default registerAs("database", () : DataSourceOptions => {
         entities : [__dirname + '/../**/*.Entity{.ts,.js}'],
         // entities : [User, Project],
         synchronize : true,
+        logging: true
     }
 })

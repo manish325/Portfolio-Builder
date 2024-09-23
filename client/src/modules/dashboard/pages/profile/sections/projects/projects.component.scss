@@ -1,0 +1,149 @@
+@import "./../../../../../../theme/mixins.scss";
+
+.projects-page {
+    padding: 0px 20px;
+    max-height: 80vh;
+    overflow-y: scroll;
+    position: relative;
+    overflow-y: scroll;
+
+    .mat-stepper-horizontal {
+        min-width: 100%;
+
+        .mat-horizontal-stepper-wrapper {}
+    }
+
+    .head {
+        // position: sticky;
+        // top: 0;
+        // z-index: 2;
+        // background: #ffffff;
+        text-align: left;
+        // height: 2rem;
+    }
+
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    max-height: 80vh;
+    overflow-y: scroll;
+  
+    @include tablet {
+      padding: 15px;
+      gap: 15px;
+    }
+  
+    @include mobile {
+      padding: 10px;
+      gap: 10px;
+    }
+  }
+  
+  .add-project {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 20px;
+  
+    button {
+      font-size: 1rem;
+      @include mobile {
+        font-size: 0.9rem;
+      }
+    }
+  }
+  
+  mat-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  
+    @include tablet {
+      max-width: 600px;
+    }
+  
+    @include mobile {
+      max-width: 100%;
+      padding: 15px;
+    }
+  }
+  
+  mat-card-title h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  
+    @include mobile {
+      font-size: 1.3rem;
+    }
+  }
+  
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  
+    @include mobile {
+      margin-bottom: 15px;
+    }
+  }
+  
+  .media-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  
+    .selected-media {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+  
+      h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        background-color: #f1f1f1;
+        padding: 5px 10px;
+        border-radius: 4px;
+  
+        mat-icon {
+          cursor: pointer;
+          color: #f44336;
+        }
+  
+        @include mobile {
+          font-size: 0.8rem;
+          padding: 3px 8px;
+        }
+      }
+    }
+  }
+  
+  h4, h5 {
+    margin: 20px 0 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+  
+    @include mobile {
+      font-size: 1rem;
+    }
+  }
+  
+  form div[formArrayName] {
+    margin-bottom: 30px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+  
+    @include mobile {
+      margin-bottom: 20px;
+      padding: 8px;
+    }
+  }
+  

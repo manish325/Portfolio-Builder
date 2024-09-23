@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(formValue : any){
     if(this.registrationForm.valid) {
+      if(!formValue.phone.toString().startsWith('+91'))
       formValue.phone = `+91${formValue.phone.toString()}`;
       this.authService.register(formValue).subscribe({
         next : (res) => {

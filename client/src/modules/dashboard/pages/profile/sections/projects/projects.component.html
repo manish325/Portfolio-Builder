@@ -1,1 +1,116 @@
-<p>projects works!</p>
+<div class="projects-container">
+    <div class="add-project">
+        <button mat-raised-button (click)="addProject()">
+            Add
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <mat-card *ngFor="let group of projectFormArray.controls; let i = index">
+        <mat-card-title>
+            <h3>Project {{i + 1}}</h3>
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="group">
+                <!-- Project Name -->
+                <mat-form-field>
+                    <mat-label>Project Name</mat-label>
+                    <input type="text" matInput formControlName="name" required>
+                    <mat-error *ngIf="group.get('name')?.hasError('required')">Name is Mandatory!</mat-error>
+                </mat-form-field>
+
+                <!-- Project Description -->
+                <mat-form-field>
+                    <mat-label>Project Description</mat-label>
+                    <textarea matInput formControlName="description" required></textarea>
+                    <mat-error *ngIf="group.get('description')?.hasError('required')">Description is Mandatory!</mat-error>
+                </mat-form-field>
+
+                <!-- Start Date -->
+                <mat-form-field>
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="startPicker" formControlName="startDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startPicker></mat-datepicker>
+                    <mat-error *ngIf="group.get('startDate')?.hasError('required')">Start Date is required</mat-error>
+                </mat-form-field>
+
+                <!-- End Date -->
+                <mat-form-field>
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="endPicker" formControlName="endDate" required>
+                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endPicker></mat-datepicker>
+                    <mat-error *ngIf="group.get('endDate')?.hasError('required')">End Date is required</mat-error>
+                </mat-form-field>
+
+                <!-- GitHub Link -->
+                <mat-form-field>
+                    <mat-label>GitHub Link</mat-label>
+                    <input type="text" matInput formControlName="githubLink">
+                </mat-form-field>
+
+                <!-- Live Link -->
+                <mat-form-field>
+                    <mat-label>Live Link</mat-label>
+                    <input type="text" matInput formControlName="liveLink">
+                </mat-form-field>
+
+                <!-- Technologies -->
+                <h4>Technologies</h4>
+                <div formArrayName="technologies">
+                    <div *ngFor="let tech of getTechnologies(group).controls; let t = index" [formGroupName]="t">
+                        <mat-form-field>
+                            <mat-label>Technology Name</mat-label>
+                            <input matInput formControlName="techName" required>
+                            <mat-error *ngIf="tech.get('techName')?.hasError('required')">Technology is required</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <mat-label>Projects</mat-label>
+                            <input matInput formControlName="projects">
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <mat-label>Certificates</mat-label>
+                            <input matInput formControlName="certificates">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <h4>Skills</h4>
+                <div formArrayName="skills">
+                    <div  *ngFor="let skill of getSkills(group).controls; let s = index" [formGroupName]="s">
+                        <mat-form-field>
+                            <mat-label>Skill Title</mat-label>
+                            <input matInput formControlName="title" required>
+                            <mat-error *ngIf="skill.get('title')?.hasError('required')">Skill title is required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Experience</mat-label>
+                            <input matInput formControlName="experience">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Proficiency</mat-label>
+                            <input matInput formControlName="proficiency">
+                        </mat-form-field>
+
+                        <div class="media-container">
+                            <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" multiple />
+                            <button mat-raised-button type="button" color="primary" (click)="fileInput.click()">Select Media Files</button>
+        
+                            <div class="selected-media">
+                                <h4 *ngFor="let med of group.get('media')?.value">
+                                    <span>{{med.name}}</span>
+                                    <mat-icon (click)="removeFile(med)">cancel</mat-icon>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
