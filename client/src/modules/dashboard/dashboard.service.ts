@@ -39,6 +39,7 @@ export class DashboardService {
             next : (res : IResponse<IUserData>) => {
                 // res.data.profilePicture = this.sanitizer.bypassSecurityTrustResourceUrl(res.data.profilePicture || '') as string;
                 res.data.profilePicture = res.data.profilePicture?.trim() || '';
+                res.data.location = 'India'
                 this.user = res.data;
                 this.store.dispatch(setUserData({user : res.data}));
             }

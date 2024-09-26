@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { ClassicComponent } from "./layouts/classic/classic.component";
 import { CreativeComponent } from "./layouts/creative/creative.component";
@@ -10,6 +10,10 @@ import { ProjectsComponent } from "./pages/profile/sections/projects/projects.co
 import { SkillsComponent } from "./pages/profile/sections/skills/skills.component";
 import { CertificatesComponent } from "./pages/profile/sections/certificates/certificates.component";
 import { TechnologiesComponent } from "./pages/profile/sections/technologies/technologies.component";
+import { Routes } from "@angular/router";
+// import {
+//     WebComponentWrapper, WebComponentWrapperOptions 
+//   } from '@angular-architects/module-federation-tools';
 
 export const dashboardRoutes: Routes = [
     {
@@ -35,7 +39,17 @@ export const dashboardRoutes: Routes = [
             {
                 path : 'professional',
                 component : ProfessionalComponent
-            }
+            },
+            // {
+            //     path : 'reviews',
+            //     component : WebComponentWrapper,
+            //     data: {
+            //       remoteEntry: 'http://localhost:4202/remoteEntry.js',
+            //       remoteName: 'reviews',
+            //       exposedModule: 'reviews',
+            //       elementName: 'reviews-web-component'
+            //     }
+            // }
         ]
     },
     {

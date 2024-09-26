@@ -116,7 +116,7 @@
 
       // Populate skills
       const skillsContainer = document.getElementById('skills-container');
-      userData.skills.forEach(skill => {
+      userData.skills?.forEach(skill => {
         const skillCard = document.createElement('div');
         skillCard.className = 'card';
         skillCard.innerHTML = `
@@ -130,7 +130,7 @@
 
       // Populate projects
       const projectsContainer = document.getElementById('projects-container');
-      userData.projects.forEach(project => {
+      userData.projects?.forEach(project => {
         const projectCard = document.createElement('div');
         projectCard.className = 'card';
         projectCard.innerHTML = `
@@ -144,7 +144,7 @@
 
       // Populate experience
       const experienceContainer = document.getElementById('experience-container');
-      userData.experience.forEach(exp => {
+      userData.experience?.forEach(exp => {
         const expCard = document.createElement('div');
         expCard.className = 'card';
         expCard.innerHTML = `
@@ -157,7 +157,7 @@
 
       // Populate education
       const educationContainer = document.getElementById('education-container');
-      userData.education.forEach(edu => {
+      userData.education?.forEach(edu => {
         const eduCard = document.createElement('div');
         eduCard.className = 'card';
         eduCard.innerHTML = `
@@ -170,7 +170,7 @@
 
       // Populate certifications
       const certificationsContainer = document.getElementById('certifications-container');
-      userData.certifications.forEach(cert => {
+      userData.certifications?.forEach(cert => {
         const certCard = document.createElement('div');
         certCard.className = 'card';
         certCard.innerHTML = `
@@ -183,7 +183,7 @@
 
       // Populate languages
       const languagesContainer = document.getElementById('languages-container');
-      userData.languages.forEach(lang => {
+      userData.languages?.forEach(lang => {
         const langCard = document.createElement('div');
         langCard.className = 'card';
         langCard.innerHTML = `
