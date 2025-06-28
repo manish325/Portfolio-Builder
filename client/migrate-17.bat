@@ -26,7 +26,7 @@ echo ====================================================
 
 REM Step 1: Install dependencies (with legacy peer deps)
 echo 📦 Running npm install (legacy peer deps)...
-%NODE_DIR%\node.exe %NODE_DIR%\node_modules\npm\bin\npm-cli.js install --legacy-peer-deps
+@REM %NODE_DIR%\node.exe %NODE_DIR%\node_modules\npm\bin\npm-cli.js install --legacy-peer-deps
 IF %ERRORLEVEL% NEQ 0 (
   echo ❌ npm install failed!
   pause
