@@ -101,6 +101,7 @@ export class AuthController {
         @Body()
         body: GoogleLoginDto
     ) {
+        console.log('Reached google login');
         const { token } = body;
         const authToken = await this.authService.googleLogin(token);
         console.log(authToken);

@@ -39,7 +39,7 @@ export const experienceDetailsFormGrourp = new FormGroup({
     description: new FormControl('')
 })
 
-export const userProfileSchema = {
+export const userProfileSchema = new FormGroup({
     basicDetails : basicDetailsFormGrourp,
     socialLinks : socialLinksFormGrourp,
     educationDetails : new FormArray(
@@ -49,7 +49,7 @@ export const userProfileSchema = {
     ),
     experienceDetails : new FormArray([experienceDetailsFormGrourp]),
     languageDetails : new FormArray([languageSchema])
-}
+} )as FormGroup
 
 export const certificateSchema = new FormGroup({
     certificateName: new FormControl(''),
@@ -75,9 +75,13 @@ export const skillSchema = new FormGroup({
     experience : new FormControl(''),
     proficiency : new FormControl(-1),
     certificates : new FormControl([])
+});
+
+export const skillDetailsControl = new FormGroup({
+    skills: new FormArray([skillSchema])
 })
 
-export const projectSchema = {
+export const projectSchema = new FormGroup({
     name : new FormControl('', [Validators.required]),
     description : new FormControl('', [Validators.required]),
     startDate : new FormControl('', [Validators.required]),
@@ -87,4 +91,13 @@ export const projectSchema = {
     media : new FormControl([]),
     technologies : new FormArray([technologySchema]),
     skills : new FormArray([skillSchema])
-}
+})
+
+
+export const projectDetailsControl = new FormGroup({
+    projects : new FormArray([projectSchema])
+})
+
+export const languageDetailsSchema = new FormGroup({
+    languages: new FormArray([languageSchema])
+})

@@ -9,7 +9,6 @@ import { UserComponent } from "./pages/profile/sections/user/user.component";
 import { ProjectsComponent } from "./pages/profile/sections/projects/projects.component";
 import { SkillsComponent } from "./pages/profile/sections/skills/skills.component";
 import { CertificatesComponent } from "./pages/profile/sections/certificates/certificates.component";
-import { TechnologiesComponent } from "./pages/profile/sections/technologies/technologies.component";
 import { Routes } from "@angular/router";
 // import {
 //     WebComponentWrapper, WebComponentWrapperOptions 
@@ -76,10 +75,6 @@ export const dashboardRoutes: Routes = [
             {
                 path : 'certificates',
                 component : CertificatesComponent
-            },
-            {
-                path : 'technologies',
-                component : TechnologiesComponent
             },
             {
                 path : '**',

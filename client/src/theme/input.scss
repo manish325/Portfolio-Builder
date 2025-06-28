@@ -1,0 +1,36 @@
+.mat-form-field {
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Spacing between fields */
+    
+    .mat-form-field-wrapper {
+        background-color: #ffffff; /* Background color */
+        border-radius: 4px; /* Rounded corners */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        transition: border-color 0.3s; /* Smooth transition for focus */
+    }
+    
+    .mat-form-field-label {
+        color: #4e54c8; /* Primary label color */
+        font-weight: 500; /* Font weight */
+    }
+    
+    &.mat-focused .mat-form-field-wrapper {
+        border: 1px solid #4e54c8; /* Border color when focused */
+        box-shadow: 0 0 4px rgba(78, 84, 200, 0.5); /* Focus shadow */
+    }
+    
+    .mat-input-element {
+        padding: 10px 12px; /* Padding for input */
+        font-size: 16px; /* Font size */
+        color: #333; /* Input text color */
+        
+        &:focus {
+            outline: none; /* Remove default outline */
+        }
+    }
+
+    .mat-hint {
+        color: #888; /* Hint color */
+        font-size: 12px; /* Hint font size */
+    }
+}

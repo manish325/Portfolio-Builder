@@ -14,8 +14,8 @@
 
 .branding-section {
     flex: 1;
-    background: linear-gradient(to right, $gradient-start, $gradient-end);
-    color: #ffffff;
+    background: linear-gradient(135deg, #4a90e2, #f06);
+    // color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,8 +65,8 @@
 }
 
 .auth-content {
-  width: 100%; /* Ensure it takes full width */
-  max-width: 400px; /* Max width to match the form */
+  width: max-content; /* Ensure it takes full width */
+//   max-width: max-content; /* Max width to match the form */
   margin: 0 auto; /* Center horizontally */
   background-color: $background-color; /* Ensure it matches the background */
   border-radius: 8px;
@@ -80,10 +80,10 @@
   }
 }
 
-.router-outlet {
-  width: 100%; /* Full width for router outlet */
-  overflow: hidden; /* Prevent overflow */
-}
+// .router-outlet {
+//   width: 100%; /* Full width for router outlet */
+//   overflow: hidden; /* Prevent overflow */
+// }
 
 
 // .router-outlet {

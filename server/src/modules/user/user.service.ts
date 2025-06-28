@@ -5,10 +5,13 @@ import { Project } from "src/Entities/Project.Entity";
 import { Skill } from "src/Entities/Skill.Entity";
 import { User } from "src/Entities/User.Entity";
 import { Repository } from "typeorm";
+import { UserProfileDataDto } from "./user.dto";
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
+    constructor(
+        @InjectRepository(User) private readonly userRepository: Repository<User>
+    ) { }
 
     async getUserData(userId: number) {
         console.log("Logging the userId : ", userId)
@@ -32,5 +35,9 @@ export class UserService {
             .where('user.id = :userId', { userId })  // Filter for specific userId
             .getOne();
         return user;
+    }
+
+    public async saveUserProfileData(userProfileData: UserProfileDataDto): Promise<void> {
+        return console.log("Logging the userprofile data : ", userProfileData);
     }
 }

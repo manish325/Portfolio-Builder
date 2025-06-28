@@ -1,2 +1,4 @@
 /client/node_modules
+/client/node-v22.2.0-win-x64
 /server/node_modules
+/server/node-v22.2.0-win-x64

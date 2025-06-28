@@ -12,7 +12,6 @@ import { Project } from './Entities/Project.Entity';
 import { UserModule } from './modules/user/user.module';
 import { UserSeederService } from './common/services/userseed.service';
 import { User } from './Entities/User.Entity';
-import { Technology } from './Entities/Technology.Entity';
 import { Media } from './Entities/media.Entity';
 import { Certificate } from 'crypto';
 import { Skill } from './Entities/Skill.Entity';
@@ -26,7 +25,7 @@ import { Skill } from './Entities/Skill.Entity';
     TypeOrmModule.forRootAsync({
       useFactory: () => databaseConfig(),
     }),
-    TypeOrmModule.forFeature([Project, User, Technology, Media, Certificate, Skill]),
+    TypeOrmModule.forFeature([Project, User, Media, Certificate, Skill]),
     AuthModule,
     Project,
     UserModule

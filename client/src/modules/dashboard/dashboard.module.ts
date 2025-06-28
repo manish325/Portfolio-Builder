@@ -1,5 +1,5 @@
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { NgModule } from "@angular/core";
+import { NgModule, OnInit } from "@angular/core";
 import { TokenInterceptor } from "src/common/interceptors/token.interceptor";
 import { MaterialModule } from "src/shared/MaterialModule/Material-module";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
@@ -17,7 +17,6 @@ import { SkillsComponent } from './pages/profile/sections/skills/skills.componen
 import { CertificatesComponent } from './pages/profile/sections/certificates/certificates.component';
 import { LocalStorageService } from "src/services/localstorage/localstorage.service";
 import { DashboardService } from "./dashboard.service";
-import { TechnologiesComponent } from './pages/profile/sections/technologies/technologies.component';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import { AvatarComponent } from "src/shared/avatar/avatar.component";
 
@@ -44,7 +43,6 @@ import { AvatarComponent } from "src/shared/avatar/avatar.component";
         ProjectsComponent,
         SkillsComponent,
         CertificatesComponent,
-        TechnologiesComponent,
     ],
     providers : [
         {
@@ -56,6 +54,12 @@ import { AvatarComponent } from "src/shared/avatar/avatar.component";
         DashboardService
     ]
 })
-export class DashboardModule {
-
+export class DashboardModule implements OnInit {
+    constructor(private dashboardService : DashboardService) {
+        this.dashboardService.getUserData();
+    }
+    
+    ngOnInit(): void {
+        
+    }
 }

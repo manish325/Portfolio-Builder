@@ -31,7 +31,7 @@ export class UserComponent implements OnInit {
     private fb: FormBuilder,
     private dashboardService: DashboardService
   ) {
-    this.userDetailsFormGroup = this.fb.group(userProfileSchema);
+    this.userDetailsFormGroup = userProfileSchema;
     this.basicDetailsFormGroup = this.userDetailsFormGroup.get('basicDetails') as FormGroup;
     this.socialLinksFormGroup = this.userDetailsFormGroup.get('socialLinks') as FormGroup;
     this.educationDetailsFormGroup = this.userDetailsFormGroup.get('educationDetails') as FormArray<FormGroup>;
@@ -53,6 +53,16 @@ export class UserComponent implements OnInit {
     this.dashboardService.getUser().subscribe(user => {
       this.userData = user;
       this.patchUserData();
+    });
+
+    this.basicDetailsFormGroup.valueChanges.subscribe(v => {
+      const authToken = localStorage.getItem('authToken');
+        fetch('http://localhost:8000/api/user/saveProfileData', {
+          method : 'POST',
+          headers : {
+            'Authorization' : `Bearer ${authToken}`
+          }
+        })
     })
   }
 
@@ -152,6 +162,18 @@ export class UserComponent implements OnInit {
     })
 
     console.log("Logging user from patch value : ", this.userData);
+  }
+
+  deleteEducation(index : number) {
+    this.educationDetailsFormGroup.removeAt(index);
+  }
+
+  deleteExperience(index : number) {
+    this.experienceDetailsFormGroup.removeAt(index);
+  }
+
+  deleteLanguage(index : number) {
+    this.languageDetailsFormArray.removeAt(index);
   }
 
   // formatUserDetails() : IUserData {

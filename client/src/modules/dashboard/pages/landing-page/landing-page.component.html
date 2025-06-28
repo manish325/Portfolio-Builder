@@ -1,52 +1,82 @@
 <main class="landing-page">
-    <!-- Title Bar -->
-    <mat-toolbar class="title-bar">
-        <button mat-button routerLink="/dashboard"> 
-            <h1>Portfolio Builder</h1>
-        </button>
-        <div class="profile-icon" (click)="openProfileForm()">
-            <!-- <ngx-avatar [value]="user?.profilePicture || user?.name"></ngx-avatar> -->
-             <!-- <img [src]="getProfilePicture()" alt=""> -->
-             <app-avatar [imageUrl]="getProfilePicture()"></app-avatar>
-            <button mat-raised-button (click)="logout()" class="logout-button">
-                Logout
-                <mat-icon>logout</mat-icon>
+    <div class="toolbar">
+        <div class="logo">
+            <img [src]="user.profilePicture" alt="Profile Picture" />
+        </div>
+        <div class="actions">
+            <button mat-fab (click)="logout()">
+                <!-- Logout -->
+                 <mat-icon>logout</mat-icon>
             </button>
         </div>
-    </mat-toolbar>
-
-    <!-- Main Content -->
-    <div class="main-container">
-        <!-- Default Portfolio Preview -->
-         <mat-drawer-container>
-            <mat-drawer #drawer mode="side">
-                <div class="layout-options">
-                    <button mat-stroked-button (click)="drawer.toggle()">close</button>
-                    <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
-                        <h3>{{layout.title}} Layout</h3>
-                        <img [src]="layout.image" alt="Modern Layout Preview" />
-                        <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
-                            &#10003;
-                        </div>
-                    </div>
-                </div>
-            </mat-drawer>
-
-            <div class="main-content">
-                <div class="get-started-section">
-                    <button mat-raised-button color="primary" (click)="getStarted()" [routerLink]="'/dashboard/profile'">
-                        Get Started to Build Your Portfolio
-                    </button>
-                </div>
-                
-                <button mat-raised-button (click)="drawer.toggle()">
-                    Choose Your Layout!
-                </button>
-        
-                <div class="portfolio-preview">
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-         </mat-drawer-container>
     </div>
+    <div class="branding-section">
+        <h1>
+            Create Your Stunning Portfolio
+        </h1>
+        <p>
+            Choose from beautiful templates and personalize your portfolio effortlessly.
+        </p>
+        <button (click)="getStarted()">
+            Get Started
+        </button>
+    </div>
+
+    <section class="templates-section">
+        <h2>Select Your Portfolio Layout</h2>
+        <div class="layouts-container">
+            <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
+                <img [src]="layout.image" alt="Modern Layout Preview" />
+                <h3>{{layout.title}} Layout</h3>
+                <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
+                    &#10003;
+                </div>
+                <button>
+                    Preview Layout
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Title Bar -->
+    <!-- Main Content -->
+    <div class="preview-container">
+        <!-- Default Portfolio Preview -->
+        <div class="wrapper">
+            <div class="download-container">
+                <button mat-fab>
+                    <mat-icon>download</mat-icon>
+                </button>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+    <section class="features-section">
+        <h2>Why Build Your Portfolio with Us?</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>Fully Customizable</h3>
+                <p>Adjust colors, fonts, and sections easily.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Responsive Design</h3>
+                <p>Your portfolio looks great on any device.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Fast & Easy</h3>
+                <p>Build your portfolio in minutes with no coding required.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Analytics</h3>
+                <p>Track visitors and performance with built-in analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Ready to show the world your work?</p>
+        <button routerLink="profile">Get Started</button>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact Us</a></p>
+    </footer>
+
 </main>

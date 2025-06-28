@@ -10,8 +10,8 @@
 
     .form-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
+        grid-template-columns: 1fr;
+        grid-gap: 4px;
         justify-items: stretch;
 
         input[type=number] {

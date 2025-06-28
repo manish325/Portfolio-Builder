@@ -8,8 +8,8 @@ export const registerSchema = {
     email : new FormControl('', [Validators.required, Validators.email]),
     password : new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmPassword : new FormControl(),
-    fullName : new FormControl('', [Validators.required]),
-    phone : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
+    // fullName : new FormControl('', [Validators.required]),
+    // phone : new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
 }
 
 export const passwordMisMatchValidator = (control : AbstractControl) : ValidationErrors | null => {

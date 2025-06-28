@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Builder</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            text-align: center;
+        }
+
+        header {
+            padding: 50px 20px;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        button {
+            background: #32e0c4;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2cc9b4;
+        }
+
+        .templates-section {
+            padding: 50px 20px;
+            background: #fff;
+            color: #333;
+        }
+
+        .templates-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .template-card {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .template-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .template-card h3 {
+            margin: 15px 0;
+        }
+
+        .template-card button {
+            background: #4a90e2;
+            padding: 10px 20px;
+        }
+
+        .features-section {
+            padding: 50px 20px;
+            background: #f7f7f7;
+        }
+
+        .features-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            padding: 30px;
+            background: #333;
+            color: #fff;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #32e0c4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Create Your Stunning Portfolio</h1>
+        <p>Choose from beautiful templates and personalize your portfolio effortlessly.</p>
+        <button>Get Started</button>
+    </header>
+
+    <!-- Layout Options Section -->
+    <section class="templates-section">
+        <h2>Select Your Portfolio Layout</h2>
+        <div class="templates-grid">
+            <!-- Template 1 -->
+            <div class="template-card">
+                <img src="https://via.placeholder.com/300x200" alt="Template 1">
+                <h3>Modern Layout</h3>
+                <button>Preview Layout</button>
+            </div>
+            <!-- Template 2 -->
+            <div class="template-card">
+                <img src="https://via.placeholder.com/300x200" alt="Template 2">
+                <h3>Minimalist Layout</h3>
+                <button>Preview Layout</button>
+            </div>
+            <!-- Template 3 -->
+            <div class="template-card">
+                <img src="https://via.placeholder.com/300x200" alt="Template 3">
+                <h3>Bold Layout</h3>
+                <button>Preview Layout</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2>Why Build Your Portfolio with Us?</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <h3>Fully Customizable</h3>
+                <p>Adjust colors, fonts, and sections easily.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Responsive Design</h3>
+                <p>Your portfolio looks great on any device.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Fast & Easy</h3>
+                <p>Build your portfolio in minutes with no coding required.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Analytics</h3>
+                <p>Track visitors and performance with built-in analytics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>Ready to show the world your work?</p>
+        <button>Get Started</button>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact Us</a></p>
+    </footer>
+
+</body>
+</html>

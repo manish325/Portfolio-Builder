@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./theme/variables.scss";
 @import "./theme/mixins.scss";
+@import "./theme/scrollbar.scss";
+@import "./theme/input.scss";
+
 
 
 body, html {

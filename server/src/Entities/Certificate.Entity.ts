@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from 'typeorm';
 import { User } from './User.Entity';
 import { Skill } from './Skill.Entity';
-import { Technology } from './Technology.Entity';
+import { Education } from './Education.Entity';
 
 @Entity()
 export class Certificate {
@@ -49,10 +49,7 @@ export class Certificate {
   )
   skills: Skill[]
 
-  @ManyToMany(
-    () => Technology,
-    technology => technology.certificates
-  )
+  @ManyToMany(() => Education, education => education.certificates)
   @JoinTable()
-  technologies: Technology[];
+  educations: Education[];
 }

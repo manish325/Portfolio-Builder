@@ -26,7 +26,8 @@ import { Project } from "src/Entities/Project.Entity";
         }),
     ],
     controllers : [AuthController],
-    providers : [AuthService, JwtStrategy]
+    providers : [AuthService, JwtStrategy],
+    exports : [JwtStrategy]
 })
 export class AuthModule{
 

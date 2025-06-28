@@ -1,3 +1,4 @@
+import { FormGroup } from "@angular/forms";
 import { SafeResourceUrl } from "@angular/platform-browser";
 
 export interface IUserData {
@@ -103,4 +104,14 @@ export interface ILayout {
 export interface INavigationOptions {
   title : string,
   path : string
+}
+
+
+export interface IStep {
+  title : string,
+  description : string,
+  logo ?: string,
+  formgroupName: string,
+  control : FormGroup,
+  steps  ?: IStep[],
 }

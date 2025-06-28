@@ -1,0 +1,10 @@
+<mat-stepper [orientation]="alignment">
+    <mat-step *ngFor="let step of steps" [stepControl]="step.control">
+        <ng-template *ngIf="step.steps; else stepTemplate">
+            <app-stepper [steps]="step.steps"></app-stepper>
+        </ng-template>
+        <ng-template #stepTemplate>
+            
+        </ng-template>
+    </mat-step>
+</mat-stepper>

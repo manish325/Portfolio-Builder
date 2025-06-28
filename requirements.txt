@@ -1,0 +1,19 @@
+now get started will take user to fill out their details needed for portfolio such as 
+personal details as
+basic details -> 1. name, email, profile pic, phone address, profile summary
+social details -> 2. github, linkedin
+education details -> 3. school, degree, field of study, start date, end date, location, description
+experience details -> 4. title, company, start date, end date, description
+language details -> 1. language 2. proficiency
+
+projects details such as
+title, description, start date, end date, media, github link, live link, technologies (from dropdown), skills (from dropdown)
+
+skills details such as
+skill, proficiency, certificates (from dropdown), experience
+
+certificates details such as
+title, description, start date, end date, link, media
+
+technologies details such as
+tech name

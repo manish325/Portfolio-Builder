@@ -24,15 +24,6 @@ export class RegisterDto {
     @IsNotEmpty()
     password: string;
 
-    @IsString()
-    @IsNotEmpty()
-    fullName: string;
-
-    @IsNotEmpty()
-    @IsString()
-    @IsPhoneNumber('IN')
-    phone : string;
-
 }
 
 export class GoogleLoginDto {

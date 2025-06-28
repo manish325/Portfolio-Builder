@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany, JoinColumn} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate, OneToMany, ManyToMany, JoinColumn, JoinTable} from "typeorm";
 import {
     isNotEmpty,
     isEmail,
@@ -10,6 +10,11 @@ import { Project } from "./Project.Entity";
 import { Skill } from "./Skill.Entity";
 import { ICertification, IEducation, IExperience, ILanguage } from "src/common/types";
 import { Certificate } from "./Certificate.Entity";
+import { Language } from "./Language.Entity";
+import { UserLanguage } from "./UserLanguage.Entity";
+import { Portfolio } from "./Portfolio.Entity";
+import { Education } from "./Education.Entity";
+import { Experience } from "./Experience.Entity";
 
 @Entity()
 export class User {
@@ -64,12 +69,8 @@ export class User {
     })
     linkedin : string;
 
-    @Column({
-        nullable : true,
-        default : null,
-        type : 'json',
-    })
-    education : IEducation[];
+    @OneToMany(() => Education, education => education.user)
+    educations : Education[];
 
     @Column({
         nullable : true,
@@ -110,4 +111,18 @@ export class User {
     )
     @JoinColumn()
     certificates: Certificate[];
+
+    @OneToMany(() => UserLanguage, (userLanguage) => userLanguage.user)
+    userLanguages: UserLanguage[];
+
+    @OneToMany(() => Portfolio, portfolio => portfolio.user)
+    @JoinColumn()
+    portfolios: Portfolio[];
+
+    @OneToMany(
+        () => Experience,
+        experience => experience.user
+    )
+    @JoinColumn()
+    experiences: Experience[];
 }

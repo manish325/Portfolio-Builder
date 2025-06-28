@@ -1,5 +1,13 @@
 <div class="avatar" [ngStyle]="{ 'width.px': size, 'height.px': size, 'font-size.px': size / 2, 'line-height.px': size }">
     <img *ngIf="imageUrl" [src]="imageUrl" alt="Avatar" />
     <span *ngIf="!imageUrl">{{ initials }}</span>
+
+    <ng-content >
+
+    </ng-content>
   </div>
+
+  <app-avatar>
+    <h1>This is my avatar</h1>
+  </app-avatar>
   

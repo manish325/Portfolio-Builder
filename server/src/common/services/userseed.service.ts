@@ -4,7 +4,6 @@ import { Certificate } from 'src/Entities/Certificate.Entity';
 import { Media } from 'src/Entities/media.Entity';
 import { Project } from 'src/Entities/Project.Entity';
 import { Skill } from 'src/Entities/Skill.Entity';
-import { Technology } from 'src/Entities/Technology.Entity';
 import { User } from 'src/Entities/User.Entity';
 import { Repository } from 'typeorm';
 import { IEducation, IExperience, ILanguage } from '../types';
@@ -17,11 +16,11 @@ export class UserSeederService implements OnModuleInit {
     @InjectRepository(Project) private projectRepository: Repository<Project>,
     @InjectRepository(Skill) private skillRepository: Repository<Skill>,
     @InjectRepository(Certificate) private certificateRepository: Repository<Certificate>,
-    @InjectRepository(Technology) private technologyRepository: Repository<Technology>,
     @InjectRepository(Media) private mediaRepository: Repository<Media>,
   ) {}
 
   async onModuleInit() {
+    return;
     console.log('Creating default user...');
     const alreadyDefaultUser = await this.userRepository.findOne({ where: { email: 'default@gmail.com' } })
     if (!alreadyDefaultUser) {
@@ -164,13 +163,13 @@ async createDefaultUser() {
     ];
 
     // Update the saved user with new values
-    savedUser.education = [education];
+    // savedUser.education = [education];
     savedUser.experience = [experience];
     savedUser.languages = languages;
 
     // Save the updated user with all related data
     await this.userRepository.update(savedUser.id, {
-        education : [education],
+        // education : [education],
         experience: [experience],
         languages: languages,
     });

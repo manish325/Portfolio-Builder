@@ -1,0 +1,21 @@
+/* For Webkit Browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+    height: 8px; /* Height of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: linear-gradient(to right, #4e54c8, #8f94fb); /* Color of the scrollbar thumb */
+    background-color: #a6aef4; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round edges for the thumb */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+    border-radius: 10px; /* Round edges for the track */
+}
+
+/* Optional: For a hover effect */
+::-webkit-scrollbar-thumb:hover {
+    background: #a6aef4; /* Darker color on hover */
+}

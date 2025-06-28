@@ -19,16 +19,16 @@ export class LandingPageComponent implements OnInit {
     private router: Router,
     private dashboardService: DashboardService
   ) {
+
+  }
+
+  ngOnInit(): void {
     this.dashboardService.getUser().subscribe({
       next : (user : IUserData) => {
         this.user = user;
         console.log("Logging the getted user : ", user);
       }
     })
-  }
-
-  ngOnInit(): void {
-    this.dashboardService.getUserData();
   }
 
   openProfileForm() { }
@@ -44,11 +44,15 @@ export class LandingPageComponent implements OnInit {
     return this.user?.profilePicture;
   }
 
-  getStarted() { }
+  getStarted() {
+    this.router.navigate(['/dashboard', '/profile']);
+   }
 
   logout() {
     this.dashboardService.logout();
   }
+
+
 
   layoutData: ILayout[] = layouts;
 }
