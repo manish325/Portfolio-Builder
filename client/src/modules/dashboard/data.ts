@@ -1,3 +1,10 @@
+import { BasicDetailsComponent } from "./pages/profile/sections/basic-details/basic-details.component";
+import { ProjectsComponent } from "./pages/profile/sections/projects/projects.component";
+import { SkillsComponent } from "./pages/profile/sections/skills/skills.component";
+import { EducationDetailsComponent } from "./pages/profile/sections/education-details/education-details.component";
+import { ExperienceDetailsComponent } from "./pages/profile/sections/experience-details/experience-details.component";
+import { SocialLinksComponent } from "./pages/profile/sections/social-links/social-links.component";
+import { LanguageDetailsComponent } from "./pages/profile/sections/language-details/language-details.component";
 import { basicDetailsFormGrourp, educationDetailsFormGrourp, experienceDetailsFormGrourp, languageSchema, projectSchema, skillDetailsControl, skillSchema, socialLinksFormGrourp, userProfileSchema } from "./schema";
 import { ILayout, INavigationOptions, IStep, IUserData } from "./types";
 
@@ -155,31 +162,36 @@ export const basicDetailsSteps : IStep[] = [
     title: 'Profile Details',
     description: 'Please fill in your profile details',
     formgroupName: 'basicDetails',
-    control: basicDetailsFormGrourp
+    control: basicDetailsFormGrourp,
+    component: BasicDetailsComponent
   },
   {
     title : 'Social Details',
     description: 'Please fill in your social details',
     formgroupName: 'socialDetails',
-    control: socialLinksFormGrourp
+    control: socialLinksFormGrourp,
+    component: SocialLinksComponent
   },
   {
     title: 'Educational Details',
     description: 'Please fill in your educational details',
     formgroupName: 'educationalDetails',
-    control: educationDetailsFormGrourp
+    control: educationDetailsFormGrourp,
+    component: EducationDetailsComponent
   },
   {
     title: 'Experience Details',
     description: 'Please fill in your experience details',
     formgroupName: 'experienceDetails',
-    control: experienceDetailsFormGrourp
+    control: experienceDetailsFormGrourp,
+    component: ExperienceDetailsComponent
   },
   {
     title: 'Language Details',
     description: 'Please fill in your language details',
     formgroupName: 'languageDetails',
-    control: languageSchema
+    control: languageSchema,
+    component: LanguageDetailsComponent
   }
 ]
 
@@ -187,20 +199,23 @@ export const portfolioFormSteps : IStep[] = [
   {
     title : 'Basic Details',
     description: 'Please fill in your basic details',
-    steps: basicDetailsSteps,
+    steps: basicDetailsSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'basicDetails',
-    control: userProfileSchema
+    control: userProfileSchema,
+    alignment: 'vertical'
   },
   {
     title: 'Project Details',
     description: 'Please fill in your project details',
     formgroupName: 'projectDetails',
-    control: projectSchema
+    control: projectSchema,
+    component: ProjectsComponent
   },
   {
     title: 'Skills Details',
     description: 'Please fill in your skills details',
     formgroupName: 'skillsDetails',
-    control: skillDetailsControl
+    control: skillDetailsControl,
+    component: SkillsComponent
   }
 ]

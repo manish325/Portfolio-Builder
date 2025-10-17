@@ -54,4 +54,6 @@
     .profile-icon span {
         margin-left: 10px;
     }
+
+    .content { /* now handled within stepper layout; keep base color */ background: $background-color; }
 }

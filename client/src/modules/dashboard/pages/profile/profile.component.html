@@ -1,13 +1,9 @@
 <div class="profile-page">
     <mat-toolbar class="title-bar">
         <button mat-button routerLink="/dashboard"> 
-            <h1>Portfolio Builder</h1>
+            <h1 [style]="{'color' : 'white', 'font-weight': '600'}">Portfolio Builder</h1>
         </button>
-        <nav class="navigation">
-            <ng-container *ngFor="let nav of navigationItems">
-                <button [ngClass]="{'mat-raised-button': nav.title === currentNav.title}" mat-flat-button [color]="nav.title === currentNav.title ? 'primary' : ''" [routerLink]="nav.path">{{ nav.title }}</button>
-            </ng-container>
-        </nav>
+        <!-- Legacy section navigation removed: stepper handles flow -->
         <div class="profile-icon" (click)="openProfileForm()">
             <img [src]="user?.profilePicture" alt="Profile Icon" />
             <button mat-raised-button (click)="logout()" class="logout-button">
@@ -18,9 +14,7 @@
             </button>
         </div>
     </mat-toolbar>
-    <router-outlet></router-outlet>
-     <h1>Below is your complex stepper</h1>
-     <mat-stepper>
-
-     </mat-stepper>
+    <div class="content">
+        <app-stepper [alignment]="'vertical'" [steps]="applicationSteps"></app-stepper>
+    </div>
 </div>

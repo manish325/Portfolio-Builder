@@ -1,0 +1,67 @@
+<p>basic-details works!</p>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="basicDetailsFormGroup" class="details">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Enter your name">
+                <mat-error *ngIf="basicDetailsFormGroup.get('name')?.hasError('required')">
+                    Name is required
+                </mat-error>
+            </mat-form-field>
+
+            <div class="media-container">
+                <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" />
+                <button mat-raised-button type="button" color="primary" (click)="fileInput.click()">Profile
+                    Picture</button>
+
+                <div class="selected-media" *ngIf="basicDetailsFormGroup.get('profilePicture')?.value">
+                    <mat-chip>
+                        <div class="chip-content">
+                            <span>
+                                {{basicDetailsFormGroup.get('profilePicture')?.value?.name ||
+                                'Profile Picture'}}
+                            </span>
+                            <mat-icon (click)="removeProfilePic()">cancel</mat-icon>
+                        </div>
+                    </mat-chip>
+                    <img [src]="fileUrl" alt="" *ngIf="fileUrl">
+                </div>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email" type="email">
+                <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('required')">
+                    Email is required
+                </mat-error>
+                <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('email')">
+                    Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput formControlName="phone" placeholder="Enter your phone number" type="tel">
+                <mat-error *ngIf="basicDetailsFormGroup.get('phone')?.hasError('required')">
+                    Phone number is required
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Address</mat-label>
+                <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="country" placeholder="Enter your country">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Profile Summary</mat-label>
+                <input matInput formControlName="profileSummary" placeholder="Enter your profile summary">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>

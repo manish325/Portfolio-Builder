@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { INavigationOptions, IUserData } from '../../types';
-import { profilePageNavigation } from '../../data';
+import { INavigationOptions, IStep, IUserData } from '../../types';
+import { portfolioFormSteps, profilePageNavigation } from '../../data';
 import { DashboardService } from '../../dashboard.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   navigationItems : INavigationOptions[] = profilePageNavigation;
   user !: IUserData;
   currentNav:INavigationOptions = profilePageNavigation[0];
+  applicationSteps : IStep[] = portfolioFormSteps as IStep[];
   constructor(private router : Router, private dashboardService : DashboardService) {
     this.dashboardService.getUser().subscribe({
       next : (user : IUserData) => {

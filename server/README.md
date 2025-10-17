@@ -45,6 +45,28 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Database Migrations (TypeORM)
+
+Migrations are configured via `src/typeorm.datasource.ts` and disabled `synchronize` in `database.config.ts`.
+
+Scripts:
+
+```bash
+# generate migration from current entities
+npm run migration:generate
+
+# create an empty migration
+npm run migration:create
+
+# run pending migrations
+npm run migration:run
+
+# revert last migration
+npm run migration:revert
+```
+
+Ensure the following env vars are set: `DB_HOST`, `DB_PORT`, `DB_USERNAME`, `DB_PASSWORD`, `DB_NAME`.
+
 ## Test
 
 ```bash

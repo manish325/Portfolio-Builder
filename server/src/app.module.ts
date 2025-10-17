@@ -15,6 +15,7 @@ import { User } from './Entities/User.Entity';
 import { Media } from './Entities/media.Entity';
 import { Certificate } from 'crypto';
 import { Skill } from './Entities/Skill.Entity';
+import { LoggingModule } from './modules/logging/logging.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { Skill } from './Entities/Skill.Entity';
     TypeOrmModule.forFeature([Project, User, Media, Certificate, Skill]),
     AuthModule,
     Project,
-    UserModule
+    UserModule,
+    LoggingModule
   ],
   controllers: [AppController],
   providers: [AppService, UserSeederService],

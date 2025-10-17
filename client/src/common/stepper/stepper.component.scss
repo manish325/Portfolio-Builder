@@ -1,0 +1,49 @@
+@import './../../theme/variables.scss';
+
+.layout { display: grid; grid-template-columns: 280px 1fr; gap: 16px; height: 100%; min-height: calc(100vh - 64px); transition: grid-template-columns 0.3s ease; }
+.layout:has(.sidebar.collapsed) { grid-template-columns: 60px 1fr; }
+.sidebar { position: sticky; top: 64px; align-self: start; height: calc(100vh - 64px); overflow: auto; background: white; border-right: 1px solid rgba(0,0,0,0.08); transition: all 0.3s ease; }
+.sidebar.collapsed { width: 60px; }
+.sidebar-header { padding: 8px; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.toggle-btn { margin: 0 auto; display: block; }
+.content { overflow: hidden; padding: 32px 24px; transition: all 0.3s ease; }
+.content.full-width { margin-left: 0; }
+.content-scroll { height: calc(100vh - 128px); overflow-y: auto; }
+.content-inner { max-width: 1200px; margin: 0 auto; }
+.no-component { text-align: center; padding: 40px; color: #666; }
+.no-component mat-icon { font-size: 48px; width: 48px; height: 48px; margin-bottom: 16px; }
+
+.sidebar .mat-mdc-list-item { cursor: pointer; }
+.stepper-nav { padding: 8px 0; }
+.step-group { position: relative; }
+.step-link { position: relative; padding-left: 56px !important; min-height: 44px; display: flex; align-items: center; }
+.step-link .rail { position: absolute; left: 28px; top: 0; bottom: 0; width: 2px; background: #e5e7eb; }
+.step-link .rail.last-parent { display: none; }
+.step-link .rail.dotted { background-image: linear-gradient(#e5e7eb 50%, rgba(255,255,255,0) 0); background-size: 2px 10px; background-repeat: repeat-y; background-color: transparent; }
+.step-link .rail.dotted.last-child { display: none; }
+.step-link .node { position: absolute; left: 16px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; color: white; font-weight: 600; background: #cbd5e1; box-shadow: 0 0 0 3px #fff inset; }
+.step-link .node.completed { background: linear-gradient(to right, $gradient-start, $gradient-end); }
+.step-link.active { background: linear-gradient(to right, rgba($gradient-start, .12), rgba($gradient-end, .12)); }
+.step-link.parent { font-weight: 600; }
+.children .step-link { padding-left: 80px !important; }
+.children .step-link .rail { left: 52px; }
+.children .step-link .node { left: 40px; }
+
+mat-stepper { width: 100%; background: transparent; }
+
+.main-stepper { max-width: 1200px; }
+
+/* Make secondary nested steppers scroll instead of overflow */
+::ng-deep .mat-vertical-content-container { max-height: calc(100vh - 160px); overflow-y: auto; }
+::ng-deep .mat-horizontal-content-container { max-height: calc(100vh - 160px); overflow-y: auto; }
+
+::ng-deep .mat-step-icon-selected, ::ng-deep .mat-step-icon-state-edit {
+  background: linear-gradient(to right, $gradient-start, $gradient-end) !important;
+  color: white !important;
+}
+
+.step-label { display: flex; align-items: center; gap: 8px; }
+.step-logo { width: 20px; height: 20px; }
+.description { margin: 0 0 12px; color: #475569; }
+
+

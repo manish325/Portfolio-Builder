@@ -1,10 +1,47 @@
-<mat-stepper [orientation]="alignment">
-    <mat-step *ngFor="let step of steps" [stepControl]="step.control">
-        <ng-template *ngIf="step.steps; else stepTemplate">
-            <app-stepper [steps]="step.steps"></app-stepper>
+<div class="layout">
+  <aside class="sidebar" [class.collapsed]="!sidebarExpanded">
+    <div class="sidebar-header">
+      <button mat-icon-button (click)="toggleSidebar()" class="toggle-btn">
+        <mat-icon>{{ sidebarExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+      </button>
+    </div>
+    <mat-nav-list class="stepper-nav" *ngIf="sidebarExpanded">
+      <ng-container *ngFor="let parent of steps; let parentIndex = index">
+        <div class="step-group">
+          <!-- Parent Step -->
+          <a mat-list-item class="step-link parent" (click)="onSelectStep(parent)" [class.active]="selectedStep === parent">
+            <span class="rail" [class.last-parent]="parentIndex === steps.length - 1"></span>
+            <span class="node" [class.completed]="isCompleted(parent)"><mat-icon>{{ isCompleted(parent) ? 'check' : 'radio_button_unchecked' }}</mat-icon></span>
+            {{ parent.title }}
+          </a>
+          
+          <!-- Child Steps -->
+          <div class="children" *ngIf="parent.steps?.length">
+            <a mat-list-item *ngFor="let child of parent.steps; index as ci" class="step-link child" (click)="onSelectStep(child)" [class.active]="selectedStep === child">
+              <span class="rail dotted" [class.last-child]="ci === (parent.steps?.length || 0) - 1"></span>
+              <span class="node" [class.completed]="isCompleted(child)"><mat-icon>{{ isCompleted(child) ? 'check' : (selectedStep === child ? 'adjust' : 'radio_button_unchecked') }}</mat-icon></span>
+              {{ child.title }}
+            </a>
+          </div>
+        </div>
+      </ng-container>
+    </mat-nav-list>
+  </aside>
+
+  <section class="content" [class.full-width]="!sidebarExpanded">
+    <div class="content-inner content-scroll">
+      <ng-container *ngIf="selectedStep as step">
+        <ng-container *ngIf="step.component; else noComponentError">
+          <ng-container *ngComponentOutlet="step.component"></ng-container>
+        </ng-container>
+
+        <ng-template #noComponentError>
+          <div class="no-component">
+            <mat-icon>info</mat-icon>
+            <p>No form component available for this step</p>
+          </div>
         </ng-template>
-        <ng-template #stepTemplate>
-            
-        </ng-template>
-    </mat-step>
-</mat-stepper>
+      </ng-container>
+    </div>
+  </section>
+</div>

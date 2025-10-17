@@ -19,6 +19,8 @@ import { LocalStorageService } from "src/services/localstorage/localstorage.serv
 import { DashboardService } from "./dashboard.service";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import { AvatarComponent } from "src/shared/avatar/avatar.component";
+import { StepperComponent } from "src/common/stepper/stepper.component";
+import { BasicDetailsComponent } from "./pages/profile/sections/basic-details/basic-details.component";
 
 @NgModule({
     imports : [
@@ -29,7 +31,9 @@ import { AvatarComponent } from "src/shared/avatar/avatar.component";
             maxAge: 25, // Retains last 25 states
             logOnly: true, // Restrict extension to log-only mode
         }),
-        AvatarComponent
+        AvatarComponent,
+        StepperComponent,
+        BasicDetailsComponent
     ],
     declarations : [
         LandingPageComponent,

@@ -7,6 +7,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { createUser } from './common/_helpers';
+import { AppLoggerService } from './modules/logging/app-logger.service';
 
 export async function bootstrapServer() {
   config(); // Load environment variables
@@ -14,7 +15,9 @@ export async function bootstrapServer() {
   const expressApp = require('express')();
   const adapter = new ExpressAdapter(expressApp);
 
-  const app = await NestFactory.create(AppModule, adapter);
+  const app = await NestFactory.create(AppModule, adapter, { bufferLogs: true });
+  const appLogger = app.get(AppLoggerService);
+  app.useLogger(appLogger);
 
   // Set global prefix
   app.setGlobalPrefix('api');

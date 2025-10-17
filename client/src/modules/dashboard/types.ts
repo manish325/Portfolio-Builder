@@ -1,3 +1,5 @@
+import { StepperOrientation } from "@angular/cdk/stepper";
+import { Type } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { SafeResourceUrl } from "@angular/platform-browser";
 
@@ -114,4 +116,6 @@ export interface IStep {
   formgroupName: string,
   control : FormGroup,
   steps  ?: IStep[],
+  component?: Type<any>,
+  alignment ?: StepperOrientation
 }

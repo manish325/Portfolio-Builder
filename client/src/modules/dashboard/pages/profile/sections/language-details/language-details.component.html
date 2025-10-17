@@ -1,0 +1,47 @@
+<div class="language-details-container">
+  <div class="form-header">
+    <h3>Language Details</h3>
+    <p>Add the languages you speak and your proficiency level</p>
+  </div>
+
+  <div class="languages-list" formArrayName="languageDetails">
+    <div *ngFor="let language of languageDetailsFormGroup.controls; let i = index" 
+         [formGroupName]="i" 
+         class="language-item">
+      
+      <mat-form-field appearance="outline" class="language-field">
+        <mat-label>Language</mat-label>
+        <input matInput formControlName="language" placeholder="e.g., English, Spanish, French">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="proficiency-field">
+        <mat-label>Proficiency Level</mat-label>
+        <mat-select formControlName="proficiency">
+          <mat-option [value]="0">Beginner (0-20%)</mat-option>
+          <mat-option [value]="25">Elementary (21-40%)</mat-option>
+          <mat-option [value]="50">Intermediate (41-60%)</mat-option>
+          <mat-option [value]="75">Advanced (61-80%)</mat-option>
+          <mat-option [value]="100">Fluent (81-100%)</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-icon-button 
+              color="warn" 
+              (click)="deleteLanguage(i)"
+              class="delete-btn"
+              [disabled]="languageDetailsFormGroup.length === 1">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="add-language-section">
+    <button mat-raised-button 
+            color="primary" 
+            (click)="addLanguage()"
+            class="add-btn">
+      <mat-icon>add</mat-icon>
+      Add Language
+    </button>
+  </div>
+</div>

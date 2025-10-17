@@ -17,8 +17,9 @@ export default registerAs("database", () : DataSourceOptions => {
         password : process.env.DB_PASSWORD,
         database : process.env.DB_NAME,
         entities : [__dirname + '/../**/*.Entity{.ts,.js}'],
-        // entities : [User, Project],
-        synchronize : true,
+        migrations : [__dirname + '/../migrations/*{.ts,.js}'],
+        // Never enable synchronize in production; use migrations instead
+        synchronize : false,
         logging: true
     }
 })

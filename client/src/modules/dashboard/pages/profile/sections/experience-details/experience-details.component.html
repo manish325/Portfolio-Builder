@@ -1,0 +1,78 @@
+<div class="experience-details-container">
+  <div class="form-header">
+    <h3>Experience Details</h3>
+    <p>Add your professional work experience and achievements</p>
+  </div>
+
+  <form [formGroup]="parentFormGroup">
+    <div formArrayName="experienceDetails" class="experience-list">
+      <div *ngFor="let control of experienceDetailsFormGroup.controls; let i = index" 
+           [formGroupName]="i" 
+           class="experience-item">
+        
+        <div class="experience-header">
+          <h4>Experience {{i + 1}}</h4>
+          <button mat-icon-button 
+                  color="warn" 
+                  (click)="deleteExperience(i)"
+                  [disabled]="experienceDetailsFormGroup.length === 1"
+                  class="delete-btn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <div class="experience-fields">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Job Title</mat-label>
+            <input type="text" matInput formControlName="title" placeholder="e.g., Software Engineer">
+            <mat-icon matSuffix>work</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Company</mat-label>
+            <input type="text" matInput formControlName="company" placeholder="e.g., Google, Microsoft">
+            <mat-icon matSuffix>business</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Location</mat-label>
+            <input type="text" matInput formControlName="location" placeholder="e.g., San Francisco, CA">
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+            <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" 
+                      placeholder="Describe your responsibilities, achievements, and key projects"
+                      rows="4"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="add-experience-section">
+    <button mat-raised-button 
+            color="primary" 
+            (click)="addExperience()"
+            class="add-btn">
+      <mat-icon>add</mat-icon>
+      Add Experience
+    </button>
+  </div>
+</div>
