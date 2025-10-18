@@ -1,0 +1,76 @@
+@import '../shared-profile-styles.scss';
+
+.soft-skills-section {
+  .soft-skills-list {
+    .soft-skill-item {
+      margin-bottom: 24px;
+      
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        
+        h3 {
+          margin: 0;
+          color: $primary-color;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+      
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        
+        .full-width {
+          grid-column: 1 / -1;
+        }
+        
+        .checkbox-group {
+          display: flex;
+          align-items: center;
+          padding-top: 8px;
+        }
+        
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      .proficiency-indicator {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+        
+        .proficiency-label {
+          font-weight: 500;
+          color: $text-primary;
+          min-width: 120px;
+        }
+        
+        .proficiency-bar {
+          flex: 1;
+          height: 8px;
+          background-color: #e0e0e0;
+          border-radius: 4px;
+          overflow: hidden;
+          
+          .proficiency-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            transition: width 0.3s ease;
+          }
+        }
+        
+        .proficiency-text {
+          font-weight: 600;
+          color: $primary-color;
+          min-width: 80px;
+        }
+      }
+    }
+  }
+}

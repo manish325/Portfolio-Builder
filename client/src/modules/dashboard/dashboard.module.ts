@@ -5,12 +5,7 @@ import { MaterialModule } from "src/shared/MaterialModule/Material-module";
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { DashboardRoutingModule } from "./dashboard-routing.module";
-import { ClassicComponent } from './layouts/classic/classic.component';
-import { ProfessionalComponent } from './layouts/professional/professional.component';
-import { CreativeComponent } from './layouts/creative/creative.component';
-import { InnovativeComponent } from './layouts/innovative/innovative.component';
 import { CommonModule } from "@angular/common";
-import { ProfileComponent } from './pages/profile/profile.component';
 import { UserComponent } from './pages/profile/sections/user/user.component';
 import { ProjectsComponent } from './pages/profile/sections/projects/projects.component';
 import { SkillsComponent } from './pages/profile/sections/skills/skills.component';
@@ -20,7 +15,13 @@ import { DashboardService } from "./dashboard.service";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import { AvatarComponent } from "src/shared/avatar/avatar.component";
 import { StepperComponent } from "src/common/stepper/stepper.component";
-import { BasicDetailsComponent } from "./pages/profile/sections/basic-details/basic-details.component";
+import { SamplePortfolioComponent } from "./pages/sample-portfolio/sample-portfolio.component";
+import { ModernProfessionalComponent } from "./pages/modern-professional/modern-professional.component";
+import { CreativePortfolioComponent } from "./pages/creative-portfolio/creative-portfolio.component";
+import { TechInnovatorComponent } from "./pages/tech-innovator/tech-innovator.component";
+import { ExecutiveSuiteComponent } from "./pages/executive-suite/executive-suite.component";
+import { MinimalistCleanComponent } from "./pages/minimalist-clean/minimalist-clean.component";
+import { StartupDynamicComponent } from "./pages/startup-dynamic/startup-dynamic.component";
 
 @NgModule({
     imports : [
@@ -32,17 +33,18 @@ import { BasicDetailsComponent } from "./pages/profile/sections/basic-details/ba
             logOnly: true, // Restrict extension to log-only mode
         }),
         AvatarComponent,
-        StepperComponent,
-        BasicDetailsComponent
+        StepperComponent
     ],
     declarations : [
         LandingPageComponent,
         UserProfileComponent,
-        ClassicComponent,
-        ProfessionalComponent,
-        CreativeComponent,
-        InnovativeComponent,
-        ProfileComponent,
+        SamplePortfolioComponent,
+        ModernProfessionalComponent,
+        CreativePortfolioComponent,
+        TechInnovatorComponent,
+        ExecutiveSuiteComponent,
+        MinimalistCleanComponent,
+        StartupDynamicComponent,
         UserComponent,
         ProjectsComponent,
         SkillsComponent,

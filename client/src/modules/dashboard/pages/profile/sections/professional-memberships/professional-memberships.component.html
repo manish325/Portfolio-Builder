@@ -1,0 +1,128 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>groups</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Professional Memberships</h3>
+      <p class="section-description">Add your professional memberships and industry associations</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="professionalMemberships">
+    <div class="item" 
+         *ngFor="let membership of professionalMembershipsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>groups</mat-icon>
+          Membership {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteProfessionalMembership(i)"
+                *ngIf="professionalMembershipsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid three-columns">
+          <!-- Organization & Type -->
+          <div class="modern-form-group">
+            <label class="form-label">Organization Name *</label>
+            <input class="form-input" 
+                   formControlName="organizationName" 
+                   placeholder="e.g., IEEE, ACM, PMI">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Membership Type</label>
+            <select class="form-select" formControlName="membershipType">
+              <option value="">Select Type</option>
+              <option value="Professional">Professional</option>
+              <option value="Student">Student</option>
+              <option value="Associate">Associate</option>
+              <option value="Fellow">Fellow</option>
+              <option value="Life">Life Member</option>
+            </select>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" formControlName="status">
+              <option value="">Select Status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Expired">Expired</option>
+            </select>
+          </div>
+
+          <!-- Dates -->
+          <div class="modern-form-group">
+            <label class="form-label">Start Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="startDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">End Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="endDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Membership Number</label>
+            <input class="form-input" 
+                   formControlName="membershipNumber" 
+                   placeholder="e.g., IEEE123456">
+          </div>
+
+          <!-- Website & Description -->
+          <div class="modern-form-group">
+            <label class="form-label">Website</label>
+            <input class="form-input" 
+                   formControlName="website" 
+                   placeholder="https://www.ieee.org">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Benefits/Activities</label>
+            <input class="form-input" 
+                   formControlName="benefits" 
+                   placeholder="Enter benefits/activities">
+          </div>
+
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isLeadershipRole" 
+                     id="leadershipRole{{i}}">
+              <label for="leadershipRole{{i}}">Leadership Role</label>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" 
+                      formControlName="description" 
+                      placeholder="Describe your involvement and contributions"
+                      rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Membership Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addProfessionalMembership()">
+      <mat-icon>add</mat-icon>
+      Add Membership
+    </button>
+  </div>
+</div>

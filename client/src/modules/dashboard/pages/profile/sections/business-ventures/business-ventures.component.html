@@ -1,0 +1,159 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>business</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Business Ventures</h3>
+      <p class="section-description">Add your entrepreneurial ventures, startups, and business projects</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="businessVentures">
+    <div class="item" 
+         *ngFor="let venture of businessVenturesFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>business</mat-icon>
+          Venture {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteBusinessVenture(i)"
+                *ngIf="businessVenturesFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid three-columns">
+          <!-- Basic Info -->
+          <div class="modern-form-group">
+            <label class="form-label">Venture Name *</label>
+            <input class="form-input" 
+                   formControlName="ventureName" 
+                   placeholder="e.g., TechStartup Inc.">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Venture Type</label>
+            <select class="form-select" formControlName="ventureType">
+              <option value="">Select Type</option>
+              <option value="Startup">Startup</option>
+              <option value="SaaS">SaaS</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Consulting">Consulting</option>
+              <option value="Non-profit">Non-profit</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" formControlName="status">
+              <option value="">Select Status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Sold">Sold</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+
+          <!-- Dates & Industry -->
+          <div class="modern-form-group">
+            <label class="form-label">Start Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="startDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">End Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="endDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Industry</label>
+            <input class="form-input" 
+                   formControlName="industry" 
+                   placeholder="e.g., Technology, Health">
+          </div>
+
+          <!-- Financial Info -->
+          <div class="modern-form-group">
+            <label class="form-label">Website</label>
+            <input class="form-input" 
+                   formControlName="website" 
+                   placeholder="https://www.venture.com">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Team Size</label>
+            <input class="form-input" 
+                   type="number"
+                   formControlName="teamSize" 
+                   placeholder="5">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Funding Amount</label>
+            <input class="form-input" 
+                   formControlName="fundingAmount" 
+                   placeholder="e.g., $1M Series A, $50K">
+          </div>
+
+          <!-- Revenue & Metrics -->
+          <div class="modern-form-group">
+            <label class="form-label">Revenue</label>
+            <input class="form-input" 
+                   formControlName="revenue" 
+                   placeholder="e.g., $100K ARR">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Technologies</label>
+            <input class="form-input" 
+                   formControlName="technologies" 
+                   placeholder="React, Node.js, AWS">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Key Metrics</label>
+            <input class="form-input" 
+                   formControlName="keyMetrics" 
+                   placeholder="1000+ users, 50% growth">
+          </div>
+
+          <!-- Description & Lessons -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" 
+                      formControlName="description" 
+                      placeholder="Describe the venture and its mission"
+                      rows="3"></textarea>
+          </div>
+
+          <div class="modern-form-group full-width">
+            <label class="form-label">Lessons Learned</label>
+            <textarea class="form-textarea" 
+                      formControlName="lessonsLearned" 
+                      placeholder="Key insights and lessons from this venture"
+                      rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Venture Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addBusinessVenture()">
+      <mat-icon>add</mat-icon>
+      Add Venture
+    </button>
+  </div>
+</div>

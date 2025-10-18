@@ -1,0 +1,152 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>star</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Client Testimonials</h3>
+      <p class="section-description">Add testimonials and feedback from clients and colleagues</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="testimonials">
+    <div class="item" 
+         *ngFor="let testimonial of testimonialsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>star</mat-icon>
+          Testimonial {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteTestimonial(i)"
+                *ngIf="testimonialsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid three-columns">
+          <!-- Client Info -->
+          <div class="modern-form-group">
+            <label class="form-label">Client Name *</label>
+            <input class="form-input" 
+                   formControlName="clientName" 
+                   placeholder="e.g., John Smith">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Client Title</label>
+            <input class="form-input" 
+                   formControlName="clientTitle" 
+                   placeholder="e.g., CEO, CTO, Manager">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Client Company</label>
+            <input class="form-input" 
+                   formControlName="clientCompany" 
+                   placeholder="e.g., TechCorp Inc.">
+          </div>
+
+          <!-- Contact & Project -->
+          <div class="modern-form-group">
+            <label class="form-label">Client Email</label>
+            <input class="form-input" 
+                   type="email"
+                   formControlName="clientEmail" 
+                   placeholder="john@techcorp.com">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Project Name</label>
+            <input class="form-input" 
+                   formControlName="projectName" 
+                   placeholder="e.g., E-commerce Platform">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Rating</label>
+            <select class="form-select" formControlName="rating">
+              <option value="">Select Rating</option>
+              <option value="5">5 Stars - Excellent</option>
+              <option value="4">4 Stars - Very Good</option>
+              <option value="3">3 Stars - Good</option>
+              <option value="2">2 Stars - Fair</option>
+              <option value="1">1 Star - Poor</option>
+            </select>
+          </div>
+
+          <!-- URLs & Date -->
+          <div class="modern-form-group">
+            <label class="form-label">Client Photo URL</label>
+            <input class="form-input" 
+                   formControlName="clientPhoto" 
+                   placeholder="https://example.com/photo">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Testimonial Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="testimonialDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Tags</label>
+            <input class="form-input" 
+                   formControlName="tags" 
+                   placeholder="Enter tags separated by commas">
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isPublic" 
+                     id="isPublic{{i}}">
+              <label for="isPublic{{i}}">Make public</label>
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isFeatured" 
+                     id="isFeatured{{i}}">
+              <label for="isFeatured{{i}}">Featured testimonial</label>
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isPublic" 
+                     id="isPublic{{i}}">
+              <label for="isPublic{{i}}">Make public</label>
+            </div>
+          </div>
+
+          <!-- Testimonial Text -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Testimonial Text *</label>
+            <textarea class="form-textarea" 
+                      formControlName="testimonialText" 
+                      placeholder="Enter the testimonial"
+                      rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Testimonial Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addTestimonial()">
+      <mat-icon>add</mat-icon>
+      Add Testimonial
+    </button>
+  </div>
+</div>

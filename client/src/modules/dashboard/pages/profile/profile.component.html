@@ -1,20 +1,36 @@
 <div class="profile-page">
-    <mat-toolbar class="title-bar">
-        <button mat-button routerLink="/dashboard"> 
-            <h1 [style]="{'color' : 'white', 'font-weight': '600'}">Portfolio Builder</h1>
-        </button>
-        <!-- Legacy section navigation removed: stepper handles flow -->
-        <div class="profile-icon" (click)="openProfileForm()">
-            <img [src]="user?.profilePicture" alt="Profile Icon" />
-            <button mat-raised-button (click)="logout()" class="logout-button">
-                <span>
-                    Logout
-                </span>
-                <mat-icon>logout</mat-icon>
-            </button>
+    <!-- Scrollable Container -->
+    <div class="profile-scroll-container">
+        <header class="modern-header">
+        <div class="header-content">
+            <div class="header-left">
+                <button mat-button (click)="goToDashboard()" class="back-button">
+                    <mat-icon>arrow_back</mat-icon>
+                    <span>Back to Dashboard</span>
+                </button>
+            </div>
+            <div class="header-center">
+                <h1 class="app-title">Portfolio Builder</h1>
+                <p class="app-subtitle">Create your professional portfolio</p>
+            </div>
+            <div class="header-right">
+                <div class="user-profile" (click)="openProfileForm()">
+                    <div class="user-avatar">
+                        <img [src]="user?.profilePicture || '/assets/default-avatar.png'" alt="Profile" />
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">{{ user?.name || 'User' }}</span>
+                        <span class="user-email">{{ user?.email || 'user@example.com' }}</span>
+                    </div>
+                </div>
+                <button mat-icon-button (click)="logout()" class="logout-btn" matTooltip="Logout">
+                    <mat-icon>logout</mat-icon>
+                </button>
+            </div>
         </div>
-    </mat-toolbar>
+    </header>
     <div class="content">
         <app-stepper [alignment]="'vertical'" [steps]="applicationSteps"></app-stepper>
     </div>
+    </div> <!-- End scrollable container -->
 </div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { userProfileSchema } from 'src/modules/dashboard/schema';
+import { FormGroup, Validators } from '@angular/forms';
 import { MaterialModule } from 'src/shared/MaterialModule/Material-module';
+import { FormDataService } from '../../../../services/form-data.service';
 
 @Component({
   selector: 'app-social-links',
@@ -10,12 +10,23 @@ import { MaterialModule } from 'src/shared/MaterialModule/Material-module';
     MaterialModule
   ],
   templateUrl: './social-links.component.html',
-  styleUrl: './social-links.component.scss'
+  styleUrls: ['./social-links.component.scss']
 })
 export class SocialLinksComponent {
   socialLinksFormGroup!: FormGroup;
 
-  constructor() {
-    this.socialLinksFormGroup = userProfileSchema.get('socialLinks') as FormGroup;
+  constructor(private formDataService: FormDataService) {
+    this.socialLinksFormGroup = this.formDataService.formData.get('socialLinks') as FormGroup;
+  }
+
+  resetForm() {
+    this.socialLinksFormGroup.reset();
+  }
+
+  saveForm() {
+    if (this.socialLinksFormGroup.valid) {
+      console.log('Social links data:', this.socialLinksFormGroup.value);
+      // TODO: Implement save functionality
+    }
   }
 }

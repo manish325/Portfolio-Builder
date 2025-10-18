@@ -1,47 +1,179 @@
-<div class="layout">
-  <aside class="sidebar" [class.collapsed]="!sidebarExpanded">
+<div class="modern-stepper-layout">
+  <!-- Modern Sidebar -->
+  <aside class="modern-sidebar" [class.collapsed]="!sidebarExpanded">
     <div class="sidebar-header">
-      <button mat-icon-button (click)="toggleSidebar()" class="toggle-btn">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <span class="logo-text" *ngIf="sidebarExpanded">Portfolio Builder</span>
+      </div>
+      <button mat-icon-button (click)="toggleSidebar()" class="toggle-btn modern-btn btn-ghost btn-icon">
         <mat-icon>{{ sidebarExpanded ? 'chevron_left' : 'chevron_right' }}</mat-icon>
       </button>
     </div>
-    <mat-nav-list class="stepper-nav" *ngIf="sidebarExpanded">
-      <ng-container *ngFor="let parent of steps; let parentIndex = index">
-        <div class="step-group">
-          <!-- Parent Step -->
-          <a mat-list-item class="step-link parent" (click)="onSelectStep(parent)" [class.active]="selectedStep === parent">
-            <span class="rail" [class.last-parent]="parentIndex === steps.length - 1"></span>
-            <span class="node" [class.completed]="isCompleted(parent)"><mat-icon>{{ isCompleted(parent) ? 'check' : 'radio_button_unchecked' }}</mat-icon></span>
-            {{ parent.title }}
-          </a>
-          
-          <!-- Child Steps -->
-          <div class="children" *ngIf="parent.steps?.length">
-            <a mat-list-item *ngFor="let child of parent.steps; index as ci" class="step-link child" (click)="onSelectStep(child)" [class.active]="selectedStep === child">
-              <span class="rail dotted" [class.last-child]="ci === (parent.steps?.length || 0) - 1"></span>
-              <span class="node" [class.completed]="isCompleted(child)"><mat-icon>{{ isCompleted(child) ? 'check' : (selectedStep === child ? 'adjust' : 'radio_button_unchecked') }}</mat-icon></span>
-              {{ child.title }}
-            </a>
+
+    <div class="sidebar-content" *ngIf="sidebarExpanded">
+      <div class="progress-section">
+        <div class="progress-circle">
+          <svg class="progress-ring" width="70" height="70">
+            <circle
+              class="progress-ring-circle"
+              stroke="var(--border-light)"
+              stroke-width="3"
+              fill="transparent"
+              r="30"
+              cx="35"
+              cy="35"/>
+            <circle
+              class="progress-ring-fill"
+              stroke="var(--primary-500)"
+              stroke-width="3"
+              fill="transparent"
+              r="30"
+              cx="35"
+              cy="35"
+              [style.stroke-dasharray]="getProgressCircleDash()"
+              [style.stroke-dashoffset]="getProgressCircleOffset()"/>
+          </svg>
+          <div class="progress-text">
+            <span class="progress-percentage">{{ getProgressPercentage() }}%</span>
+            <span class="progress-label">Complete</span>
           </div>
         </div>
-      </ng-container>
-    </mat-nav-list>
+      </div>
+
+      <nav class="modern-nav">
+        <div class="nav-section">
+          <h3 class="nav-section-title">Profile Setup</h3>
+          <div class="nav-items">
+            <ng-container *ngFor="let parent of steps; let parentIndex = index">
+              <div class="nav-group">
+                <!-- Parent Step -->
+                <div class="nav-item" 
+                     [class.parent-label]="parent.steps?.length"
+                     [class.child-step]="!parent.steps?.length"
+                     (click)="!parent.steps?.length && onSelectStep(parent)" 
+                     [class.active]="!parent.steps?.length && selectedStep === parent"
+                     [class.completed]="!parent.steps?.length && isCompleted(parent)">
+                  <div class="nav-icon" *ngIf="!parent.steps?.length">
+                    <mat-icon *ngIf="!isCompleted(parent) && selectedStep !== parent">radio_button_unchecked</mat-icon>
+                    <mat-icon *ngIf="isCompleted(parent)" class="completed-icon">check_circle</mat-icon>
+                    <mat-icon *ngIf="!isCompleted(parent) && selectedStep === parent" class="active-icon">adjust</mat-icon>
+                  </div>
+                  <div class="nav-content">
+                    <div class="nav-title">{{ parent.title }}</div>
+                    <div class="nav-description" *ngIf="parent.description">{{ parent.description }}</div>
+                  </div>
+                </div>
+                
+                <!-- Child Steps -->
+                <div class="nav-children" *ngIf="parent.steps?.length">
+                <div class="nav-item child" 
+                     *ngFor="let child of parent.steps; index as ci" 
+                     (click)="onSelectStep(child)" 
+                     [class.active]="selectedStep === child"
+                     [class.completed]="isCompleted(child)">
+                    <div class="nav-icon">
+                      <mat-icon *ngIf="!isCompleted(child) && selectedStep !== child">radio_button_unchecked</mat-icon>
+                      <mat-icon *ngIf="isCompleted(child)" class="completed-icon">check_circle</mat-icon>
+                      <mat-icon *ngIf="!isCompleted(child) && selectedStep === child" class="active-icon">adjust</mat-icon>
+                    </div>
+                    <div class="nav-content">
+                      <div class="nav-title">{{ child.title }}</div>
+                      <div class="nav-description" *ngIf="child.description">{{ child.description }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </nav>
+    </div>
   </aside>
 
-  <section class="content" [class.full-width]="!sidebarExpanded">
-    <div class="content-inner content-scroll">
-      <ng-container *ngIf="selectedStep as step">
-        <ng-container *ngIf="step.component; else noComponentError">
-          <ng-container *ngComponentOutlet="step.component"></ng-container>
-        </ng-container>
-
-        <ng-template #noComponentError>
-          <div class="no-component">
-            <mat-icon>info</mat-icon>
-            <p>No form component available for this step</p>
-          </div>
-        </ng-template>
-      </ng-container>
+  <!-- Modern Content Area -->
+  <main class="modern-content" [class.full-width]="!sidebarExpanded">
+    <!-- Content Header -->
+    <div class="content-header" *ngIf="selectedStep">
+      <div class="header-content">
+        <div class="step-icon">
+          <mat-icon>{{ getStepIcon(selectedStep) }}</mat-icon>
+        </div>
+        <div class="step-info">
+          <h1 class="step-title">{{ selectedStep.title }}</h1>
+          <p class="step-description">{{ selectedStep.description }}</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="step-counter">
+          <span class="current-step">{{ currentIndex + 1 }}</span>
+          <span class="step-separator">/</span>
+          <span class="total-steps">{{ allSteps.length }}</span>
+        </div>
+      </div>
     </div>
-  </section>
+
+    <!-- Content Body -->
+    <div class="content-body">
+      <div class="content-container">
+        <ng-container *ngIf="selectedStep as step">
+          <ng-container *ngIf="step.component; else noComponentError">
+            <div class="step-content animate-fade-in-up">
+              <ng-container *ngComponentOutlet="step.component"></ng-container>
+            </div>
+          </ng-container>
+
+          <ng-template #noComponentError>
+            <div class="no-component modern-card">
+              <div class="card-body">
+                <div class="error-content">
+                  <mat-icon class="error-icon">info</mat-icon>
+                  <h3>No Form Component</h3>
+                  <p>No form component is available for this step. Please contact support.</p>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+    
+    <!-- Modern Navigation -->
+    <div class="modern-navigation">
+      <div class="nav-left">
+                <button 
+                  class="nav-button modern-btn btn-secondary" 
+                  (click)="goToPreviousWithStatusUpdate()" 
+                  [disabled]="!canGoPrevious()">
+                  <mat-icon>arrow_back</mat-icon>
+                  Previous
+                </button>
+      </div>
+      
+      <div class="nav-center">
+        <div class="step-dots">
+          <div 
+            *ngFor="let step of allSteps; let i = index" 
+            class="step-dot"
+            [class.active]="i === currentIndex"
+            [class.completed]="i < currentIndex"
+            (click)="onSelectStep(step)"
+            [title]="step.title">
+          </div>
+        </div>
+      </div>
+      
+      <div class="nav-right">
+                <button 
+                  class="nav-button modern-btn btn-primary" 
+                  (click)="goToNextWithValidation()" 
+                  [disabled]="!canGoNext()">
+                  Next
+                  <mat-icon>arrow_forward</mat-icon>
+                </button>
+      </div>
+    </div>
+  </main>
 </div>

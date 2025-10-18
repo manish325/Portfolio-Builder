@@ -1,53 +1,146 @@
-<div class="login-form">
-    <h2 class="form-title">Login</h2>
+<div class="modern-login">
+  <!-- Background Elements -->
+  <div class="background-elements">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+  </div>
 
-    <form action="" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" class="form">
-
-        <!-- Email Input -->
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Enter your email" type="email" required [formControlName]="'email'">
-            <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-                Please enter a valid email.
-            </mat-error>
-        </mat-form-field>
-
-        <!-- Password Input -->
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" required
-                [formControlName]="'password'">
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
-                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
-            </button>
-            <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-                Password is required.
-            </mat-error>
-        </mat-form-field>
-
-        <!-- Sign In with Google Button -->
-
-        <!-- Submit Button -->
-        <button mat-raised-button color="primary" type="submit" *ngIf="!loading">
-            Login
-        </button>
-
-        <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
-    </form>
-
-    <div class="footer">
-
-
-        <!-- Register Link -->
-        <button mat-raised-button color="primary" class="google-button" (click)="signInWithGoogle()">
-            <!-- <mat-icon>google</mat-icon> -->
-            <i class="fab fa-google google-icon"></i>
-            Sign in with Google
-        </button>
-        <!-- <asl-google-signin-button></asl-google-signin-button> -->
-
-        <div class="register-link">
-            <p>Don't have an account? <a routerLink="/auth/register">Register here</a></p>
+  <!-- Main Content -->
+  <div class="login-container">
+    <!-- Left Side - Branding -->
+    <div class="branding-section">
+      <div class="branding-content">
+        <div class="logo-section">
+          <div class="logo-icon">
+            <mat-icon>auto_awesome</mat-icon>
+          </div>
+          <div class="logo-text">
+            <h1>PortfolioAI</h1>
+            <span>Powered by AI</span>
+          </div>
         </div>
+        
+        <div class="hero-content">
+          <h2 class="hero-title">
+            Welcome to the Future of
+            <span class="gradient-text">Portfolio Creation</span>
+          </h2>
+          <p class="hero-description">
+            Create stunning, AI-powered portfolios that showcase your professional journey with intelligent design and seamless user experience.
+          </p>
+          
+          <div class="features-preview">
+            <div class="feature-item">
+              <mat-icon>auto_awesome</mat-icon>
+              <span>AI-Powered Design</span>
+            </div>
+            <div class="feature-item">
+              <mat-icon>speed</mat-icon>
+              <span>Lightning Fast</span>
+            </div>
+            <div class="feature-item">
+              <mat-icon>devices</mat-icon>
+              <span>Fully Responsive</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Right Side - Login Form -->
+    <div class="form-section">
+      <div class="form-container">
+        <div class="form-header">
+          <h3 class="form-title">Welcome Back</h3>
+          <p class="form-subtitle">Sign in to your account to continue</p>
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" class="login-form">
+          <!-- Email Input -->
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">email</mat-icon>
+              <input 
+                type="email" 
+                class="form-input" 
+                placeholder="Enter your email address"
+                formControlName="email"
+                [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            </div>
+            <div class="form-error" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              Please enter a valid email address
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">lock</mat-icon>
+              <input 
+                [type]="hidePassword ? 'password' : 'text'"
+                class="form-input" 
+                placeholder="Enter your password"
+                formControlName="password"
+                [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <button 
+                type="button" 
+                class="password-toggle"
+                (click)="hidePassword = !hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <div class="form-error" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              Password is required
+            </div>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="form-options">
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox">
+              <span class="checkmark"></span>
+              <span class="checkbox-label">Remember me</span>
+            </label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="btn-primary"
+            [disabled]="loginForm.invalid || loading">
+            <mat-icon *ngIf="!loading">login</mat-icon>
+            <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+            <span>{{ loading ? 'Signing in...' : 'Sign In' }}</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <!-- Google Sign In -->
+          <button 
+            type="button" 
+            class="btn-google"
+            (click)="signInWithGoogle()"
+            [disabled]="loading">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="google-logo">
+            <span>Continue with Google</span>
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="form-footer">
+          <p>Don't have an account? 
+            <a routerLink="/auth/register" class="register-link">Create one here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

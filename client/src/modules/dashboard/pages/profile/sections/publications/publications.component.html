@@ -1,0 +1,145 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>article</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Publications & Research</h3>
+      <p class="section-description">Add your research papers, articles, and publications</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="publications">
+    <div class="item" 
+         *ngFor="let publication of publicationsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>article</mat-icon>
+          Publication {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deletePublication(i)"
+                *ngIf="publicationsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid three-columns">
+          <!-- Title -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Publication Title *</label>
+            <input class="form-input" 
+                   formControlName="title" 
+                   placeholder="e.g., Machine Learning in Healthcare Applications">
+            <div class="form-error" *ngIf="publication.get('title')?.hasError('required')">
+              Title is required
+            </div>
+          </div>
+
+          <!-- Type & Journal -->
+          <div class="modern-form-group">
+            <label class="form-label">Publication Type</label>
+            <select class="form-select" formControlName="publicationType">
+              <option value="">Select Type</option>
+              <option *ngFor="let type of publicationTypes" [value]="type">
+                {{type}}
+              </option>
+            </select>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Journal/Conference</label>
+            <input class="form-input" 
+                   formControlName="journalName" 
+                   placeholder="e.g., Nature, IEEE">
+          </div>
+
+          <!-- Publisher & Date -->
+          <div class="modern-form-group">
+            <label class="form-label">Publisher</label>
+            <input class="form-input" 
+                   formControlName="publisher" 
+                   placeholder="e.g., Springer, ACM">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Publication Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="publicationDate">
+          </div>
+
+          <!-- DOI & URL -->
+          <div class="modern-form-group">
+            <label class="form-label">DOI</label>
+            <input class="form-input" 
+                   formControlName="doi" 
+                   placeholder="e.g., 10.1000/182">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">URL</label>
+            <input class="form-input" 
+                   formControlName="url" 
+                   placeholder="https://example.com/publication">
+          </div>
+
+          <!-- Citation Count -->
+          <div class="modern-form-group">
+            <label class="form-label">Citation Count</label>
+            <input class="form-input" 
+                   type="number"
+                   formControlName="citationCount" 
+                   placeholder="25">
+          </div>
+
+          <!-- Abstract -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Abstract</label>
+            <textarea class="form-textarea" 
+                      formControlName="abstract" 
+                      placeholder="Brief description of the publication"
+                      rows="4"></textarea>
+          </div>
+
+          <!-- Co-authors & Keywords -->
+          <div class="modern-form-group">
+            <label class="form-label">Co-authors</label>
+            <input class="form-input" 
+                   formControlName="coAuthors" 
+                   placeholder="Enter co-authors separated by commas">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Keywords</label>
+            <input class="form-input" 
+                   formControlName="keywords" 
+                   placeholder="Enter keywords separated by commas">
+          </div>
+
+          <!-- Checkbox -->
+          <div class="modern-form-group full-width">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isPeerReviewed" 
+                     id="peerReviewed{{i}}">
+              <label for="peerReviewed{{i}}">Peer Reviewed</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Publication Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addPublication()">
+      <mat-icon>add</mat-icon>
+      Add Publication
+    </button>
+  </div>
+</div>

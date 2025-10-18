@@ -1,24 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { userProfileSchema } from 'src/modules/dashboard/schema';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaterialModule } from 'src/shared/MaterialModule/Material-module';
+import { FormDataService } from '../../../../services/form-data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-education-details',
   standalone: true,
   imports: [
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   templateUrl: './education-details.component.html',
-  styleUrl: './education-details.component.scss'
+  styleUrls: ['./education-details.component.scss']
 })
 export class EducationDetailsComponent implements OnInit {
   educationDetailsFormGroup !: FormArray<FormGroup>;
   parentFormGroup !: FormGroup;
 
-  constructor() {
-    this.parentFormGroup = userProfileSchema;
+  constructor(private formDataService: FormDataService) {
+    this.parentFormGroup = this.formDataService.formData;
   }
 
   ngOnInit() {
@@ -33,11 +35,11 @@ export class EducationDetailsComponent implements OnInit {
 
   addEducation() {
     const newEducation = new FormGroup({
-      school: new FormControl(''),
-      degree: new FormControl(''),
-      fieldOfStudy: new FormControl(''),
-      startDate: new FormControl(''),
-      endDate: new FormControl(''),
+      school: new FormControl('', [Validators.required]),
+      degree: new FormControl('', [Validators.required]),
+      fieldOfStudy: new FormControl('', [Validators.required]),
+      startDate: new FormControl('', [Validators.required]),
+      endDate: new FormControl('', [Validators.required]),
       location: new FormControl(''),
       description: new FormControl('')
     });

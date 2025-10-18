@@ -1,9 +1,12 @@
 
 import { LandingPageComponent } from "./pages/landing-page/landing-page.component";
-import { ClassicComponent } from "./layouts/classic/classic.component";
-import { CreativeComponent } from "./layouts/creative/creative.component";
-import { InnovativeComponent } from "./layouts/innovative/innovative.component";
-import { ProfessionalComponent } from "./layouts/professional/professional.component";
+import { SamplePortfolioComponent } from "./pages/sample-portfolio/sample-portfolio.component";
+import { ModernProfessionalComponent } from "./pages/modern-professional/modern-professional.component";
+import { CreativePortfolioComponent } from "./pages/creative-portfolio/creative-portfolio.component";
+import { TechInnovatorComponent } from "./pages/tech-innovator/tech-innovator.component";
+import { ExecutiveSuiteComponent } from "./pages/executive-suite/executive-suite.component";
+import { MinimalistCleanComponent } from "./pages/minimalist-clean/minimalist-clean.component";
+import { StartupDynamicComponent } from "./pages/startup-dynamic/startup-dynamic.component";
 import { ProfileComponent } from "./pages/profile/profile.component";
 import { UserComponent } from "./pages/profile/sections/user/user.component";
 import { ProjectsComponent } from "./pages/profile/sections/projects/projects.component";
@@ -21,23 +24,35 @@ export const dashboardRoutes: Routes = [
         children : [
             {
                 path : '',
-                component : ClassicComponent
+                component : ModernProfessionalComponent
             },
             {
-                path : 'classic',
-                component : ClassicComponent
+                path : 'sample-portfolio',
+                component : SamplePortfolioComponent
             },
             {
-                path : 'creative',
-                component : CreativeComponent
+                path : 'modern-professional',
+                component : ModernProfessionalComponent
             },
             {
-                path : 'innovative',
-                component : InnovativeComponent
+                path : 'creative-portfolio',
+                component : CreativePortfolioComponent
             },
             {
-                path : 'professional',
-                component : ProfessionalComponent
+                path : 'tech-innovator',
+                component : TechInnovatorComponent
+            },
+            {
+                path : 'executive-suite',
+                component : ExecutiveSuiteComponent
+            },
+            {
+                path : 'minimalist-clean',
+                component : MinimalistCleanComponent
+            },
+            {
+                path : 'startup-dynamic',
+                component : StartupDynamicComponent
             },
             // {
             //     path : 'reviews',

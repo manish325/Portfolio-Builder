@@ -1,0 +1,127 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>emoji_events</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Achievements & Awards</h3>
+      <p class="section-description">Showcase your professional achievements, awards, and recognitions</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="achievements">
+    <div class="item" 
+         *ngFor="let achievement of achievementsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>emoji_events</mat-icon>
+          Achievement {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteAchievement(i)"
+                *ngIf="achievementsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid two-columns">
+          <!-- Title & Category -->
+          <div class="modern-form-group">
+            <label class="form-label">Achievement Title *</label>
+            <input class="form-input" 
+                   formControlName="title" 
+                   placeholder="e.g., Employee of the Year">
+            <div class="form-error" *ngIf="achievement.get('title')?.hasError('required')">
+              Title is required
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" formControlName="category">
+              <option value="">Select Category</option>
+              <option *ngFor="let category of categories" [value]="category">
+                {{category}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Organization & Award Level -->
+          <div class="modern-form-group">
+            <label class="form-label">Organization</label>
+            <input class="form-input" 
+                   formControlName="organization" 
+                   placeholder="e.g., Google, Microsoft">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Award Level</label>
+            <input class="form-input" 
+                   formControlName="awardLevel" 
+                   placeholder="e.g., National, International">
+          </div>
+
+          <!-- Date -->
+          <div class="modern-form-group">
+            <label class="form-label">Achievement Date *</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="achievementDate">
+            <div class="form-error" *ngIf="achievement.get('achievementDate')?.hasError('required')">
+              Date is required
+            </div>
+          </div>
+
+          <!-- Certificate URL -->
+          <div class="modern-form-group">
+            <label class="form-label">Certificate URL</label>
+            <input class="form-input" 
+                   formControlName="certificateUrl" 
+                   placeholder="https://example.com/certificate">
+          </div>
+
+          <!-- Description -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Description *</label>
+            <textarea class="form-textarea" 
+                      formControlName="description" 
+                      placeholder="Describe the achievement and its significance"
+                      rows="3"></textarea>
+            <div class="form-error" *ngIf="achievement.get('description')?.hasError('required')">
+              Description is required
+            </div>
+          </div>
+
+          <!-- Metrics -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Key Metrics</label>
+            <input class="form-input" 
+                   formControlName="metrics" 
+                   placeholder="Enter metrics separated by commas (e.g., 50% increase in sales, $1M revenue)">
+          </div>
+
+          <!-- Public Visibility -->
+          <div class="modern-form-group full-width">
+            <div class="checkbox-group">
+              <mat-checkbox formControlName="isPublic">
+                Make this achievement public
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Achievement Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addAchievement()">
+      <mat-icon>add</mat-icon>
+      Add Achievement
+    </button>
+  </div>
+</div>

@@ -1,116 +1,143 @@
-<div class="projects-container">
-    <div class="add-project">
-        <button mat-raised-button (click)="addProject()">
-            Add
-            <mat-icon>add</mat-icon>
+<div class="profile-section-container">
+  <div class="form-header">
+    <h3>Projects Portfolio</h3>
+    <p>Showcase your work with detailed project information, technologies used, and media</p>
+  </div>
+
+  <div class="item-list">
+    <div *ngFor="let group of projectFormArray.controls; let i = index" class="item">
+      <div class="item-header">
+        <h5>
+          <mat-icon>folder</mat-icon>
+          Project {{i + 1}}
+        </h5>
+        <button mat-icon-button 
+                color="warn" 
+                (click)="deleteProject(i)"
+                class="delete-btn"
+                [disabled]="projectFormArray.length === 1">
+          <mat-icon>delete</mat-icon>
         </button>
+      </div>
+
+      <div class="item-content">
+        <form [formGroup]="group">
+          <!-- Basic Project Information -->
+          <div class="form-grid two-columns">
+            <mat-form-field appearance="outline" class="form-field-full">
+              <mat-label>Project Name *</mat-label>
+              <input type="text" matInput formControlName="name" placeholder="Enter project name">
+              <mat-icon matSuffix>title</mat-icon>
+              <mat-error *ngIf="group.get('name')?.hasError('required')">
+                Project name is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field-full">
+              <mat-label>Project Description *</mat-label>
+              <textarea matInput formControlName="description" 
+                       placeholder="Describe your project, its purpose, and key features"
+                       rows="4"></textarea>
+              <mat-icon matSuffix>description</mat-icon>
+              <mat-error *ngIf="group.get('description')?.hasError('required')">
+                Project description is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>Start Date *</mat-label>
+              <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+              <mat-datepicker #startPicker></mat-datepicker>
+              <mat-error *ngIf="group.get('startDate')?.hasError('required')">
+                Start date is required
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>End Date</mat-label>
+              <input matInput [matDatepicker]="endPicker" formControlName="endDate" placeholder="Leave empty if ongoing">
+              <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+              <mat-datepicker #endPicker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>GitHub Repository</mat-label>
+              <input type="url" matInput formControlName="githubLink" placeholder="https://github.com/username/repo">
+              <mat-icon matSuffix>code</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>Live Demo</mat-label>
+              <input type="url" matInput formControlName="liveLink" placeholder="https://yourproject.com">
+              <mat-icon matSuffix>open_in_new</mat-icon>
+            </mat-form-field>
+          </div>
+
+          <!-- Technologies Used -->
+          <div class="technologies-section">
+            <h6>
+              <mat-icon>build</mat-icon>
+              Technologies Used
+            </h6>
+            <div formArrayName="technologies" class="technologies-list">
+              <div *ngFor="let tech of getTechnologies(group).controls; let t = index" 
+                   [formGroupName]="t" 
+                   class="technology-item">
+                <mat-form-field appearance="outline" class="tech-field">
+                  <mat-label>Technology</mat-label>
+                  <input matInput formControlName="techName" placeholder="e.g., React, Node.js, MongoDB">
+                  <mat-icon matSuffix>memory</mat-icon>
+                </mat-form-field>
+                <button mat-icon-button 
+                        color="warn" 
+                        (click)="removeTechnology(group, t)"
+                        class="remove-tech-btn">
+                  <mat-icon>remove</mat-icon>
+                </button>
+              </div>
+              <button type="button" 
+                      mat-stroked-button 
+                      (click)="addTechnology(group)"
+                      class="add-tech-btn">
+                <mat-icon>add</mat-icon>
+                Add Technology
+              </button>
+            </div>
+          </div>
+
+          <!-- Project Media -->
+          <div class="media-upload">
+            <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" multiple accept="image/*,video/*" />
+            <button type="button" class="upload-btn" (click)="fileInput.click()">
+              <mat-icon>cloud_upload</mat-icon>
+              Upload Project Media
+            </button>
+            <p class="upload-hint">Add screenshots, videos, or other media files</p>
+            
+            <div class="preview-container" *ngIf="group.get('media')?.value?.length > 0">
+              <div class="preview-item" *ngFor="let med of group.get('media')?.value">
+                <img [src]="getMediaPreview(med)" alt="Project Media" *ngIf="isImage(med)">
+                <video [src]="getMediaPreview(med)" controls *ngIf="isVideo(med)"></video>
+                <div class="media-info" *ngIf="!isImage(med) && !isVideo(med)">
+                  <mat-icon>insert_drive_file</mat-icon>
+                  <span>{{med.name}}</span>
+                </div>
+                <button class="remove-btn" (click)="removeFile(med, group)">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    <mat-card *ngFor="let group of projectFormArray.controls; let i = index">
-        <mat-card-title>
-            <h3>Project {{i + 1}}</h3>
-        </mat-card-title>
-        <mat-card-content>
-            <form [formGroup]="group">
-                <!-- Project Name -->
-                <mat-form-field>
-                    <mat-label>Project Name</mat-label>
-                    <input type="text" matInput formControlName="name" required>
-                    <mat-error *ngIf="group.get('name')?.hasError('required')">Name is Mandatory!</mat-error>
-                </mat-form-field>
+  </div>
 
-                <!-- Project Description -->
-                <mat-form-field>
-                    <mat-label>Project Description</mat-label>
-                    <textarea matInput formControlName="description" required></textarea>
-                    <mat-error *ngIf="group.get('description')?.hasError('required')">Description is Mandatory!</mat-error>
-                </mat-form-field>
-
-                <!-- Start Date -->
-                <mat-form-field>
-                    <mat-label>Start Date</mat-label>
-                    <input matInput [matDatepicker]="startPicker" formControlName="startDate" required>
-                    <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #startPicker></mat-datepicker>
-                    <mat-error *ngIf="group.get('startDate')?.hasError('required')">Start Date is required</mat-error>
-                </mat-form-field>
-
-                <!-- End Date -->
-                <mat-form-field>
-                    <mat-label>End Date</mat-label>
-                    <input matInput [matDatepicker]="endPicker" formControlName="endDate" required>
-                    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-                    <mat-datepicker #endPicker></mat-datepicker>
-                    <mat-error *ngIf="group.get('endDate')?.hasError('required')">End Date is required</mat-error>
-                </mat-form-field>
-
-                <!-- GitHub Link -->
-                <mat-form-field>
-                    <mat-label>GitHub Link</mat-label>
-                    <input type="text" matInput formControlName="githubLink">
-                </mat-form-field>
-
-                <!-- Live Link -->
-                <mat-form-field>
-                    <mat-label>Live Link</mat-label>
-                    <input type="text" matInput formControlName="liveLink">
-                </mat-form-field>
-
-                <!-- Technologies -->
-                <h4>Technologies</h4>
-                <div formArrayName="technologies">
-                    <div *ngFor="let tech of getTechnologies(group).controls; let t = index" [formGroupName]="t">
-                        <mat-form-field>
-                            <mat-label>Technology Name</mat-label>
-                            <input matInput formControlName="techName" required>
-                            <mat-error *ngIf="tech.get('techName')?.hasError('required')">Technology is required</mat-error>
-                        </mat-form-field>
-                        
-                        <mat-form-field>
-                            <mat-label>Projects</mat-label>
-                            <input matInput formControlName="projects">
-                        </mat-form-field>
-                        
-                        <mat-form-field>
-                            <mat-label>Certificates</mat-label>
-                            <input matInput formControlName="certificates">
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <!-- Skills -->
-                <h4>Skills</h4>
-                <div formArrayName="skills">
-                    <div  *ngFor="let skill of getSkills(group).controls; let s = index" [formGroupName]="s">
-                        <mat-form-field>
-                            <mat-label>Skill Title</mat-label>
-                            <input matInput formControlName="title" required>
-                            <mat-error *ngIf="skill.get('title')?.hasError('required')">Skill title is required</mat-error>
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <mat-label>Experience</mat-label>
-                            <input matInput formControlName="experience">
-                        </mat-form-field>
-
-                        <mat-form-field>
-                            <mat-label>Proficiency</mat-label>
-                            <input matInput formControlName="proficiency">
-                        </mat-form-field>
-
-                        <div class="media-container">
-                            <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" multiple />
-                            <button mat-raised-button type="button" color="primary" (click)="fileInput.click()">Select Media Files</button>
-        
-                            <div class="selected-media">
-                                <h4 *ngFor="let med of group.get('media')?.value">
-                                    <span>{{med.name}}</span>
-                                    <mat-icon (click)="removeFile(med)">cancel</mat-icon>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </mat-card-content>
-    </mat-card>
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addProject()">
+      <mat-icon>add</mat-icon>
+      Add Project
+    </button>
+  </div>
 </div>

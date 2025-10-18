@@ -1,45 +1,73 @@
-<div class="language-details-container">
+<div class="profile-section-container">
   <div class="form-header">
     <h3>Language Details</h3>
     <p>Add the languages you speak and your proficiency level</p>
   </div>
 
-  <div class="languages-list" formArrayName="languageDetails">
-    <div *ngFor="let language of languageDetailsFormGroup.controls; let i = index" 
-         [formGroupName]="i" 
-         class="language-item">
-      
-      <mat-form-field appearance="outline" class="language-field">
-        <mat-label>Language</mat-label>
-        <input matInput formControlName="language" placeholder="e.g., English, Spanish, French">
-      </mat-form-field>
+  <form [formGroup]="parentFormGroup">
+    <div formArrayName="languageDetails" class="item-list">
+      <div *ngFor="let language of languageDetailsFormGroup.controls; let i = index" 
+           [formGroupName]="i" 
+           class="item">
+        
+        <div class="item-header">
+          <h5>
+            <mat-icon>language</mat-icon>
+            Language {{i + 1}}
+          </h5>
+          <button mat-icon-button 
+                  color="warn" 
+                  (click)="deleteLanguage(i)"
+                  class="delete-btn"
+                  [disabled]="languageDetailsFormGroup.length === 1">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
-      <mat-form-field appearance="outline" class="proficiency-field">
-        <mat-label>Proficiency Level</mat-label>
-        <mat-select formControlName="proficiency">
-          <mat-option [value]="0">Beginner (0-20%)</mat-option>
-          <mat-option [value]="25">Elementary (21-40%)</mat-option>
-          <mat-option [value]="50">Intermediate (41-60%)</mat-option>
-          <mat-option [value]="75">Advanced (61-80%)</mat-option>
-          <mat-option [value]="100">Fluent (81-100%)</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <div class="item-content">
+          <div class="form-grid two-columns">
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>Language *</mat-label>
+              <input matInput formControlName="language" placeholder="e.g., English, Spanish, French">
+              <mat-icon matSuffix>translate</mat-icon>
+              <mat-error *ngIf="language.get('language')?.hasError('required')">
+                Language is required
+              </mat-error>
+            </mat-form-field>
 
-      <button mat-icon-button 
-              color="warn" 
-              (click)="deleteLanguage(i)"
-              class="delete-btn"
-              [disabled]="languageDetailsFormGroup.length === 1">
-        <mat-icon>delete</mat-icon>
-      </button>
+            <mat-form-field appearance="outline" class="form-field-half">
+              <mat-label>Proficiency Level *</mat-label>
+              <mat-select formControlName="proficiency">
+                <mat-option [value]="0">Beginner (0-20%)</mat-option>
+                <mat-option [value]="25">Elementary (21-40%)</mat-option>
+                <mat-option [value]="50">Intermediate (41-60%)</mat-option>
+                <mat-option [value]="75">Advanced (61-80%)</mat-option>
+                <mat-option [value]="100">Fluent (81-100%)</mat-option>
+              </mat-select>
+              <mat-icon matSuffix>trending_up</mat-icon>
+              <mat-error *ngIf="language.get('proficiency')?.hasError('required')">
+                Proficiency level is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- Proficiency Visual Indicator -->
+          <div class="proficiency-indicator" *ngIf="language.get('proficiency')?.value !== null">
+            <div class="proficiency-bar">
+              <div class="proficiency-fill" 
+                   [style.width.%]="language.get('proficiency')?.value"></div>
+            </div>
+            <span class="proficiency-text">
+              {{getProficiencyText(language.get('proficiency')?.value)}}
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
 
-  <div class="add-language-section">
-    <button mat-raised-button 
-            color="primary" 
-            (click)="addLanguage()"
-            class="add-btn">
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addLanguage()">
       <mat-icon>add</mat-icon>
       Add Language
     </button>

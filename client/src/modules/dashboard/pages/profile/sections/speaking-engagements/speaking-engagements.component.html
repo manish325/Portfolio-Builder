@@ -1,0 +1,148 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>mic</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Speaking Engagements</h3>
+      <p class="section-description">Add your speaking engagements, presentations, and public talks</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="speakingEngagements">
+    <div class="item" 
+         *ngFor="let speakingEngagement of speakingEngagementsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>mic</mat-icon>
+          Speaking Engagement {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteSpeakingEngagement(i)"
+                *ngIf="speakingEngagementsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid three-columns">
+          <!-- Event Name & Type -->
+          <div class="modern-form-group">
+            <label class="form-label">Event Name *</label>
+            <input class="form-input" 
+                   formControlName="eventName" 
+                   placeholder="e.g., TechConf 2024">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Event Type</label>
+            <select class="form-select" formControlName="eventType">
+              <option value="">Select Type</option>
+              <option value="Conference">Conference</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Webinar">Webinar</option>
+              <option value="Panel">Panel Discussion</option>
+              <option value="Keynote">Keynote</option>
+            </select>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Topic</label>
+            <input class="form-input" 
+                   formControlName="topic" 
+                   placeholder="e.g., Future of AI in Healthcare">
+          </div>
+
+          <!-- Location & Date -->
+          <div class="modern-form-group">
+            <label class="form-label">Location</label>
+            <input class="form-input" 
+                   formControlName="location" 
+                   placeholder="e.g., San Francisco, CA">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Event Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="eventDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Duration</label>
+            <input class="form-input" 
+                   formControlName="duration" 
+                   placeholder="e.g., 45 minutes, 2 hours">
+          </div>
+
+          <!-- Organizer & Audience -->
+          <div class="modern-form-group">
+            <label class="form-label">Organizer</label>
+            <input class="form-input" 
+                   formControlName="organizer" 
+                   placeholder="e.g., TechCorp, IEEE">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Audience Size</label>
+            <input class="form-input" 
+                   type="number"
+                   formControlName="audienceSize" 
+                   placeholder="150">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Presentation URL</label>
+            <input class="form-input" 
+                   formControlName="presentationUrl" 
+                   placeholder="https://slides.com/presentation">
+          </div>
+
+          <!-- Video URL & Description -->
+          <div class="modern-form-group">
+            <label class="form-label">Video URL</label>
+            <input class="form-input" 
+                   formControlName="videoUrl" 
+                   placeholder="https://youtube.com/watch">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Tags</label>
+            <input class="form-input" 
+                   formControlName="tags" 
+                   placeholder="Enter tags separated by commas">
+          </div>
+
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isKeynote" 
+                     id="isKeynote{{i}}">
+              <label for="isKeynote{{i}}">Keynote Speaker</label>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" 
+                      formControlName="description" 
+                      placeholder="Describe the speaking engagement and its impact"
+                      rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Speaking Engagement Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addSpeakingEngagement()">
+      <mat-icon>add</mat-icon>
+      Add Speaking Engagement
+    </button>
+  </div>
+</div>

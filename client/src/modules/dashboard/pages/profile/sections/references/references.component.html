@@ -1,0 +1,123 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>contacts</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Professional References</h3>
+      <p class="section-description">Add professional references who can vouch for your work and character</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="references">
+    <div class="item" 
+         *ngFor="let reference of referencesFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>contacts</mat-icon>
+          Reference {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteReference(i)"
+                *ngIf="referencesFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid two-columns">
+          <!-- Name & Title -->
+          <div class="modern-form-group">
+            <label class="form-label">Reference Name *</label>
+            <input class="form-input" 
+                   formControlName="referenceName" 
+                   placeholder="e.g., John Doe">
+            <div class="form-error" *ngIf="reference.get('referenceName')?.hasError('required')">
+              Name is required
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Job Title *</label>
+            <input class="form-input" 
+                   formControlName="referenceTitle" 
+                   placeholder="e.g., Senior Manager">
+            <div class="form-error" *ngIf="reference.get('referenceTitle')?.hasError('required')">
+              Title is required
+            </div>
+          </div>
+
+          <!-- Company & Email -->
+          <div class="modern-form-group">
+            <label class="form-label">Company *</label>
+            <input class="form-input" 
+                   formControlName="referenceCompany" 
+                   placeholder="e.g., Google Inc.">
+            <div class="form-error" *ngIf="reference.get('referenceCompany')?.hasError('required')">
+              Company is required
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Email *</label>
+            <input class="form-input" 
+                   type="email"
+                   formControlName="referenceEmail" 
+                   placeholder="john.doe@company.com">
+            <div class="form-error" *ngIf="reference.get('referenceEmail')?.hasError('required')">
+              Email is required
+            </div>
+            <div class="form-error" *ngIf="reference.get('referenceEmail')?.hasError('email')">
+              Please enter a valid email
+            </div>
+          </div>
+
+          <!-- Phone & Relationship -->
+          <div class="modern-form-group">
+            <label class="form-label">Phone</label>
+            <input class="form-input" 
+                   formControlName="phone" 
+                   placeholder="+1 (555) 123-4567">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Relationship</label>
+            <input class="form-input" 
+                   formControlName="relationship" 
+                   placeholder="e.g., Former Manager, Colleague">
+          </div>
+
+          <!-- Recommendation -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Recommendation</label>
+            <textarea class="form-textarea" 
+                      formControlName="recommendation" 
+                      placeholder="Brief recommendation or testimonial"
+                      rows="3"></textarea>
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="modern-form-group full-width">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="canContact" 
+                     id="canContact{{i}}">
+              <label for="canContact{{i}}">Can be contacted for reference</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Reference Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addReference()">
+      <mat-icon>add</mat-icon>
+      Add Reference
+    </button>
+  </div>
+</div>

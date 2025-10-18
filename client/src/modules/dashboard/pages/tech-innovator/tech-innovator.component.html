@@ -1,0 +1,417 @@
+<div class="tech-innovator-portfolio">
+  <!-- Cyberpunk Background -->
+  <div class="cyberpunk-bg">
+    <div class="neon-grid">
+      <div class="grid-line horizontal" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+      <div class="grid-line vertical" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+    </div>
+    <div class="floating-particles">
+      <div class="particle" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]"></div>
+    </div>
+    <div class="holographic-overlay"></div>
+  </div>
+
+  <!-- Cyber Navigation -->
+  <nav class="cyber-nav">
+    <div class="nav-brand">
+      <div class="brand-icon">
+        <mat-icon>terminal</mat-icon>
+      </div>
+      <span class="brand-text">Alex Chen</span>
+      <div class="status-indicator">
+        <div class="pulse-dot"></div>
+        <span>ONLINE</span>
+      </div>
+    </div>
+    <div class="nav-menu">
+      <a href="#about" class="nav-item">
+        <span class="nav-text">ABOUT</span>
+        <div class="nav-line"></div>
+      </a>
+      <a href="#projects" class="nav-item">
+        <span class="nav-text">PROJECTS</span>
+        <div class="nav-line"></div>
+      </a>
+      <a href="#skills" class="nav-item">
+        <span class="nav-text">SKILLS</span>
+        <div class="nav-line"></div>
+      </a>
+      <a href="#contact" class="nav-item">
+        <span class="nav-text">CONTACT</span>
+        <div class="nav-line"></div>
+      </a>
+    </div>
+    <button class="cyber-cta">
+      <mat-icon>code</mat-icon>
+      <span>VIEW CODE</span>
+    </button>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-left">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="btn red"></span>
+                <span class="btn yellow"></span>
+                <span class="btn green"></span>
+              </div>
+              <span class="terminal-title">alex@innovator:~$</span>
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command typing">whoami</span>
+              </div>
+              <div class="terminal-output">
+                <div class="output-line">Alex Chen - Senior Software Engineer</div>
+                <div class="output-line">Full-Stack Developer & Tech Innovator</div>
+                <div class="output-line">Specializing in AI, Blockchain & Cloud Solutions</div>
+              </div>
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">ls -la skills/</span>
+              </div>
+              <div class="terminal-output">
+                <div class="output-line">drwxr-xr-x 8 alex alex 4096 Dec 2024</div>
+                <div class="output-line">-rw-r--r-- 1 alex alex 2048 Dec 2024 machine_learning.py</div>
+                <div class="output-line">-rw-r--r-- 1 alex alex 1536 Dec 2024 blockchain.sol</div>
+                <div class="output-line">-rw-r--r-- 1 alex alex 1024 Dec 2024 cloud_architect.yml</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="holographic-card">
+            <div class="card-header">
+              <div class="avatar-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Alex Chen">
+                <div class="scan-line"></div>
+              </div>
+              <div class="status-badges">
+                <span class="badge online">ONLINE</span>
+                <span class="badge available">AVAILABLE</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h1 class="name">Alex Chen</h1>
+              <p class="title">Senior Software Engineer</p>
+              <div class="tech-stats">
+                <div class="stat">
+                  <span class="stat-value">5+</span>
+                  <span class="stat-label">Years</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">50+</span>
+                  <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat">
+                  <span class="stat-value">99%</span>
+                  <span class="stat-label">Uptime</span>
+                </div>
+              </div>
+              <div class="tech-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">AWS</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Kubernetes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="title-text">ABOUT_ME</span>
+        <div class="title-line"></div>
+      </h2>
+      <div class="about-content">
+        <div class="about-text">
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">about_me.py</span>
+            </div>
+            <div class="code-body">
+              <div class="code-line">
+                <span class="keyword">class</span> <span class="class-name">AlexChen</span>:
+              </div>
+              <div class="code-line indent">
+                <span class="keyword">def</span> <span class="function">__init__</span>(<span class="self">self</span>):
+              </div>
+              <div class="code-line indent-2">
+                <span class="self">self</span>.<span class="attr">role</span> = <span class="string">"Senior Software Engineer"</span>
+              </div>
+              <div class="code-line indent-2">
+                <span class="self">self</span>.<span class="attr">experience</span> = <span class="number">5</span>  <span class="comment"># years</span>
+              </div>
+              <div class="code-line indent-2">
+                <span class="self">self</span>.<span class="attr">specialties</span> = [<span class="string">"AI/ML"</span>, <span class="string">"Blockchain"</span>, <span class="string">"Cloud"</span>]
+              </div>
+              <div class="code-line indent-2">
+                <span class="self">self</span>.<span class="attr">passion</span> = <span class="string">"Building the future with code"</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-visual">
+          <div class="tech-skills">
+            <h3>Core Technologies</h3>
+            <div class="skill-category">
+              <span class="category-name">Frontend</span>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">React</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Vue.js</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 88%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">TypeScript</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 92%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="skill-category">
+              <span class="category-name">Backend</span>
+              <div class="skill-bars">
+                <div class="skill-bar">
+                  <span class="skill-name">Node.js</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Python</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="skill-bar">
+                  <span class="skill-name">Go</span>
+                  <div class="bar">
+                    <div class="progress" style="width: 78%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects-section" id="projects">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="title-text">PROJECTS</span>
+        <div class="title-line"></div>
+      </h2>
+      <div class="projects-grid">
+        <div class="project-card featured">
+          <div class="project-header">
+            <div class="project-icon">
+              <mat-icon>psychology</mat-icon>
+            </div>
+            <div class="project-status">
+              <span class="status-dot"></span>
+              <span>ACTIVE</span>
+            </div>
+          </div>
+          <h3 class="project-title">AI-Powered Analytics Platform</h3>
+          <p class="project-description">
+            Machine learning platform that processes 1M+ data points daily, 
+            providing real-time insights and predictive analytics.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">TensorFlow</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Docker</span>
+          </div>
+          <div class="project-stats">
+            <div class="stat">
+              <span class="stat-value">1M+</span>
+              <span class="stat-label">Data Points</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value">99.9%</span>
+              <span class="stat-label">Accuracy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">
+              <mat-icon>account_balance</mat-icon>
+            </div>
+            <div class="project-status">
+              <span class="status-dot completed"></span>
+              <span>COMPLETED</span>
+            </div>
+          </div>
+          <h3 class="project-title">Blockchain Payment System</h3>
+          <p class="project-description">
+            Decentralized payment solution with smart contracts, 
+            supporting multiple cryptocurrencies and instant transactions.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Solidity</span>
+            <span class="tech-tag">Web3.js</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Ethereum</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">
+              <mat-icon>cloud</mat-icon>
+            </div>
+            <div class="project-status">
+              <span class="status-dot"></span>
+              <span>ACTIVE</span>
+            </div>
+          </div>
+          <h3 class="project-title">Cloud Infrastructure Automation</h3>
+          <p class="project-description">
+            Automated deployment pipeline with Kubernetes, 
+            reducing deployment time by 80% and improving reliability.
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">Terraform</span>
+            <span class="tech-tag">Jenkins</span>
+            <span class="tech-tag">AWS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills-section" id="skills">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="title-text">TECH_STACK</span>
+        <div class="title-line"></div>
+      </h2>
+      <div class="skills-matrix">
+        <div class="skill-category">
+          <div class="category-header">
+            <mat-icon>code</mat-icon>
+            <h3>Programming Languages</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Go</span>
+            <span class="skill-tag">Rust</span>
+            <span class="skill-tag">Solidity</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="category-header">
+            <mat-icon>web</mat-icon>
+            <h3>Frameworks & Libraries</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Vue.js</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">FastAPI</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="category-header">
+            <mat-icon>storage</mat-icon>
+            <h3>Databases & Cloud</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="category-header">
+            <mat-icon>psychology</mat-icon>
+            <h3>AI & Machine Learning</h3>
+          </div>
+          <div class="skill-tags">
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">OpenCV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-container">
+      <h2 class="section-title">
+        <span class="title-text">CONNECT</span>
+        <div class="title-line"></div>
+      </h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <mat-icon>email</mat-icon>
+            <span>alex.chen@email.com</span>
+          </div>
+          <div class="contact-item">
+            <mat-icon>phone</mat-icon>
+            <span>+1 (555) 123-4567</span>
+          </div>
+          <div class="contact-item">
+            <mat-icon>location_on</mat-icon>
+            <span>San Francisco, CA</span>
+          </div>
+        </div>
+        <div class="contact-actions">
+          <button class="cyber-btn primary">
+            <mat-icon>email</mat-icon>
+            <span>Send Message</span>
+          </button>
+          <button class="cyber-btn secondary">
+            <mat-icon>download</mat-icon>
+            <span>Download CV</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

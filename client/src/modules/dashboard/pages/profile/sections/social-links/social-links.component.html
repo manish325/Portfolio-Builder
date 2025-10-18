@@ -1,21 +1,73 @@
-<div class="step overflowing-section">
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="socialLinksFormGroup">
-                <mat-form-field appearance="outline">
-                    <mat-label>Github <i class="fab fa-github"></i>
+<div class="profile-section-container">
+  <div class="form-header">
+    <h3>Social Links</h3>
+    <p>Add your social media profiles and professional links</p>
+  </div>
 
-                    </mat-label>
-                    <input matInput formControlName="github" placeholder="Enter your Github link">
-                </mat-form-field>
+  <div class="section-card">
+    <div class="card-header">
+      <h4>
+        <mat-icon>share</mat-icon>
+        Social Media & Professional Links
+      </h4>
+    </div>
+    <div class="card-content">
+      <form [formGroup]="socialLinksFormGroup">
+        <div class="form-grid two-columns">
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>GitHub Profile</mat-label>
+            <input matInput formControlName="github" placeholder="https://github.com/yourusername" type="url">
+            <mat-icon matSuffix>code</mat-icon>
+            <mat-hint>Your GitHub profile URL</mat-hint>
+          </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>LinkedIn <i class="fab fa-linkedin"></i>
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>LinkedIn Profile</mat-label>
+            <input matInput formControlName="linkedin" placeholder="https://linkedin.com/in/yourusername" type="url">
+            <mat-icon matSuffix>work</mat-icon>
+            <mat-hint>Your LinkedIn profile URL</mat-hint>
+          </mat-form-field>
 
-                    </mat-label>
-                    <input matInput formControlName="linkedin" placeholder="Enter your LinkedIn link">
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-    </mat-card>
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Twitter Profile</mat-label>
+            <input matInput formControlName="twitter" placeholder="https://twitter.com/yourusername" type="url">
+            <mat-icon matSuffix>chat</mat-icon>
+            <mat-hint>Your Twitter profile URL</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Portfolio Website</mat-label>
+            <input matInput formControlName="website" placeholder="https://yourwebsite.com" type="url">
+            <mat-icon matSuffix>language</mat-icon>
+            <mat-hint>Your personal or portfolio website</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Behance Profile</mat-label>
+            <input matInput formControlName="behance" placeholder="https://behance.net/yourusername" type="url">
+            <mat-icon matSuffix>palette</mat-icon>
+            <mat-hint>Your Behance portfolio URL</mat-hint>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Dribbble Profile</mat-label>
+            <input matInput formControlName="dribbble" placeholder="https://dribbble.com/yourusername" type="url">
+            <mat-icon matSuffix>brush</mat-icon>
+            <mat-hint>Your Dribbble portfolio URL</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-secondary" (click)="resetForm()">
+            <mat-icon>refresh</mat-icon>
+            Reset
+          </button>
+          <button type="button" class="btn-primary" (click)="saveForm()">
+            <mat-icon>save</mat-icon>
+            Save Links
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

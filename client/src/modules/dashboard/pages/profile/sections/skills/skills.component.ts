@@ -94,4 +94,10 @@ export class SkillsComponent {
     const proficiencyFormField = this.skillsFormArray.controls[index].get('proficiency');
     proficiencyFormField?.setValue(event.target.value);
   }
+
+  deleteSkill(index: number) {
+    if (this.skillsFormArray.length > 1) {
+      this.skillsFormArray.removeAt(index);
+    }
+  }
 }

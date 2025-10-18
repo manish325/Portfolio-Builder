@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FileItem, FileUploader } from 'ng2-file-upload';
-import { userProfileSchema } from 'src/modules/dashboard/schema';
 import { MaterialModule } from 'src/shared/MaterialModule/Material-module';
 import { SharedModule } from 'src/shared/SharedModule/shared.module';
+import { FormDataService } from '../../../../services/form-data.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-basic-details',
   standalone: true,
   imports: [
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    CommonModule
   ],
   templateUrl: './basic-details.component.html',
-  styleUrl: './basic-details.component.scss'
+  styleUrls: ['./basic-details.component.scss']
 })
 export class BasicDetailsComponent {
   basicDetailsFormGroup!: FormGroup;
@@ -26,8 +28,8 @@ export class BasicDetailsComponent {
   });
   fileUrl!: string;
 
-  constructor() {
-    this.basicDetailsFormGroup = userProfileSchema.get('basicDetails') as FormGroup;
+  constructor(private formDataService: FormDataService) {
+    this.basicDetailsFormGroup = this.formDataService.formData.get('basicDetails') as FormGroup;
     this.uploader.onAfterAddingFile = (file: FileItem) => {
       // You can update your form control or state with the selected file here
       // For example, if you want to save the File object somewhere
@@ -45,6 +47,19 @@ export class BasicDetailsComponent {
   removeProfilePic() {
     this.uploader.clearQueue();
     this.fileUrl = '';   // Clear preview URL
-    // Reset your form control or state if needed here
+    this.basicDetailsFormGroup.get('profilePicture')?.setValue(null);
+  }
+
+  resetForm() {
+    this.basicDetailsFormGroup.reset();
+    this.removeProfilePic();
+  }
+
+  saveForm() {
+    if (this.basicDetailsFormGroup.valid) {
+      console.log('Form data:', this.basicDetailsFormGroup.value);
+      // TODO: Implement save functionality
+      // You can emit an event or call a service here
+    }
   }
 }

@@ -1,0 +1,155 @@
+<div class="professional-summary-section">
+  <div class="section-header">
+    <h2>
+      <mat-icon>work</mat-icon>
+      Professional Summary
+    </h2>
+    <p>Define your professional identity and career objectives</p>
+  </div>
+
+  <form [formGroup]="professionalSummaryFormGroup" class="professional-form">
+    <div class="form-grid">
+      <!-- Professional Summary -->
+      <div class="form-group full-width">
+        <mat-form-field appearance="outline">
+          <mat-label>Professional Summary</mat-label>
+          <textarea matInput 
+                    formControlName="professionalSummary" 
+                    placeholder="Write a compelling professional summary that highlights your expertise and value proposition"
+                    rows="4"
+                    maxlength="500"></textarea>
+          <mat-hint align="end">{{professionalSummaryFormGroup.get('professionalSummary')?.value?.length || 0}}/500</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Career Objective -->
+      <div class="form-group full-width">
+        <mat-form-field appearance="outline">
+          <mat-label>Career Objective</mat-label>
+          <textarea matInput 
+                    formControlName="careerObjective" 
+                    placeholder="Describe your career goals and what you're looking to achieve"
+                    rows="3"
+                    maxlength="300"></textarea>
+          <mat-hint align="end">{{professionalSummaryFormGroup.get('careerObjective')?.value?.length || 0}}/300</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <!-- Industry & Specialization -->
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Industry</mat-label>
+          <input matInput 
+                 formControlName="industry" 
+                 placeholder="e.g., Technology, Healthcare, Finance">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Specialization</mat-label>
+          <input matInput 
+                 formControlName="specialization" 
+                 placeholder="e.g., Full-Stack Development, UX Design">
+        </mat-form-field>
+      </div>
+
+      <!-- Experience & Career Level -->
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Total Experience (Years)</mat-label>
+          <input matInput 
+                 type="number" 
+                 formControlName="totalExperienceYears" 
+                 placeholder="5">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Career Level</mat-label>
+          <mat-select formControlName="careerLevel">
+            <mat-option *ngFor="let level of careerLevels" [value]="level">
+              {{level}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Availability & Preferences -->
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Availability Status</mat-label>
+          <mat-select formControlName="availabilityStatus">
+            <mat-option *ngFor="let status of availabilityStatuses" [value]="status">
+              {{status}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Work Preference</mat-label>
+          <mat-select formControlName="workPreference">
+            <mat-option *ngFor="let preference of workPreferences" [value]="preference">
+              {{preference}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Salary & Location -->
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Salary Expectation</mat-label>
+          <input matInput 
+                 formControlName="salaryExpectation" 
+                 placeholder="e.g., $80,000 - $100,000">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field appearance="outline">
+          <mat-label>Time Zone</mat-label>
+          <input matInput 
+                 formControlName="timeZone" 
+                 placeholder="e.g., PST, EST, GMT">
+        </mat-form-field>
+      </div>
+
+      <!-- Relocation -->
+      <div class="form-group checkbox-group">
+        <mat-checkbox formControlName="relocationOpen">
+          Open to relocation
+        </mat-checkbox>
+      </div>
+
+      <!-- Preferred Work Locations -->
+      <div class="form-group full-width">
+        <mat-form-field appearance="outline">
+          <mat-label>Preferred Work Locations</mat-label>
+          <input matInput 
+                 formControlName="preferredWorkLocations" 
+                 placeholder="Enter locations separated by commas (e.g., San Francisco, New York, Remote)">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button type="button" 
+              class="btn-secondary" 
+              (click)="resetForm()">
+        <mat-icon>refresh</mat-icon>
+        Reset
+      </button>
+      <button type="button" 
+              class="btn-primary" 
+              (click)="saveForm()">
+        <mat-icon>save</mat-icon>
+        Save
+      </button>
+    </div>
+  </form>
+</div>

@@ -5,7 +5,17 @@ import { EducationDetailsComponent } from "./pages/profile/sections/education-de
 import { ExperienceDetailsComponent } from "./pages/profile/sections/experience-details/experience-details.component";
 import { SocialLinksComponent } from "./pages/profile/sections/social-links/social-links.component";
 import { LanguageDetailsComponent } from "./pages/profile/sections/language-details/language-details.component";
-import { basicDetailsFormGrourp, educationDetailsFormGrourp, experienceDetailsFormGrourp, languageSchema, projectSchema, skillDetailsControl, skillSchema, socialLinksFormGrourp, userProfileSchema } from "./schema";
+import { ProfessionalSummaryComponent } from "./pages/profile/sections/professional-summary/professional-summary.component";
+import { AchievementsComponent } from "./pages/profile/sections/achievements/achievements.component";
+import { ReferencesComponent } from "./pages/profile/sections/references/references.component";
+import { SoftSkillsComponent } from "./pages/profile/sections/soft-skills/soft-skills.component";
+import { PublicationsComponent } from "./pages/profile/sections/publications/publications.component";
+import { SpeakingEngagementsComponent } from "./pages/profile/sections/speaking-engagements/speaking-engagements.component";
+import { ProfessionalMembershipsComponent } from "./pages/profile/sections/professional-memberships/professional-memberships.component";
+import { TestimonialsComponent } from "./pages/profile/sections/testimonials/testimonials.component";
+import { BusinessVenturesComponent } from "./pages/profile/sections/business-ventures/business-ventures.component";
+import { BoardPositionsComponent } from "./pages/profile/sections/board-positions/board-positions.component";
+import { basicDetailsFormGrourp, educationDetailsFormGrourp, experienceDetailsFormGrourp, languageSchema, projectDetailsControl, skillDetailsControl, skillSchema, socialLinksFormGrourp, enhancedUserProfileSchema, professionalSummaryFormGroup, achievementSchema, referenceSchema, softSkillSchema, publicationSchema, speakingEngagementSchema, professionalMembershipSchema, testimonialSchema, businessVentureSchema, boardPositionSchema } from "./schema";
 import { ILayout, INavigationOptions, IStep, IUserData } from "./types";
 
 export const userData: any = {
@@ -173,20 +183,6 @@ export const basicDetailsSteps : IStep[] = [
     component: SocialLinksComponent
   },
   {
-    title: 'Educational Details',
-    description: 'Please fill in your educational details',
-    formgroupName: 'educationalDetails',
-    control: educationDetailsFormGrourp,
-    component: EducationDetailsComponent
-  },
-  {
-    title: 'Experience Details',
-    description: 'Please fill in your experience details',
-    formgroupName: 'experienceDetails',
-    control: experienceDetailsFormGrourp,
-    component: ExperienceDetailsComponent
-  },
-  {
     title: 'Language Details',
     description: 'Please fill in your language details',
     formgroupName: 'languageDetails',
@@ -195,27 +191,171 @@ export const basicDetailsSteps : IStep[] = [
   }
 ]
 
-export const portfolioFormSteps : IStep[] = [
+// Professional Skills Category
+export const professionalSkillsSteps: IStep[] = [
   {
-    title : 'Basic Details',
-    description: 'Please fill in your basic details',
-    steps: basicDetailsSteps.map(step => ({...step, alignment: 'horizontal'})),
-    formgroupName: 'basicDetails',
-    control: userProfileSchema,
-    alignment: 'vertical'
-  },
-  {
-    title: 'Project Details',
-    description: 'Please fill in your project details',
-    formgroupName: 'projectDetails',
-    control: projectSchema,
-    component: ProjectsComponent
-  },
-  {
-    title: 'Skills Details',
-    description: 'Please fill in your skills details',
+    title: 'Technical Skills',
+    description: 'Add your technical skills and expertise',
     formgroupName: 'skillsDetails',
     control: skillDetailsControl,
     component: SkillsComponent
+  },
+  {
+    title: 'Soft Skills',
+    description: 'Highlight your interpersonal and communication skills',
+    formgroupName: 'softSkills',
+    control: softSkillSchema,
+    component: SoftSkillsComponent
+  }
+];
+
+// Professional Experience Category
+export const professionalExperienceSteps: IStep[] = [
+  {
+    title: 'Work Experience',
+    description: 'Add your professional work experience',
+    formgroupName: 'experienceDetails',
+    control: experienceDetailsFormGrourp,
+    component: ExperienceDetailsComponent
+  },
+  {
+    title: 'Projects',
+    description: 'Showcase your key projects and achievements',
+    formgroupName: 'projectDetails',
+    control: projectDetailsControl,
+    component: ProjectsComponent
+  },
+  {
+    title: 'Achievements & Awards',
+    description: 'Showcase your professional achievements and recognitions',
+    formgroupName: 'achievements',
+    control: achievementSchema,
+    component: AchievementsComponent
+  }
+];
+
+// Professional Development Category
+export const professionalDevelopmentSteps: IStep[] = [
+  {
+    title: 'Education',
+    description: 'Add your educational background',
+    formgroupName: 'educationalDetails',
+    control: educationDetailsFormGrourp,
+    component: EducationDetailsComponent
+  },
+  {
+    title: 'Publications & Research',
+    description: 'Add your research papers, articles, and publications',
+    formgroupName: 'publications',
+    control: publicationSchema,
+    component: PublicationsComponent
+  },
+  {
+    title: 'Speaking Engagements',
+    description: 'Add your speaking engagements and presentations',
+    formgroupName: 'speakingEngagements',
+    control: speakingEngagementSchema,
+    component: SpeakingEngagementsComponent
+  },
+  {
+    title: 'Professional Memberships',
+    description: 'Add your professional memberships and industry associations',
+    formgroupName: 'professionalMemberships',
+    control: professionalMembershipSchema,
+    component: ProfessionalMembershipsComponent
+  }
+];
+
+// Professional Network Category
+export const professionalNetworkSteps: IStep[] = [
+  {
+    title: 'Professional References',
+    description: 'Add professional references who can vouch for your work',
+    formgroupName: 'references',
+    control: referenceSchema,
+    component: ReferencesComponent
+  },
+  {
+    title: 'Client Testimonials',
+    description: 'Add testimonials and feedback from clients and colleagues',
+    formgroupName: 'testimonials',
+    control: testimonialSchema,
+    component: TestimonialsComponent
+  }
+];
+
+// Leadership & Business Category
+export const leadershipBusinessSteps: IStep[] = [
+  {
+    title: 'Business Ventures',
+    description: 'Add your entrepreneurial ventures and business projects',
+    formgroupName: 'businessVentures',
+    control: businessVentureSchema,
+    component: BusinessVenturesComponent
+  },
+  {
+    title: 'Board Positions',
+    description: 'Add your board memberships and advisory positions',
+    formgroupName: 'boardPositions',
+    control: boardPositionSchema,
+    component: BoardPositionsComponent
+  }
+];
+
+export const portfolioFormSteps : IStep[] = [
+  {
+    title : 'Basic Details',
+    description: 'Personal information and contact details',
+    steps: basicDetailsSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'basicDetails',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
+  },
+  {
+    title: 'Professional Summary',
+    description: 'Define your professional identity and career objectives',
+    formgroupName: 'professionalSummary',
+    control: professionalSummaryFormGroup,
+    component: ProfessionalSummaryComponent
+  },
+  {
+    title: 'Professional Skills',
+    description: 'Technical and soft skills that define your expertise',
+    steps: professionalSkillsSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'professionalSkills',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
+  },
+  {
+    title: 'Professional Experience',
+    description: 'Work experience, projects, and achievements',
+    steps: professionalExperienceSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'professionalExperience',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
+  },
+  {
+    title: 'Professional Development',
+    description: 'Education, research, and continuous learning',
+    steps: professionalDevelopmentSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'professionalDevelopment',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
+  },
+  {
+    title: 'Professional Network',
+    description: 'References, testimonials, and professional relationships',
+    steps: professionalNetworkSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'professionalNetwork',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
+  },
+  {
+    title: 'Leadership & Business',
+    description: 'Entrepreneurial ventures and leadership roles',
+    steps: leadershipBusinessSteps.map(step => ({...step, alignment: 'horizontal'})),
+    formgroupName: 'leadershipBusiness',
+    control: enhancedUserProfileSchema,
+    alignment: 'vertical'
   }
 ]

@@ -1,70 +1,194 @@
-<form class="register-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)">
-    <h2 class="form-title">Register</h2>
+<div class="modern-register">
+  <!-- Background Elements -->
+  <div class="background-elements">
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+    <div class="floating-shape shape-3"></div>
+    <div class="floating-shape shape-4"></div>
+  </div>
 
-    <div class="form-container">
-
-
-        <!-- Email Input -->
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Enter your email" type="email" required [formControlName]="'email'">
-            <mat-error *ngIf="registrationForm.get('email')?.invalid || registrationForm.get('email')?.touched">
-                Please enter a valid email.
-            </mat-error>
-        </mat-form-field>
-
-        <!-- Full Name Input -->
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Full Name</mat-label>
-            <input matInput placeholder="Enter your full name" type="email" required [formControlName]="'fullName'">
-            <mat-error
-                *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched && registrationForm.get('fullName')?.errors?.['required']">
-                Please enter a valid full name.
-            </mat-error>
-        </mat-form-field> -->
-
-        <!-- Phone Input -->
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Phone</mat-label>
-            <input matInput placeholder="Enter your Phone Number" type="number" required [formControlName]="'phone'">
-            <mat-error
-                *ngIf="registrationForm.get('phone')?.invalid && registrationForm.get('phone')?.touched && registrationForm.get('phone')?.errors?.['required']">
-                Please enter a valid Phone Number.
-            </mat-error>
-        </mat-form-field> -->
-
-        <!-- Password Input -->
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" required
-                [formControlName]="'password'">
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
-                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
-            </button>
-            <mat-error *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
-                Password is required.
-            </mat-error>
-        </mat-form-field>
-
-        <!-- Confirm Password Input -->
-        <mat-form-field appearance="fill">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput placeholder="Confirm your password" [type]="hidePassword ? 'password' : 'text'" required
-                [formControlName]="'confirmPassword'">
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
-                <i class="fa" [ngClass]="!hidePassword ? 'fa-eye' : 'fa-eye-slash'"></i>
-            </button>
-            <mat-error *ngIf="registrationForm.hasError('passwordMismatch')">
-                Password doesn't match.
-            </mat-error>
-        </mat-form-field>
-
-        <!-- Submit Button -->
+  <!-- Main Content -->
+  <div class="register-container">
+    <!-- Left Side - Branding -->
+    <div class="branding-section">
+      <div class="branding-content">
+        <div class="logo-section">
+          <div class="logo-icon">
+            <mat-icon>auto_awesome</mat-icon>
+          </div>
+          <div class="logo-text">
+            <h1>PortfolioAI</h1>
+            <span>Powered by AI</span>
+          </div>
+        </div>
+        
+        <div class="hero-content">
+          <h2 class="hero-title">
+            Join the Future of
+            <span class="gradient-text">Portfolio Creation</span>
+          </h2>
+          <p class="hero-description">
+            Start your journey with AI-powered portfolio templates and create stunning professional profiles that stand out from the crowd.
+          </p>
+          
+          <div class="benefits-list">
+            <div class="benefit-item">
+              <mat-icon>check_circle</mat-icon>
+              <span>Free AI-generated templates</span>
+            </div>
+            <div class="benefit-item">
+              <mat-icon>check_circle</mat-icon>
+              <span>Unlimited portfolio customization</span>
+            </div>
+            <div class="benefit-item">
+              <mat-icon>check_circle</mat-icon>
+              <span>Professional analytics dashboard</span>
+            </div>
+            <div class="benefit-item">
+              <mat-icon>check_circle</mat-icon>
+              <span>24/7 AI-powered support</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button mat-raised-button color="primary" type="submit">Register</button>
 
-    <!-- Register Link -->
-    <div class="register-link">
-        <p>Already have an account? <a routerLink="/auth/login">login here</a></p>
+    <!-- Right Side - Register Form -->
+    <div class="form-section">
+      <div class="form-container">
+        <div class="form-header">
+          <h3 class="form-title">Create Account</h3>
+          <p class="form-subtitle">Sign up to start building your AI-powered portfolio</p>
+        </div>
+
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit(registrationForm.value)" class="register-form">
+          <!-- Full Name Input -->
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">person</mat-icon>
+              <input 
+                type="text" 
+                class="form-input" 
+                placeholder="Enter your full name"
+                formControlName="fullName"
+                [class.error]="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched">
+            </div>
+            <div class="form-error" *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.touched">
+              Please enter your full name
+            </div>
+          </div>
+
+          <!-- Email Input -->
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">email</mat-icon>
+              <input 
+                type="email" 
+                class="form-input" 
+                placeholder="Enter your email address"
+                formControlName="email"
+                [class.error]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+            </div>
+            <div class="form-error" *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+              Please enter a valid email address
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">lock</mat-icon>
+              <input 
+                [type]="hidePassword ? 'password' : 'text'"
+                class="form-input" 
+                placeholder="Create a strong password"
+                formControlName="password"
+                [class.error]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+              <button 
+                type="button" 
+                class="password-toggle"
+                (click)="hidePassword = !hidePassword">
+                <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <div class="form-error" *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched">
+              Password must be at least 8 characters long
+            </div>
+          </div>
+
+          <!-- Confirm Password Input -->
+          <div class="form-group">
+            <label class="form-label">Confirm Password</label>
+            <div class="input-container">
+              <mat-icon class="input-icon">lock</mat-icon>
+              <input 
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                class="form-input" 
+                placeholder="Confirm your password"
+                formControlName="confirmPassword"
+                [class.error]="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched">
+              <button 
+                type="button" 
+                class="password-toggle"
+                (click)="hideConfirmPassword = !hideConfirmPassword">
+                <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+            </div>
+            <div class="form-error" *ngIf="registrationForm.get('confirmPassword')?.invalid && registrationForm.get('confirmPassword')?.touched">
+              Passwords do not match
+            </div>
+          </div>
+
+          <!-- Terms and Conditions -->
+          <div class="form-group">
+            <label class="checkbox-container">
+              <input type="checkbox" class="checkbox" formControlName="agreeToTerms">
+              <span class="checkmark"></span>
+              <span class="checkbox-label">
+                I agree to the <a href="#" class="terms-link">Terms of Service</a> and <a href="#" class="terms-link">Privacy Policy</a>
+              </span>
+            </label>
+            <div class="form-error" *ngIf="registrationForm.get('agreeToTerms')?.invalid && registrationForm.get('agreeToTerms')?.touched">
+              You must agree to the terms and conditions
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="btn-primary"
+            [disabled]="registrationForm.invalid || loading">
+            <mat-icon *ngIf="!loading">person_add</mat-icon>
+            <mat-spinner *ngIf="loading" class="loading-spinner"></mat-spinner>
+            <span>{{ loading ? 'Creating Account...' : 'Create Account' }}</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <!-- Google Sign Up -->
+          <button 
+            type="button" 
+            class="btn-google"
+            (click)="signInWithGoogle()"
+            [disabled]="loading">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="google-logo">
+            <span>Sign up with Google</span>
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="form-footer">
+          <p>Already have an account? 
+            <a routerLink="/auth/login" class="login-link">Sign in here</a>
+          </p>
+        </div>
+      </div>
     </div>
-</form>
+  </div>
+</div>

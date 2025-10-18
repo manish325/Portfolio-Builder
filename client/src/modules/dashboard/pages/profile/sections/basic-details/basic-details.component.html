@@ -1,67 +1,101 @@
-<p>basic-details works!</p>
-<mat-card>
-    <mat-card-content>
-        <form [formGroup]="basicDetailsFormGroup" class="details">
-            <mat-form-field appearance="outline">
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" placeholder="Enter your name">
-                <mat-error *ngIf="basicDetailsFormGroup.get('name')?.hasError('required')">
-                    Name is required
-                </mat-error>
-            </mat-form-field>
+<div class="profile-section-container">
+  <div class="form-header">
+    <h3>Basic Details</h3>
+    <p>Tell us about yourself - this information will appear on your portfolio</p>
+  </div>
 
-            <div class="media-container">
-                <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" />
-                <button mat-raised-button type="button" color="primary" (click)="fileInput.click()">Profile
-                    Picture</button>
-
-                <div class="selected-media" *ngIf="basicDetailsFormGroup.get('profilePicture')?.value">
-                    <mat-chip>
-                        <div class="chip-content">
-                            <span>
-                                {{basicDetailsFormGroup.get('profilePicture')?.value?.name ||
-                                'Profile Picture'}}
-                            </span>
-                            <mat-icon (click)="removeProfilePic()">cancel</mat-icon>
-                        </div>
-                    </mat-chip>
-                    <img [src]="fileUrl" alt="" *ngIf="fileUrl">
-                </div>
+  <div class="section-card">
+    <div class="card-header">
+      <h4>
+        <mat-icon>person</mat-icon>
+        Personal Information
+      </h4>
+    </div>
+    <div class="card-content">
+      <form [formGroup]="basicDetailsFormGroup">
+        <!-- Profile Picture Upload -->
+        <div class="media-upload">
+          <input type="file" hidden #fileInput ng2FileSelect [uploader]="uploader" accept="image/*" />
+          <button type="button" class="upload-btn" (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon>
+            Upload Profile Picture
+          </button>
+          <p class="upload-hint">Click to select an image file (JPG, PNG, GIF)</p>
+          
+          <div class="preview-container" *ngIf="fileUrl">
+            <div class="preview-item">
+              <img [src]="fileUrl" alt="Profile Preview">
+              <button class="remove-btn" (click)="removeProfilePic()">
+                <mat-icon>close</mat-icon>
+              </button>
             </div>
+          </div>
+        </div>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" placeholder="Enter your email" type="email">
-                <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('required')">
-                    Email is required
-                </mat-error>
-                <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('email')">
-                    Please enter a valid email address
-                </mat-error>
-            </mat-form-field>
+        <!-- Form Fields -->
+        <div class="form-grid two-columns">
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Full Name *</mat-label>
+            <input matInput formControlName="name" placeholder="Enter your full name">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error *ngIf="basicDetailsFormGroup.get('name')?.hasError('required')">
+              Name is required
+            </mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Phone</mat-label>
-                <input matInput formControlName="phone" placeholder="Enter your phone number" type="tel">
-                <mat-error *ngIf="basicDetailsFormGroup.get('phone')?.hasError('required')">
-                    Phone number is required
-                </mat-error>
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Email Address *</mat-label>
+            <input matInput formControlName="email" placeholder="Enter your email" type="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="basicDetailsFormGroup.get('email')?.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Address</mat-label>
-                <textarea matInput formControlName="address" placeholder="Enter your address"></textarea>
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Phone Number *</mat-label>
+            <input matInput formControlName="phone" placeholder="Enter your phone number" type="tel">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="basicDetailsFormGroup.get('phone')?.hasError('required')">
+              Phone number is required
+            </mat-error>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Country</mat-label>
-                <input matInput formControlName="country" placeholder="Enter your country">
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="form-field-half">
+            <mat-label>Country</mat-label>
+            <input matInput formControlName="country" placeholder="Enter your country">
+            <mat-icon matSuffix>public</mat-icon>
+          </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Profile Summary</mat-label>
-                <input matInput formControlName="profileSummary" placeholder="Enter your profile summary">
-            </mat-form-field>
-        </form>
-    </mat-card-content>
-</mat-card>
+          <mat-form-field appearance="outline" class="form-field-full">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address" placeholder="Enter your full address" rows="3"></textarea>
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-field-full">
+            <mat-label>Profile Summary</mat-label>
+            <textarea matInput formControlName="profileSummary" 
+                     placeholder="Write a brief summary about yourself, your skills, and what you do" 
+                     rows="4"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-secondary" (click)="resetForm()">
+            <mat-icon>refresh</mat-icon>
+            Reset
+          </button>
+          <button type="button" class="btn-primary" (click)="saveForm()" [disabled]="basicDetailsFormGroup.invalid">
+            <mat-icon>save</mat-icon>
+            Save Details
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

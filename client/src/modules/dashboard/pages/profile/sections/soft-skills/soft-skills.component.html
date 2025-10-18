@@ -1,0 +1,112 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>science</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Soft Skills</h3>
+      <p class="section-description">Highlight your interpersonal and communication skills</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="softSkills">
+    <div class="item" 
+         *ngFor="let softSkill of softSkillsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>science</mat-icon>
+          Soft Skill {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteSoftSkill(i)"
+                *ngIf="softSkillsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid two-columns">
+          <!-- Skill Name -->
+          <div class="modern-form-group">
+            <label class="form-label">Skill Name *</label>
+            <input class="form-input" 
+                   formControlName="skillName" 
+                   placeholder="e.g., Leadership, Communication">
+            <div class="form-error" *ngIf="softSkill.get('skillName')?.hasError('required')">
+              Skill name is required
+            </div>
+          </div>
+
+          <!-- Proficiency Level -->
+          <div class="modern-form-group">
+            <label class="form-label">Proficiency Level *</label>
+            <select class="form-select" formControlName="proficiencyLevel">
+              <option value="">Select Level</option>
+              <option [value]="1">Beginner</option>
+              <option [value]="2">Developing</option>
+              <option [value]="3">Proficient</option>
+              <option [value]="4">Advanced</option>
+              <option [value]="5">Expert</option>
+            </select>
+            <div class="form-error" *ngIf="softSkill.get('proficiencyLevel')?.hasError('required')">
+              Proficiency level is required
+            </div>
+          </div>
+
+          <!-- Core Skill -->
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isCoreSkill" 
+                     id="isCoreSkill{{i}}">
+              <label for="isCoreSkill{{i}}">Core skill</label>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" 
+                      formControlName="description" 
+                      placeholder="Describe how you demonstrate this skill"
+                      rows="2"></textarea>
+          </div>
+
+          <!-- Examples -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Examples</label>
+            <input class="form-input" 
+                   formControlName="examples" 
+                   placeholder="Enter examples separated by commas (e.g., Led a team of 5, Presented to 100+ people)">
+          </div>
+
+          <!-- Proficiency Indicator -->
+          <div class="modern-form-group full-width" *ngIf="softSkill.get('proficiencyLevel')?.value">
+            <div class="proficiency-indicator">
+              <span class="proficiency-label">Proficiency Level:</span>
+              <div class="proficiency-bar">
+                <div class="proficiency-fill" 
+                     [style.width.%]="(softSkill.get('proficiencyLevel')?.value / 5) * 100">
+                </div>
+              </div>
+              <span class="proficiency-text">
+                {{getProficiencyText(softSkill.get('proficiencyLevel')?.value)}}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Soft Skill Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addSoftSkill()">
+      <mat-icon>add</mat-icon>
+      Add Soft Skill
+    </button>
+  </div>
+</div>

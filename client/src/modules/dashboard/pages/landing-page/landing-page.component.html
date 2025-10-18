@@ -1,82 +1,215 @@
-<main class="landing-page">
-    <div class="toolbar">
-        <div class="logo">
-            <img [src]="user.profilePicture" alt="Profile Picture" />
+<div class="modern-dashboard">
+  <!-- Scrollable Container -->
+  <div class="dashboard-scroll-container">
+    <!-- Modern Header -->
+    <header class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <div class="logo-section">
+          <div class="logo-icon">
+            <mat-icon>auto_awesome</mat-icon>
+          </div>
+          <div class="logo-text">
+            <h1>Portfolio Builder</h1>
+            <span>Professional Templates</span>
+          </div>
         </div>
-        <div class="actions">
-            <button mat-fab (click)="logout()">
-                <!-- Logout -->
-                 <mat-icon>logout</mat-icon>
-            </button>
+      </div>
+      
+      <div class="header-center">
+        <div class="search-container">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" placeholder="Search templates, styles, or describe your vision..." class="search-input">
         </div>
-    </div>
-    <div class="branding-section">
-        <h1>
-            Create Your Stunning Portfolio
-        </h1>
-        <p>
-            Choose from beautiful templates and personalize your portfolio effortlessly.
-        </p>
-        <button (click)="getStarted()">
-            Get Started
+      </div>
+      
+      <div class="header-right">
+        <div class="user-profile">
+          <img [src]="user?.profilePicture || '/assets/default-avatar.png'" alt="Profile" class="user-avatar">
+          <div class="user-info">
+            <span class="user-name">{{ user?.name || 'User' }}</span>
+            <span class="user-status">Premium</span>
+          </div>
+        </div>
+        <button mat-icon-button class="logout-btn" (click)="logout()">
+          <mat-icon>logout</mat-icon>
         </button>
+      </div>
     </div>
+  </header>
 
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Create Your <span class="gradient-text">Stunning Portfolio</span>
+            <br>with Professional Templates
+          </h1>
+          <p class="hero-description">
+            Choose from our professional portfolio templates or create a custom design that perfectly represents your brand.
+          </p>
+          <div class="hero-actions">
+            <button class="btn-primary" (click)="getStarted()">
+              <mat-icon>rocket_launch</mat-icon>
+              Start Building
+            </button>
+            <button class="btn-secondary" (click)="openProfileForm()">
+              <mat-icon>edit</mat-icon>
+              Edit Profile
+            </button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-cards">
+            <div class="card card-1">
+              <mat-icon>work</mat-icon>
+              <span>Professional</span>
+            </div>
+            <div class="card card-2">
+              <mat-icon>palette</mat-icon>
+              <span>Creative</span>
+            </div>
+            <div class="card card-3">
+              <mat-icon>trending_up</mat-icon>
+              <span>Modern</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Templates Section -->
     <section class="templates-section">
-        <h2>Select Your Portfolio Layout</h2>
-        <div class="layouts-container">
-            <div class="layout-card" [class.selected]="selectedLayout.title === layout.title"  *ngFor="let layout of layoutData; let i = index" (click)="selectLayout(layout)">
-                <img [src]="layout.image" alt="Modern Layout Preview" />
-                <h3>{{layout.title}} Layout</h3>
-                <div class="check-icon" *ngIf="selectedLayout.title === layout.title">
-                    &#10003;
-                </div>
-                <button>
-                    Preview Layout
-                </button>
-            </div>
-        </div>
-    </section>
-    <!-- Title Bar -->
-    <!-- Main Content -->
-    <div class="preview-container">
-        <!-- Default Portfolio Preview -->
-        <div class="wrapper">
-            <div class="download-container">
-                <button mat-fab>
-                    <mat-icon>download</mat-icon>
-                </button>
-            </div>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+      <div class="section-header">
+        <h2>Portfolio Templates</h2>
+        <p>Choose from our professional templates or create a custom design</p>
+      </div>
 
+      <div class="templates-grid">
+        <div class="template-card" 
+             *ngFor="let layout of enhancedLayoutData; let i = index" 
+             [class.selected]="selectedLayout.title === layout.title"
+             (click)="selectLayout(layout)">
+          
+          <div class="template-preview">
+            <div class="preview-image">
+              <img [src]="layout.image" [alt]="layout.title + ' Template'">
+              <div class="preview-overlay">
+                <button class="preview-btn" (click)="previewTemplate(layout, $event)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>View Demo</span>
+                </button>
+              </div>
+            </div>
+            <div class="template-badge">
+              <mat-icon>palette</mat-icon>
+              <span>Template</span>
+            </div>
+          </div>
+
+          <div class="template-info">
+            <div class="template-header">
+              <h3>{{ layout.title }}</h3>
+              <div class="template-rating">
+                <mat-icon>star</mat-icon>
+                <span>{{ layout.rating }}</span>
+              </div>
+            </div>
+            <p class="template-description">{{ layout.description }}</p>
+            <div class="template-tags">
+              <span class="tag" *ngFor="let tag of layout.tags">{{ tag }}</span>
+            </div>
+            <div class="template-actions">
+              <button class="btn-outline" (click)="previewTemplate(layout, $event)">
+                <mat-icon>visibility</mat-icon>
+                Preview
+              </button>
+              <button class="btn-primary" (click)="selectLayout(layout)">
+                <mat-icon>check</mat-icon>
+                Select
+              </button>
+            </div>
+          </div>
+
+          <div class="selection-indicator" *ngIf="selectedLayout.title === layout.title">
+            <mat-icon>check_circle</mat-icon>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Features Section -->
     <section class="features-section">
-        <h2>Why Build Your Portfolio with Us?</h2>
-        <div class="features-grid">
-            <div class="feature-box">
-                <h3>Fully Customizable</h3>
-                <p>Adjust colors, fonts, and sections easily.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Responsive Design</h3>
-                <p>Your portfolio looks great on any device.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Fast & Easy</h3>
-                <p>Build your portfolio in minutes with no coding required.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Analytics</h3>
-                <p>Track visitors and performance with built-in analytics.</p>
-            </div>
+      <div class="section-header">
+        <h2>Why Choose Portfolio Builder?</h2>
+        <p>Experience professional portfolio creation with stunning templates</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <mat-icon>auto_awesome</mat-icon>
+          </div>
+          <h3>Professional Design</h3>
+          <p>Create stunning, personalized portfolio designs based on your preferences and industry with our professional templates.</p>
         </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <mat-icon>speed</mat-icon>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>Create professional portfolios in minutes, not hours. Our templates work at incredible speed to deliver results.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <mat-icon>devices</mat-icon>
+          </div>
+          <h3>Fully Responsive</h3>
+          <p>Every template is optimized for all devices, ensuring your portfolio looks perfect on any screen size.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <mat-icon>analytics</mat-icon>
+          </div>
+          <h3>Smart Analytics</h3>
+          <p>Track visitor engagement and optimize your portfolio with smart insights and recommendations.</p>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer class="footer">
-        <p>Ready to show the world your work?</p>
-        <button routerLink="profile">Get Started</button>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms</a> | <a href="#">Contact Us</a></p>
-    </footer>
-
-</main>
+  <!-- Fullscreen Portfolio Preview Modal -->
+  <div class="portfolio-modal" [class.active]="showPortfolioModal" (click)="closePortfolioModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3>{{ selectedLayout.title }} Portfolio Preview</h3>
+        <button class="close-btn" (click)="closePortfolioModal()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="portfolio-preview">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-outline" (click)="closePortfolioModal()">
+          <mat-icon>close</mat-icon>
+          Close Preview
+        </button>
+        <button class="btn-primary" (click)="selectLayout(selectedLayout)">
+          <mat-icon>check</mat-icon>
+          Use This Template
+        </button>
+      </div>
+    </div>
+  </div>
+  </div> <!-- End scrollable container -->
+</div>

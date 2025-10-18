@@ -1,11 +1,27 @@
 .main-app {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+// Only apply absolute positioning to dashboard components
+.main-app > router-outlet + * {
   height: 100vh;
   width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
 }
 
-.main-app > * {
-  flex: 1;
+// For auth components, allow normal flow
+.main-app > router-outlet + app-login,
+.main-app > router-outlet + app-register {
+  position: static !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
 }

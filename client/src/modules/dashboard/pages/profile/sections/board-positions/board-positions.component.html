@@ -1,0 +1,145 @@
+<div class="profile-section-container">
+  <div class="modern-section-header">
+    <div class="section-icon">
+      <mat-icon>account_balance</mat-icon>
+    </div>
+    <div>
+      <h3 class="section-title">Board Positions</h3>
+      <p class="section-description">Add your board memberships and advisory positions</p>
+    </div>
+  </div>
+
+  <div class="item-list" formArrayName="boardPositions">
+    <div class="item" 
+         *ngFor="let position of boardPositionsFormGroup.controls; let i = index" 
+         [formGroupName]="i">
+      
+      <div class="item-header">
+        <h5 class="item-title">
+          <mat-icon>account_balance</mat-icon>
+          Board Position {{i + 1}}
+        </h5>
+        <button type="button" 
+                class="delete-btn" 
+                (click)="deleteBoardPosition(i)"
+                *ngIf="boardPositionsFormGroup.length > 1">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="item-content">
+        <div class="form-grid two-columns">
+          <!-- Organization & Position -->
+          <div class="modern-form-group">
+            <label class="form-label">Organization Name *</label>
+            <input class="form-input" 
+                   formControlName="organizationName" 
+                   placeholder="e.g., TechCorp Inc.">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Position Title *</label>
+            <input class="form-input" 
+                   formControlName="positionTitle" 
+                   placeholder="e.g., Board Member, Advisory Board">
+          </div>
+
+          <!-- Dates & Status -->
+          <div class="modern-form-group">
+            <label class="form-label">Start Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="startDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">End Date</label>
+            <input class="form-input" 
+                   type="date"
+                   formControlName="endDate">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Status</label>
+            <select class="form-select" formControlName="status">
+              <option value="">Select Status</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Organization Type</label>
+            <select class="form-select" formControlName="organizationType">
+              <option value="">Select Type</option>
+              <option value="Public Company">Public Company</option>
+              <option value="Private Company">Private Company</option>
+              <option value="Non-profit">Non-profit</option>
+              <option value="Government">Government</option>
+              <option value="Educational">Educational</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Organization Details -->
+          <div class="modern-form-group">
+            <label class="form-label">Organization Size</label>
+            <input class="form-input" 
+                   formControlName="organizationSize" 
+                   placeholder="e.g., 50-200 employees">
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Website</label>
+            <input class="form-input" 
+                   formControlName="website" 
+                   placeholder="https://www.organization.com">
+          </div>
+
+          <!-- Compensation -->
+          <div class="modern-form-group">
+            <div class="checkbox-group">
+              <input type="checkbox" 
+                     formControlName="isCompensated" 
+                     id="isCompensated{{i}}">
+              <label for="isCompensated{{i}}">Compensated Position</label>
+            </div>
+          </div>
+
+          <div class="modern-form-group">
+            <label class="form-label">Compensation</label>
+            <input class="form-input" 
+                   formControlName="compensation" 
+                   placeholder="e.g., $10,000 annually">
+          </div>
+
+          <!-- Responsibilities & Achievements -->
+          <div class="modern-form-group full-width">
+            <label class="form-label">Responsibilities</label>
+            <textarea class="form-textarea" 
+                      formControlName="responsibilities" 
+                      placeholder="Describe your key responsibilities and contributions"
+                      rows="3"></textarea>
+          </div>
+
+          <div class="modern-form-group full-width">
+            <label class="form-label">Key Achievements</label>
+            <textarea class="form-textarea" 
+                      formControlName="keyAchievements" 
+                      placeholder="Highlight significant achievements and impact"
+                      rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Board Position Button -->
+  <div class="add-section">
+    <button type="button" class="add-btn" (click)="addBoardPosition()">
+      <mat-icon>add</mat-icon>
+      Add Board Position
+    </button>
+  </div>
+</div>

@@ -3,9 +3,13 @@ import { NavigationEnd, Router } from '@angular/router';
 import { INavigationOptions, IStep, IUserData } from '../../types';
 import { portfolioFormSteps, profilePageNavigation } from '../../data';
 import { DashboardService } from '../../dashboard.service';
+import { StepperComponent } from '../../../../common/stepper/stepper.component';
+import { MaterialModule } from '../../../../shared/MaterialModule/Material-module';
 
 @Component({
   selector: 'app-profile',
+  standalone: true,
+  imports: [StepperComponent, MaterialModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -32,6 +36,10 @@ export class ProfileComponent implements OnInit {
     })
   }
   openProfileForm() {}
+
+  goToDashboard() {
+    this.router.navigate(['/dashboard']);
+  }
 
   logout() {
     this.dashboardService.logout();
