@@ -42,10 +42,13 @@ export async function bootstrapServer() {
   // Set up Swagger
   const configService = app.get(ConfigService);
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Cats Example')
-    .setDescription('The cats API description')
+    .setTitle('Portfolio Builder API')
+    .setDescription('The Portfolio Builder API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('AI', 'AI Module endpoints')
+    .addTag('Auth', 'Authentication endpoints')
+    .addTag('User', 'User management endpoints')
+    .addTag('Project', 'Project management endpoints')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
