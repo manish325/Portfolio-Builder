@@ -149,14 +149,6 @@ async createDefaultUser() {
         description: 'Studied Computer Science.',
     };
 
-    const experience = {
-        title: 'Software Developer',
-        company: 'Default Company',
-        location: 'Default Location',
-        startDate: new Date('2022-01-01').toDateString(),
-        endDate: new Date('2023-01-01').toDateString(),
-        description: 'Worked as a software developer.',
-    };
 
     const languages = [
         { language: 'English', proficiency: 5 },
@@ -164,13 +156,11 @@ async createDefaultUser() {
 
     // Update the saved user with new values
     // savedUser.education = [education];
-    savedUser.experience = [experience];
     savedUser.languages = languages;
 
     // Save the updated user with all related data
     await this.userRepository.update(savedUser.id, {
         // education : [education],
-        experience: [experience],
         languages: languages,
     });
 

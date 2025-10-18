@@ -31,6 +31,79 @@ export class Project {
   })
   liveLink : string;
 
+  // Enhanced Project Fields
+  @Column({
+    type : 'enum',
+    enum: ['Web Development', 'Mobile App', 'Desktop App', 'Design', 'Research', 'Other'],
+    default : 'Web Development'
+  })
+  projectType : string;
+
+  @Column({
+    type : 'enum',
+    enum: ['Beginner', 'Intermediate', 'Advanced', 'Expert'],
+    default : 'Intermediate'
+  })
+  complexityLevel : string;
+
+  @Column({
+    type : 'int',
+    nullable : true,
+    default : null
+  })
+  teamSize : number;
+
+  @Column({
+    nullable : true,
+    default : null
+  })
+  clientName : string;
+
+  @Column({
+    nullable : true,
+    default : null
+  })
+  projectStatus : string;
+
+  @Column({
+    type : 'json',
+    nullable : true,
+    default : null
+  })
+  projectTags : string[];
+
+  @Column({
+    type : 'json',
+    nullable : true,
+    default : null
+  })
+  keyFeatures : string[];
+
+  @Column({
+    nullable : true,
+    default : null
+  })
+  caseStudy : string;
+
+  @Column({
+    type : 'json',
+    nullable : true,
+    default : null
+  })
+  testimonials : string[];
+
+  @Column({
+    type : 'boolean',
+    default : false
+  })
+  isFeatured : boolean;
+
+  @Column({
+    type : 'int',
+    default : 0
+  })
+  priority : number;
+
   @ManyToOne(() => User, (user) => user.projects)
   user: User;
 

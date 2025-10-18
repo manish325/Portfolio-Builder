@@ -27,10 +27,7 @@ export class UserService {
             .leftJoinAndSelect('skill.certificates', 'skillCertificate')
             .leftJoinAndSelect('user.certificates', 'certificate')
             .leftJoinAndSelect('certificate.skills', 'certificateSkill')
-            .leftJoinAndSelect('certificate.technologies', 'certificateTechnology')
             .leftJoinAndSelect('user.projects', 'project')
-            .leftJoinAndSelect('project.technologies', 'projectTechnology')
-            // .leftJoinAndSelect('project.skills', 'projectSkill')
             .leftJoinAndSelect('project.media', 'projectMedia')
             .where('user.id = :userId', { userId })  // Filter for specific userId
             .getOne();

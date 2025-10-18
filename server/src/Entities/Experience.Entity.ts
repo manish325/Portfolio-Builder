@@ -46,6 +46,66 @@ export class Experience {
     @Column()
     employmentType : string;
 
+    // Enhanced Experience Fields
+    @Column({
+        type : 'int',
+        nullable : true,
+        default : null
+    })
+    teamSizeManaged : number;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    budgetResponsibility : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    reportingTo : string;
+
+    @Column({
+        type : 'json',
+        nullable : true,
+        default : null
+    })
+    keyMetrics : string[];
+
+    @Column({
+        type : 'json',
+        nullable : true,
+        default : null
+    })
+    technologiesUsed : string[];
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    clientCompanySize : string;
+
+    @Column({
+        type : 'boolean',
+        default : false
+    })
+    isCurrentRole : boolean;
+
+    @Column({
+        type : 'json',
+        nullable : true,
+        default : null
+    })
+    projectsLed : string[];
+
+    @Column({
+        type : 'json',
+        nullable : true,
+        default : null
+    })
+    achievements : string[];
+
     @ManyToMany(
         () => Skill,
         skill => skill.experiences

@@ -8,13 +8,22 @@ import {
 } from "class-validator"
 import { Project } from "./Project.Entity";
 import { Skill } from "./Skill.Entity";
-import { ICertification, IEducation, IExperience, ILanguage } from "src/common/types";
+import { ICertification, IEducation, ILanguage } from "src/common/types";
 import { Certificate } from "./Certificate.Entity";
 import { Language } from "./Language.Entity";
 import { UserLanguage } from "./UserLanguage.Entity";
 import { Portfolio } from "./Portfolio.Entity";
 import { Education } from "./Education.Entity";
 import { Experience } from "./Experience.Entity";
+import { ProfessionalReference } from "./ProfessionalReference.Entity";
+import { Achievement } from "./Achievement.Entity";
+import { Publication } from "./Publication.Entity";
+import { SpeakingEngagement } from "./SpeakingEngagement.Entity";
+import { ProfessionalMembership } from "./ProfessionalMembership.Entity";
+import { Testimonial } from "./Testimonial.Entity";
+import { BusinessVenture } from "./BusinessVenture.Entity";
+import { BoardPosition } from "./BoardPosition.Entity";
+import { SoftSkill } from "./SoftSkill.Entity";
 
 @Entity()
 export class User {
@@ -69,15 +78,114 @@ export class User {
     })
     linkedin : string;
 
-    @OneToMany(() => Education, education => education.user)
-    educations : Education[];
+    // Enhanced Professional Fields
+    @Column({
+        nullable : true,
+        default : null
+    })
+    twitter : string;
 
     @Column({
         nullable : true,
-        default : null,
-        type : 'json',
+        default : null
     })
-    experience : IExperience[];
+    website : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    behance : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    dribbble : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    professionalSummary : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    careerObjective : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    industry : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    specialization : string;
+
+    @Column({
+        type : 'int',
+        nullable : true,
+        default : null
+    })
+    totalExperienceYears : number;
+
+    @Column({
+        type : 'enum',
+        enum: ['Entry', 'Mid', 'Senior', 'Executive', 'C-Level'],
+        nullable : true,
+        default : null
+    })
+    careerLevel : string;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    salaryExpectation : string;
+
+    @Column({
+        type : 'enum',
+        enum: ['Open to work', 'Not looking', 'Actively seeking', 'Open to opportunities'],
+        nullable : true,
+        default : 'Open to opportunities'
+    })
+    availabilityStatus : string;
+
+    @Column({
+        type : 'json',
+        nullable : true,
+        default : null
+    })
+    preferredWorkLocations : string[];
+
+    @Column({
+        type : 'enum',
+        enum: ['Remote', 'Onsite', 'Hybrid'],
+        nullable : true,
+        default : null
+    })
+    workPreference : string;
+
+    @Column({
+        type : 'boolean',
+        default : false
+    })
+    relocationOpen : boolean;
+
+    @Column({
+        nullable : true,
+        default : null
+    })
+    timeZone : string;
+
+    @OneToMany(() => Education, education => education.user)
+    educations : Education[];
+
 
     @Column({
         type : 'json',
@@ -125,4 +233,41 @@ export class User {
     )
     @JoinColumn()
     experiences: Experience[];
+
+    // New Professional Relationships
+    @OneToMany(() => ProfessionalReference, reference => reference.user)
+    @JoinColumn()
+    references: ProfessionalReference[];
+
+    @OneToMany(() => Achievement, achievement => achievement.user)
+    @JoinColumn()
+    achievements: Achievement[];
+
+    @OneToMany(() => Publication, publication => publication.user)
+    @JoinColumn()
+    publications: Publication[];
+
+    @OneToMany(() => SpeakingEngagement, speaking => speaking.user)
+    @JoinColumn()
+    speakingEngagements: SpeakingEngagement[];
+
+    @OneToMany(() => ProfessionalMembership, membership => membership.user)
+    @JoinColumn()
+    professionalMemberships: ProfessionalMembership[];
+
+    @OneToMany(() => Testimonial, testimonial => testimonial.user)
+    @JoinColumn()
+    testimonials: Testimonial[];
+
+    @OneToMany(() => BusinessVenture, venture => venture.user)
+    @JoinColumn()
+    businessVentures: BusinessVenture[];
+
+    @OneToMany(() => BoardPosition, boardPosition => boardPosition.user)
+    @JoinColumn()
+    boardPositions: BoardPosition[];
+
+    @OneToMany(() => SoftSkill, softSkill => softSkill.user)
+    @JoinColumn()
+    softSkills: SoftSkill[];
 }
