@@ -24,7 +24,9 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**GrowFolio Backend API**
+
+The backend server for GrowFolio, built with NestJS. Provides comprehensive APIs for portfolio management, user authentication, and AI-powered features to help professionals grow their career identity.
 
 ## Installation
 

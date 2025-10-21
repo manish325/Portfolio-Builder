@@ -42,8 +42,8 @@ export async function bootstrapServer() {
   // Set up Swagger
   const configService = app.get(ConfigService);
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Portfolio Builder API')
-    .setDescription('The Portfolio Builder API description')
+  .setTitle('GrowFolio API')
+  .setDescription('The GrowFolio API - Grow Your Professional Identity')
     .setVersion('1.0')
     .addTag('AI', 'AI Module endpoints')
     .addTag('Auth', 'Authentication endpoints')

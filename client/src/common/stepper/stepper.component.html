@@ -94,7 +94,10 @@
   </aside>
 
   <!-- Modern Content Area -->
-  <main class="modern-content" [class.full-width]="!sidebarExpanded">
+  <main class="modern-content" 
+        [class.full-width]="!sidebarExpanded" 
+        [class.full-screen]="fullScreenMode"
+        [class.compact-mode]="compactMode">
     <!-- Content Header -->
     <div class="content-header" *ngIf="selectedStep">
       <div class="header-content">
@@ -107,6 +110,29 @@
         </div>
       </div>
       <div class="header-actions">
+        <div class="action-buttons">
+          <button mat-icon-button 
+                  (click)="toggleFullScreen()" 
+                  [class.active]="fullScreenMode"
+                  class="fullscreen-toggle"
+                  matTooltip="{{ fullScreenMode ? 'Exit Full Screen' : 'Enter Full Screen' }}">
+            <mat-icon>{{ fullScreenMode ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+          </button>
+          <button mat-icon-button 
+                  (click)="toggleSidebar()" 
+                  class="sidebar-toggle"
+                  matTooltip="{{ sidebarExpanded ? 'Hide Sidebar' : 'Show Sidebar' }}">
+            <mat-icon>{{ sidebarExpanded ? 'menu_open' : 'menu' }}</mat-icon>
+          </button>
+          <button mat-icon-button 
+                  (click)="toggleCompactMode()" 
+                  [class.active]="compactMode"
+                  class="compact-toggle"
+                  *ngIf="fullScreenMode"
+                  matTooltip="{{ compactMode ? 'Normal Layout' : 'Compact Layout' }}">
+            <mat-icon>{{ compactMode ? 'expand' : 'compress' }}</mat-icon>
+          </button>
+        </div>
         <div class="step-counter">
           <span class="current-step">{{ currentIndex + 1 }}</span>
           <span class="step-separator">/</span>

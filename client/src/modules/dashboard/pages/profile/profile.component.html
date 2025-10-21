@@ -10,8 +10,7 @@
                 </button>
             </div>
             <div class="header-center">
-                <h1 class="app-title">Portfolio Builder</h1>
-                <p class="app-subtitle">Create your professional portfolio</p>
+                <app-logo size="medium" variant="primary" [showText]="true" tagline="Grow your professional identity"></app-logo>
             </div>
             <div class="header-right">
                 <div class="user-profile" (click)="openProfileForm()">
@@ -33,4 +32,10 @@
         <app-stepper [alignment]="'vertical'" [steps]="applicationSteps"></app-stepper>
     </div>
     </div> <!-- End scrollable container -->
+
+    <!-- Chat Button -->
+    <app-chat-button></app-chat-button>
+    
+    <!-- Chat Assistant -->
+    <app-chat></app-chat>
 </div>

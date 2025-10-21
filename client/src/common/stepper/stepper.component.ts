@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IStep } from 'src/modules/dashboard/types';
 import { MatStepperModule, StepperOrientation } from '@angular/material/stepper';
@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FormDataService } from '../../modules/dashboard/services/form-data.service';
 
 @Component({
@@ -21,7 +22,8 @@ import { FormDataService } from '../../modules/dashboard/services/form-data.serv
     MatInputModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule  
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss']
@@ -36,6 +38,8 @@ export class StepperComponent implements OnInit {
   currentIndex = 0;
   selectedStep!: IStep;
   sidebarExpanded = true;
+  fullScreenMode = false;
+  compactMode = false;
   allSteps: IStep[] = [];
   completedSteps: Set<number> = new Set();
   stepStatuses: Map<number, 'incomplete' | 'active' | 'completed'> = new Map();
@@ -75,6 +79,34 @@ export class StepperComponent implements OnInit {
 
   toggleSidebar() {
     this.sidebarExpanded = !this.sidebarExpanded;
+  }
+
+  toggleFullScreen(): void {
+    this.fullScreenMode = !this.fullScreenMode;
+    if (this.fullScreenMode) {
+      this.sidebarExpanded = false;
+    } else {
+      this.compactMode = false;
+    }
+  }
+
+  toggleCompactMode(): void {
+    this.compactMode = !this.compactMode;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapeKey(event: KeyboardEvent): void {
+    if (this.fullScreenMode) {
+      this.fullScreenMode = false;
+    }
+  }
+
+  @HostListener('document:keydown.control.shift.c', ['$event'])
+  onCompactModeShortcut(event: KeyboardEvent): void {
+    if (this.fullScreenMode) {
+      event.preventDefault();
+      this.toggleCompactMode();
+    }
   }
 
   private flattenSteps(steps: IStep[]): IStep[] {

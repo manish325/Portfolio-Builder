@@ -1,7 +1,7 @@
 {
-  "name": "Portfolio Builder",
-  "version": "0.0.1",
-  "description": "",
+  "name": "growfolio-server",
+  "version": "1.0.0",
+  "description": "GrowFolio Backend API - Grow Your Professional Identity",
   "author": "",
   "private": true,
   "license": "UNLICENSED",

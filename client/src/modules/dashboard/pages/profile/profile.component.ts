@@ -5,11 +5,11 @@ import { portfolioFormSteps, profilePageNavigation } from '../../data';
 import { DashboardService } from '../../dashboard.service';
 import { StepperComponent } from '../../../../common/stepper/stepper.component';
 import { MaterialModule } from '../../../../shared/MaterialModule/Material-module';
+import { ChatComponent } from '../../../../shared/chat/chat.component';
+import { ChatButtonComponent } from '../../../../shared/chat-button/chat-button.component';
 
 @Component({
   selector: 'app-profile',
-  standalone: true,
-  imports: [StepperComponent, MaterialModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })

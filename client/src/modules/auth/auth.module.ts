@@ -15,6 +15,7 @@ import {
   GoogleLoginProvider,
 } from '@abacritt/angularx-social-login';
 import { SnackBarService } from 'src/services/snackbar/snackbar.service';
+import { LogoComponent } from '../../shared/logo/logo.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SnackBarService } from 'src/services/snackbar/snackbar.service';
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
-    RouterOutlet
+    RouterOutlet,
+    LogoComponent
   ],
   providers : [
     AuthService,

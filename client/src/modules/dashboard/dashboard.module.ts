@@ -22,6 +22,11 @@ import { TechInnovatorComponent } from "./pages/tech-innovator/tech-innovator.co
 import { ExecutiveSuiteComponent } from "./pages/executive-suite/executive-suite.component";
 import { MinimalistCleanComponent } from "./pages/minimalist-clean/minimalist-clean.component";
 import { StartupDynamicComponent } from "./pages/startup-dynamic/startup-dynamic.component";
+import { ChatComponent } from "../../shared/chat/chat.component";
+import { ChatButtonComponent } from "../../shared/chat-button/chat-button.component";
+import { ProfileComponent } from "./pages/profile/profile.component";
+import { ChatStateService } from "../../services/chat/chat-state.service";
+import { LogoComponent } from "../../shared/logo/logo.component";
 
 @NgModule({
     imports : [
@@ -33,10 +38,14 @@ import { StartupDynamicComponent } from "./pages/startup-dynamic/startup-dynamic
             logOnly: true, // Restrict extension to log-only mode
         }),
         AvatarComponent,
-        StepperComponent
+        StepperComponent,
+        ChatComponent,
+        ChatButtonComponent,
+        LogoComponent
     ],
     declarations : [
         LandingPageComponent,
+        ProfileComponent,
         UserProfileComponent,
         SamplePortfolioComponent,
         ModernProfessionalComponent,
@@ -57,7 +66,8 @@ import { StartupDynamicComponent } from "./pages/startup-dynamic/startup-dynamic
             multi : true
         },
         LocalStorageService,
-        DashboardService
+        DashboardService,
+        ChatStateService
     ]
 })
 export class DashboardModule implements OnInit {

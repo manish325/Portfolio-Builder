@@ -1,0 +1,150 @@
+<div class="chat-container" 
+     [class.minimized]="isMinimized" 
+     [class.expanded]="isExpanded" 
+     [class.full-viewport]="isExpanded"
+     *ngIf="isVisible">
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="header-left">
+      <div class="chat-avatar">
+        <app-logo size="small" variant="primary" [showText]="false"></app-logo>
+      </div>
+      <div class="chat-info">
+        <h3>GrowFolio Assistant</h3>
+        <span class="status">Online • Ready to help</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button mat-icon-button (click)="toggleExpand()" matTooltip="Toggle Full Screen">
+        <mat-icon>{{ isExpanded ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="clearChat()" matTooltip="Clear Chat">
+        <mat-icon>clear_all</mat-icon>
+      </button>
+      <button mat-icon-button (click)="toggleMinimize()" matTooltip="Minimize Chat" *ngIf="!isExpanded">
+        <mat-icon>{{ isMinimized ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon>
+      </button>
+      <button mat-icon-button (click)="hideChat()" matTooltip="Close Chat" *ngIf="isExpanded">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Chat Body -->
+  <div class="chat-body" *ngIf="!isMinimized">
+    <!-- Messages Container -->
+    <div class="messages-container" #chatContainer>
+      <div class="messages-list">
+        <div 
+          *ngFor="let message of messages" 
+          class="message-wrapper"
+          [class.user]="message.type === 'user'"
+          [class.assistant]="message.type === 'assistant'"
+          [class.system]="message.type === 'system'"
+        >
+          <div class="message-bubble">
+            <!-- Message Avatar -->
+            <div class="message-avatar" *ngIf="message.type !== 'user'">
+              <mat-icon *ngIf="message.type === 'assistant'">trending_up</mat-icon>
+              <mat-icon *ngIf="message.type === 'system'">info</mat-icon>
+            </div>
+
+            <!-- Message Content -->
+            <div class="message-content">
+              <div class="message-text" [innerHTML]="message.content"></div>
+              <div class="message-time">{{ formatTime(message.timestamp) }}</div>
+              
+              <!-- Typing Indicator - You can implement your own -->
+              <div class="typing-indicator" *ngIf="isTyping">
+                <mat-spinner diameter="16"></mat-spinner>
+                <span>Assistant is typing...</span>
+              </div>
+            </div>
+
+            <!-- User Avatar -->
+            <div class="message-avatar user-avatar" *ngIf="message.type === 'user'">
+              <mat-icon>person</mat-icon>
+            </div>
+          </div>
+
+          <!-- Suggestions - You can implement your own suggestion logic -->
+          <div class="message-suggestions" *ngIf="message.suggestions && message.suggestions.length > 0">
+            <button 
+              *ngFor="let suggestion of message.suggestions" 
+              class="suggestion-chip"
+              (click)="onSuggestionClick(suggestion)"
+            >
+              {{ suggestion }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions" *ngIf="messages.length <= 1">
+      <h4>Quick Actions</h4>
+      <div class="actions-grid">
+        <button 
+          *ngFor="let action of quickActions" 
+          class="action-button"
+          (click)="onQuickAction(action.action)"
+        >
+          <mat-icon>{{ action.icon }}</mat-icon>
+          <span>{{ action.text }}</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Professional Suggestions -->
+    <div class="professional-suggestions" *ngIf="messages.length > 1">
+      <h4>Professional Details</h4>
+      <div class="suggestions-grid">
+        <button 
+          *ngFor="let suggestion of professionalSuggestions.slice(0, 4)" 
+          class="suggestion-button"
+          (click)="onSuggestionClick(suggestion)"
+        >
+          {{ suggestion }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Message Input -->
+    <div class="message-input-container">
+      <div class="input-wrapper">
+        <mat-form-field appearance="outline" class="message-input-field">
+          <mat-label>Tell me about your professional details...</mat-label>
+          <textarea 
+            matInput 
+            [(ngModel)]="currentMessage"
+            (keypress)="onKeyPress($event)"
+            #messageInput
+            placeholder="Type your message here..."
+            rows="1"
+            maxlength="1000"
+          ></textarea>
+          <mat-hint align="end">{{ currentMessage.length }}/1000</mat-hint>
+        </mat-form-field>
+        <button 
+          mat-fab 
+          color="primary" 
+          class="send-button"
+          (click)="onSendMessage()"
+          [disabled]="!currentMessage.trim() || isTyping"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Minimized State -->
+  <div class="minimized-content" *ngIf="isMinimized">
+    <div class="minimized-info">
+      <mat-icon>trending_up</mat-icon>
+      <span>GrowFolio Assistant</span>
+      <div class="unread-indicator" *ngIf="messages.length > 1">●</div>
+    </div>
+  </div>
+</div>

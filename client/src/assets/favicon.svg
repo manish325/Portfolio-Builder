@@ -1,0 +1,16 @@
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main G outline -->
+  <path d="M30 5 C15 5 5 15 5 30 C5 45 15 55 30 55 C45 55 55 45 55 30 C55 15 45 5 30 5 Z M30 15 C40 15 45 20 45 30 C45 40 40 45 30 45 L30 35 L25 35 L25 30 L30 30 L30 15 Z" 
+        fill="#1e40af"/>
+  
+  <!-- Bar chart inside G -->
+  <g>
+    <rect x="20" y="25" width="4" height="8" fill="#3b82f6" opacity="0.7"/>
+    <rect x="26" y="22" width="4" height="11" fill="#3b82f6" opacity="0.7"/>
+    <rect x="32" y="19" width="4" height="14" fill="#3b82f6" opacity="0.7"/>
+  </g>
+  
+  <!-- Upward arrow -->
+  <path d="M38 35 L42 31 L40 31 L40 25 L36 25 L36 31 L34 31 Z" 
+        fill="#1e40af"/>
+</svg>

@@ -1,6 +1,8 @@
-# Client1
+# GrowFolio Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.15.
+**Grow Your Professional Identity**
+
+This is the frontend client for GrowFolio, built with Angular 17. It provides a modern, intuitive interface for building professional portfolios.
 
 ## Development server
 

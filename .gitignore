@@ -1,4 +1,19 @@
+# Node modules in all directories
+**/node_modules/
+node_modules/
+
+# Node.js versions
+**/node-v*/
+node-v*/
+
+# Client specific
 /client/node_modules
 /client/node-v22.2.0-win-x64
+
+# Server specific  
 /server/node_modules
 /server/node-v22.2.0-win-x64
+
+# Reviews specific
+/reviews/node_modules
+/reviews/node-v*/

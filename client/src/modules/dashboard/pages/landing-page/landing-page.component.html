@@ -6,13 +6,7 @@
     <div class="header-content">
       <div class="header-left">
         <div class="logo-section">
-          <div class="logo-icon">
-            <mat-icon>auto_awesome</mat-icon>
-          </div>
-          <div class="logo-text">
-            <h1>Portfolio Builder</h1>
-            <span>Professional Templates</span>
-          </div>
+          <app-logo size="medium" variant="primary" [showText]="true" tagline="Grow Your Professional Identity"></app-logo>
         </div>
       </div>
       
@@ -45,36 +39,36 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            Create Your <span class="gradient-text">Stunning Portfolio</span>
-            <br>with Professional Templates
+            Grow Your <span class="gradient-text">Professional Identity</span>
+            <br>with Stunning Portfolios
           </h1>
           <p class="hero-description">
-            Choose from our professional portfolio templates or create a custom design that perfectly represents your brand.
+            Build, showcase, and grow your professional presence with our intelligent portfolio templates designed for career success.
           </p>
           <div class="hero-actions">
             <button class="btn-primary" (click)="getStarted()">
-              <mat-icon>rocket_launch</mat-icon>
-              Start Building
+              <mat-icon>trending_up</mat-icon>
+              Start Growing
             </button>
             <button class="btn-secondary" (click)="openProfileForm()">
               <mat-icon>edit</mat-icon>
-              Edit Profile
+              Build Profile
             </button>
           </div>
         </div>
         <div class="hero-visual">
           <div class="floating-cards">
             <div class="card card-1">
-              <mat-icon>work</mat-icon>
-              <span>Professional</span>
+              <mat-icon>trending_up</mat-icon>
+              <span>Growth</span>
             </div>
             <div class="card card-2">
-              <mat-icon>palette</mat-icon>
-              <span>Creative</span>
+              <mat-icon>auto_awesome</mat-icon>
+              <span>Smart</span>
             </div>
             <div class="card card-3">
-              <mat-icon>trending_up</mat-icon>
-              <span>Modern</span>
+              <mat-icon>rocket_launch</mat-icon>
+              <span>Success</span>
             </div>
           </div>
         </div>
@@ -212,4 +206,10 @@
     </div>
   </div>
   </div> <!-- End scrollable container -->
+
+  <!-- Chat Button -->
+  <app-chat-button></app-chat-button>
+  
+  <!-- Chat Assistant -->
+  <app-chat></app-chat>
 </div>

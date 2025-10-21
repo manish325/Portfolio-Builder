@@ -1,6 +1,7 @@
 {
-  "name": "client-1",
-  "version": "0.0.0",
+  "name": "growfolio-client",
+  "version": "1.0.0",
+  "description": "GrowFolio - Grow Your Professional Identity",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

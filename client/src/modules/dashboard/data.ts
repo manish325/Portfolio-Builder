@@ -305,7 +305,7 @@ export const leadershipBusinessSteps: IStep[] = [
 export const portfolioFormSteps : IStep[] = [
   {
     title : 'Basic Details',
-    description: 'Personal information and contact details',
+    description: 'Build your foundation with personal information and contact details',
     steps: basicDetailsSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'basicDetails',
     control: enhancedUserProfileSchema,
@@ -313,14 +313,14 @@ export const portfolioFormSteps : IStep[] = [
   },
   {
     title: 'Professional Summary',
-    description: 'Define your professional identity and career objectives',
+    description: 'Craft your professional story and growth objectives',
     formgroupName: 'professionalSummary',
     control: professionalSummaryFormGroup,
     component: ProfessionalSummaryComponent
   },
   {
     title: 'Professional Skills',
-    description: 'Technical and soft skills that define your expertise',
+    description: 'Showcase your growing expertise and capabilities',
     steps: professionalSkillsSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'professionalSkills',
     control: enhancedUserProfileSchema,
@@ -328,7 +328,7 @@ export const portfolioFormSteps : IStep[] = [
   },
   {
     title: 'Professional Experience',
-    description: 'Work experience, projects, and achievements',
+    description: 'Highlight your career journey and key achievements',
     steps: professionalExperienceSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'professionalExperience',
     control: enhancedUserProfileSchema,
@@ -336,7 +336,7 @@ export const portfolioFormSteps : IStep[] = [
   },
   {
     title: 'Professional Development',
-    description: 'Education, research, and continuous learning',
+    description: 'Document your learning journey and growth milestones',
     steps: professionalDevelopmentSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'professionalDevelopment',
     control: enhancedUserProfileSchema,
@@ -344,7 +344,7 @@ export const portfolioFormSteps : IStep[] = [
   },
   {
     title: 'Professional Network',
-    description: 'References, testimonials, and professional relationships',
+    description: 'Build and showcase your professional relationships',
     steps: professionalNetworkSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'professionalNetwork',
     control: enhancedUserProfileSchema,
@@ -352,7 +352,7 @@ export const portfolioFormSteps : IStep[] = [
   },
   {
     title: 'Leadership & Business',
-    description: 'Entrepreneurial ventures and leadership roles',
+    description: 'Showcase your entrepreneurial spirit and leadership growth',
     steps: leadershipBusinessSteps.map(step => ({...step, alignment: 'horizontal'})),
     formgroupName: 'leadershipBusiness',
     control: enhancedUserProfileSchema,

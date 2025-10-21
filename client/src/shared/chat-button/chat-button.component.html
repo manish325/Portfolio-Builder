@@ -1,0 +1,16 @@
+<div class="chat-button-container">
+  <button 
+    mat-fab 
+    color="primary" 
+    class="chat-toggle-button"
+    (click)="toggleChat()"
+    matTooltip="Toggle Chat Assistant"
+    [matBadge]="messageCount"
+    [matBadgeHidden]="!hasUnreadMessages"
+    matBadgeColor="warn"
+    matBadgeSize="small"
+  >
+    <app-logo *ngIf="!isChatVisible" size="small" variant="white" [showText]="false"></app-logo>
+    <mat-icon *ngIf="isChatVisible">close</mat-icon>
+  </button>
+</div>
